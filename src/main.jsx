@@ -10,8 +10,3 @@ root.render(
     <App />
   </StrictMode>,
 )
-
-window.requestAnimationFrame(() => {
-  document.getElementById('initial-loader-shell')?.remove()
-  document.getElementById('initial-loader-critical')?.remove()
-})

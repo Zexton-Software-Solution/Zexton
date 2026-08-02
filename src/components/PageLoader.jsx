@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
 import CountUp from './CountUp';
 import DecryptedText from './DecryptedText';
@@ -8,6 +8,11 @@ const MINIMUM_VISIBLE_MS = 2100;
 const PROGRESS_DURATION_SECONDS = 1.85;
 
 export default function PageLoader({ onComplete }) {
+  useLayoutEffect(() => {
+    document.getElementById('initial-loader-shell')?.remove();
+    document.getElementById('initial-loader-critical')?.remove();
+  }, []);
+
   useEffect(() => {
     const timer = window.setTimeout(onComplete, MINIMUM_VISIBLE_MS);
     return () => window.clearTimeout(timer);
