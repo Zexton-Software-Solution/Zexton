@@ -1,0 +1,8 @@
+# Zexton public website crawling policy
+# All public pages and assets are crawlable. Form APIs and the static error page are not content.
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /404.html
+
+Sitemap: https://zexton.com/sitemap.xml

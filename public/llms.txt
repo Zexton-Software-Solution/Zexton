@@ -1,0 +1,41 @@
+# Zexton
+
+> Zexton plans and builds custom software, SaaS platforms, web and mobile applications, cloud systems, modernization programs, and responsible AI automation.
+
+Zexton publishes factual service information, planning guidance, indicative pricing ranges, and original long-form engineering insights. Pages do not claim unverified clients, projects, reviews, team members, vacancies, research, or guaranteed search rankings.
+
+## Primary pages
+
+- [Home](https://zexton.com/): Overview of Zexton software product engineering.
+- [Software development services](https://zexton.com/services): Product discovery, custom web applications, SaaS, React Native, AI automation, cloud, DevOps, and modernization.
+- [Engineering capabilities](https://zexton.com/capabilities): Product, UX, frontend, backend, mobile, cloud, data, security, accessibility, and applied AI capabilities.
+- [Software pricing](https://zexton.com/pricing): Indicative website, custom software, SaaS, and enterprise planning ranges; not instant quotations.
+- [Company](https://zexton.com/company): Zexton company direction, values, service focus, and engineering principles.
+- [About](https://zexton.com/about): Discovery, delivery, security, quality, handover, and operating principles.
+- [Delivery and case-study standards](https://zexton.com/work): The context and verified evidence required before publishing project outcomes.
+- [Collaboration model](https://zexton.com/who-we-are): Product and engineering role areas; placeholder profiles are not represented as verified employees.
+- [Software planning resources](https://zexton.com/resources): Briefing, estimation, AI readiness, and production-readiness frameworks.
+- [Engineering insights](https://zexton.com/insights): Original long-form articles about software products, architecture, mobile, modernization, teams, and AI.
+- [Careers](https://zexton.com/careers): Future role areas and working principles; an active vacancy exists only when explicitly published.
+- [Contact](https://zexton.com/contact): Project enquiry form and public contact information.
+
+## Engineering insights
+
+- [How to Take a SaaS Product From Idea to Production](https://zexton.com/insights/saas-idea-to-production)
+- [Building AI Agents Businesses Can Actually Trust](https://zexton.com/insights/trustworthy-ai-agents)
+- [The Architecture Behind Software That Scales](https://zexton.com/insights/scalable-software-architecture)
+- [Mobile Product Decisions Users Can Feel](https://zexton.com/insights/react-native-mobile-product)
+- [Modernizing Legacy Systems Without Stopping Business](https://zexton.com/insights/legacy-system-modernization)
+- [What a High-Performing Product Team Does Differently](https://zexton.com/insights/high-performing-product-teams)
+- [Designing Multi-Tenant Products for Long-Term Growth](https://zexton.com/insights/multi-tenant-saas-architecture)
+- [Finding the AI Opportunities Worth Building](https://zexton.com/insights/ai-opportunities-worth-building)
+- [Shipping Faster Without Creating Engineering Debt](https://zexton.com/insights/ship-faster-without-engineering-debt)
+
+## Usage notes
+
+- Canonical site: https://zexton.com/
+- Sitemap: https://zexton.com/sitemap.xml
+- Robots policy: https://zexton.com/robots.txt
+- Public language: English (India), `en-IN`.
+- Article illustrations are original Zexton SVG assets.
+- Contact: info@zexton.com

@@ -1,0 +1,14 @@
+# Zexton AI-readable site guide
+
+The standards-oriented guide is available at:
+https://zexton.com/llms.txt
+
+Zexton provides custom software, SaaS, web, mobile, cloud, modernization, and responsible AI product engineering information.
+
+- Services: https://zexton.com/services
+- Capabilities: https://zexton.com/capabilities
+- Engineering insights: https://zexton.com/insights
+- Planning resources: https://zexton.com/resources
+- Pricing: https://zexton.com/pricing
+- Contact: https://zexton.com/contact
+- Sitemap: https://zexton.com/sitemap.xml

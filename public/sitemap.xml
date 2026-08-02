@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://zexton.com/</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/company</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/about</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/work</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/who-we-are</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/services</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/resources</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/insights</loc><lastmod>2026-08-02</lastmod></url>
+  <url>
+    <loc>https://zexton.com/insights/saas-idea-to-production</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/saas-idea-to-production.svg</image:loc><image:title>How to Take a SaaS Product From Idea to Production</image:title><image:caption>Abstract product blueprint flowing through delivery stages into a production SaaS dashboard</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/trustworthy-ai-agents</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/trustworthy-ai-agents.svg</image:loc><image:title>Building AI Agents Businesses Can Actually Trust</image:title><image:caption>Shield protecting an AI agent network with verified tools and approval checkpoints</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/scalable-software-architecture</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/scalable-software-architecture.svg</image:loc><image:title>The Architecture Behind Software That Scales</image:title><image:caption>Layered modular software architecture connected to shared data and scaling paths</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/react-native-mobile-product</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/react-native-mobile-product.svg</image:loc><image:title>Mobile Product Decisions Users Can Feel</image:title><image:caption>Mobile application interface connected across shared React Native product layers and native capabilities</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/legacy-system-modernization</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/legacy-system-modernization.svg</image:loc><image:title>Modernizing Legacy Systems Without Stopping Business</image:title><image:caption>Legacy monolithic system passing safely through a modernization gateway into observable cloud modules</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/high-performing-product-teams</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/high-performing-product-teams.svg</image:loc><image:title>What a High-Performing Product Team Does Differently</image:title><image:caption>Cross-functional product team coordinating small workflow streams into a shared product outcome</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/multi-tenant-saas-architecture</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/multi-tenant-saas-architecture.svg</image:loc><image:title>Designing Multi-Tenant Products for Long-Term Growth</image:title><image:caption>Multiple tenant workspaces isolated around a shared SaaS application and protected data foundation</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/ai-opportunities-worth-building</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/ai-opportunities-worth-building.svg</image:loc><image:title>Finding the AI Opportunities Worth Building</image:title><image:caption>Many AI ideas passing through evaluation filters into one measurable business opportunity</image:caption></image:image>
+  </url>
+  <url>
+    <loc>https://zexton.com/insights/ship-faster-without-engineering-debt</loc><lastmod>2026-08-02</lastmod>
+    <image:image><image:loc>https://zexton.com/insights/ship-faster-without-engineering-debt.svg</image:loc><image:title>Shipping Faster Without Creating Engineering Debt</image:title><image:caption>Fast delivery arrow moving across a clean modular engineering foundation with quality checkpoints</image:caption></image:image>
+  </url>
+  <url><loc>https://zexton.com/pricing</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/capabilities</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/careers</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://zexton.com/contact</loc><lastmod>2026-08-02</lastmod></url>
+</urlset>

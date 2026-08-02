@@ -1,0 +1,11 @@
+.tech-explorer { padding: 80px clamp(24px, 6vw, 96px); background: #fff; color: #111827; border-top: 1px solid #e2e8f0; }
+.tech-explorer__intro { max-width: 800px; margin: 0 auto; text-align: center; }
+.tech-explorer__intro .eyebrow { display: inline-block; margin-bottom: 12px; color: #225cff; }
+.tech-explorer__intro h2 { margin-bottom: 14px; color: #111827; font-family: var(--font-heading); font-size: clamp(34px, 4.5vw, 58px); line-height: 1.08; letter-spacing: -.045em; }
+.tech-explorer__intro p { max-width: 650px; margin: 0 auto; color: #647084; font-size: 1rem; line-height: 1.68; }
+.tech-explorer__categories { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 36px 0 20px; }
+.tech-explorer__cat-btn { padding: 8px 18px; border: 1px solid #d7dfeb; border-radius: 999px; background: #f7f9fc; color: #596579; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .22s ease; }
+.tech-explorer__cat-btn:hover { border-color: #aebbd0; background: #edf2f8; color: #111827; }
+.tech-explorer__cat-btn.is-active { border-color: #225cff; background: #225cff; color: #fff; box-shadow: 0 8px 24px rgba(34,92,255,.22); }
+.tech-explorer__body { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: 20px; }
+@media (max-width: 820px) { .tech-explorer { padding: 60px 20px; } .tech-explorer__categories { gap: 8px; } .tech-explorer__cat-btn { padding: 6px 14px; font-size: 12px; } }

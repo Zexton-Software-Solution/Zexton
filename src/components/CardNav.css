@@ -1,0 +1,63 @@
+.card-nav-container { position: fixed; top: 14px; left: 50%; width: min(calc(100% - 30px), 1100px); transform: translateX(-50%); z-index: 99; transition: width .38s cubic-bezier(.16,1,.3,1), top .3s ease; }
+.card-nav { position: relative; height: 72px; overflow: hidden; border: 1px solid rgba(203,213,225,.74); border-radius: 999px; box-shadow: 0 14px 38px rgba(15,23,42,.12); backdrop-filter: blur(18px); will-change: height; }
+.card-nav-top { position: absolute; inset: 0 0 auto; z-index: 2; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 7px 8px 7px 18px; }
+.hamburger-menu { width: 46px; height: 46px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.hamburger-menu:hover { background: rgba(15,23,42,.055); }
+.hamburger-line { width: 27px; height: 2px; background: currentColor; transition: transform .25s ease; transform-origin: center; }
+.hamburger-menu.open .hamburger-line:first-child { transform: translateY(4.5px) rotate(45deg); }.hamburger-menu.open .hamburger-line:last-child { transform: translateY(-4.5px) rotate(-45deg); }
+.card-nav-logo { position: absolute; left: 50%; top: 50%; display: flex; align-items: center; transform: translate(-50%,-50%); }.card-nav-logo img { width: 148px; height: 56px; object-fit: contain; transform: scale(1.7); }
+.card-nav-cta-button { height: 54px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 24px; border: 0; border-radius: 999px; cursor: pointer; font-size: 13px; font-weight: 750; transition: transform .2s ease, box-shadow .2s ease; }.card-nav-cta-button:hover { transform: translateY(-1px); box-shadow: 0 9px 22px rgba(34,92,255,.28); }
+.card-nav-content { position: absolute; inset: 72px 0 0; z-index: 1; display: flex; align-items: stretch; gap: 7px; padding: 7px; visibility: hidden; pointer-events: none; }.card-nav.open { border-radius: 34px; }.card-nav.open .card-nav-content { visibility: visible; pointer-events: auto; }
+.nav-card { position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; overflow: hidden; padding: 16px 18px; user-select: none; isolation: isolate; }
+.nav-card::before, .nav-card::after { content: ''; position: absolute; z-index: -1; pointer-events: none; }
+.nav-card-header { position: relative; z-index: 1; }
+.nav-card-eyebrow { display: block; color: rgba(255,255,255,.62); font-size: 7px; font-weight: 850; letter-spacing: .16em; }
+.nav-card-label { margin-top: 5px; font-family: var(--font-heading); font-size: 25px; font-weight: 750; letter-spacing: -.04em; }
+.nav-card-description { max-width: 260px; margin-top: 6px; color: rgba(255,255,255,.7); font-size: 10px; line-height: 1.38; }
+.nav-card-links { position: relative; z-index: 1; display: flex; flex-direction: column; margin-top: auto; }
+.nav-card-link { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 4px; color: inherit; font-size: 12px; font-weight: 650; transition: background .2s ease, opacity .2s ease, transform .2s ease; }
+.nav-card-link-number { color: rgba(255,255,255,.47); font-size: 7px; font-weight: 800; letter-spacing: .08em; }.nav-card-link-icon { flex: 0 0 auto; }
+
+/* Company: editorial index */
+.nav-card--company { border-radius: 30px 12px 12px 30px; background-image: linear-gradient(135deg, rgba(255,255,255,.03), transparent 55%); }
+.nav-card--company::before { width: 150px; height: 150px; right: -68px; top: -70px; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; box-shadow: 0 0 0 25px rgba(255,255,255,.025), 0 0 0 50px rgba(255,255,255,.018); }
+.nav-card--company .nav-card-links { border-top: 1px solid rgba(255,255,255,.17); }
+.nav-card--company .nav-card-link { min-height: 27px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.nav-card--company .nav-card-link:hover { padding-left: 4px; background: rgba(255,255,255,.05); }
+
+/* Build: technical command panel */
+.nav-card--build { border-radius: 12px; background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px); background-size: 28px 28px; }
+.nav-card--build::after { width: 82px; height: 82px; right: 18px; top: 20px; border: 8px solid rgba(255,255,255,.12); border-radius: 20px; transform: rotate(12deg); }
+.nav-card--build .nav-card-links { gap: 5px; }
+.nav-card--build .nav-card-link { min-height: 32px; padding: 0 10px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(20,55,169,.22); }
+.nav-card--build .nav-card-link:hover { background: #fff; color: #163ca8; transform: translateX(3px); }.nav-card--build .nav-card-link:hover .nav-card-link-number { color: #5971b4; }
+
+/* Explore: compact resource board */
+.nav-card--explore { border-radius: 12px 30px 30px 12px; }
+.nav-card--explore::before { width: 190px; height: 190px; right: -80px; bottom: -105px; border-radius: 50%; background: rgba(255,255,255,.1); box-shadow: -35px -15px 0 rgba(255,255,255,.05); }
+.nav-card--explore .nav-card-links { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.nav-card--explore .nav-card-link { min-height: 45px; grid-template-columns: 1fr auto; gap: 5px; padding: 7px 8px; border-radius: 9px; background: rgba(102,12,57,.16); }
+.nav-card--explore .nav-card-link-number { display: none; }.nav-card--explore .nav-card-link:hover { background: rgba(255,255,255,.16); transform: translateY(-2px); }
+
+.card-nav-container.is-compact { width: 88px; top: 9px; }.card-nav-container.is-compact .card-nav { height: 58px !important; border-radius: 999px !important; box-shadow: 0 10px 30px rgba(15,23,42,.16); }.card-nav-container.is-compact .card-nav-top { height: 58px; justify-content: center; padding: 0; }.card-nav-container.is-compact .hamburger-menu, .card-nav-container.is-compact .card-nav-cta-button { width: 0; height: 0; padding: 0; opacity: 0; overflow: hidden; pointer-events: none; }.card-nav-container.is-compact .card-nav-logo { position: static; transform: none; }.card-nav-container.is-compact .card-nav-logo img { width: 67px; height: 43px; transform: scale(1.4); }.card-nav-container.is-compact .card-nav-content { display: none; }
+@media (max-width: 768px) {
+  .card-nav-container { top: 9px; width: calc(100% - 18px); }.card-nav-top { padding: 7px 12px 7px 15px; }.hamburger-menu { order: 2; }.card-nav-logo { position: static; order: 1; transform: none; }.card-nav-logo img { width: 95px; height: 46px; object-position: left center; transform: scale(1.35); transform-origin: left center; }.card-nav-cta-button { display: none; }
+  .card-nav-content { flex-direction: column; gap: 6px; padding: 6px; }.nav-card, .nav-card--company, .nav-card--build, .nav-card--explore { min-height: 132px; padding: 13px 15px; border-radius: 20px; }.nav-card-label { font-size: 19px; }.nav-card-description { max-width: 75%; margin-top: 3px; font-size: 9px; }.nav-card-links { margin-top: 10px; }
+  .nav-card--company .nav-card-links { display: grid; grid-template-columns: 1fr 1fr; border-top: 0; gap: 4px; }.nav-card--company .nav-card-link { min-height: 28px; padding: 0 7px; border: 1px solid rgba(255,255,255,.15); border-radius: 8px; }
+  .nav-card--build .nav-card-links { display: grid; grid-template-columns: repeat(3,1fr); }.nav-card--build .nav-card-link { min-height: 34px; grid-template-columns: 1fr auto; padding: 0 7px; }.nav-card--build .nav-card-link-number { display: none; }
+  .nav-card--explore .nav-card-link { min-height: 31px; }
+  .nav-card-link { font-size: 10px; }.card-nav-container.is-compact .card-nav-logo img { transform-origin: center; }
+}
+@media (max-width: 430px) { .nav-card-description { display: none; }.nav-card, .nav-card--company, .nav-card--build, .nav-card--explore { min-height: 108px; }.nav-card--company .nav-card-links, .nav-card--build .nav-card-links { margin-top: 7px; }.nav-card--build .nav-card-links { grid-template-columns: 1fr; }.nav-card--build .nav-card-link { min-height: 25px; }.nav-card--explore .nav-card-link { min-height: 27px; } }
+
+/* Light Company panel; Build blue and Explore pink remain unchanged. */
+.nav-card--company { border: 1px solid #d7dfeb; color: #111827; background-image: linear-gradient(135deg, rgba(34,92,255,.07), transparent 55%); }
+.nav-card--company::before { border-color: rgba(34,92,255,.16); box-shadow: 0 0 0 25px rgba(34,92,255,.035), 0 0 0 50px rgba(34,92,255,.02); }
+.nav-card--company .nav-card-eyebrow { color: #225cff; }
+.nav-card--company .nav-card-description { color: #5f6b7d; }
+.nav-card--company .nav-card-links { border-top-color: #d7dfeb; }
+.nav-card--company .nav-card-link { border-bottom-color: #d7dfeb; color: #111827; }
+.nav-card--company .nav-card-link-number { color: #718096; }
+.nav-card--company .nav-card-link-icon { color: #225cff; }
+.nav-card--company .nav-card-link:hover { background: #edf2ff; color: #1747d1; }
+@media (max-width: 768px) { .nav-card--company .nav-card-link { border-color: #d7dfeb; } }

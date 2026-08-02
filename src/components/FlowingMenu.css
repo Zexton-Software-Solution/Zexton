@@ -1,0 +1,23 @@
+.flowing-menu { width: 100%; height: 100%; min-height: 560px; overflow: hidden; }
+.flowing-menu__nav { display: flex; flex-direction: column; height: 100%; min-height: inherit; margin: 0; padding: 0; }
+.flowing-menu__item { position: relative; flex: 1; min-height: 138px; overflow: hidden; text-align: center; border-top: 1px solid; }
+.flowing-menu__item:first-child { border-top: 0; }
+.flowing-menu__link { position: relative; z-index: 1; height: 100%; min-height: inherit; display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 0 clamp(24px, 6vw, 90px); text-align: left; text-decoration: none; text-transform: uppercase; white-space: nowrap; font-family: var(--font-heading); font-size: clamp(25px, 3.7vw, 58px); font-weight: 700; line-height: 1; letter-spacing: -.045em; }
+.flowing-menu__link:focus-visible { outline: 3px solid #8aa6ff; outline-offset: -7px; }
+.flowing-menu__arrow { flex: 0 0 auto; font-size: .72em; font-weight: 400; }
+.flowing-menu__overlay { position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; transform: translate3d(0, 101%, 0); }
+.flowing-menu__viewport { width: 100%; height: 100%; overflow: hidden; }
+.flowing-menu__track { position: relative; width: fit-content; height: 100%; display: flex; align-items: center; will-change: transform; }
+.flowing-menu__part { display: flex; align-items: center; flex-shrink: 0; }
+.flowing-menu__part > span { padding: 0 clamp(15px, 2vw, 34px); white-space: nowrap; text-transform: uppercase; font-family: var(--font-heading); font-size: clamp(25px, 3.7vw, 58px); font-weight: 700; line-height: 1; letter-spacing: -.045em; }
+.flowing-menu__image { width: clamp(140px, 17vw, 250px); height: clamp(66px, 7.5vw, 104px); flex: 0 0 auto; margin: 0 clamp(10px, 1.4vw, 24px); border-radius: 999px; background-position: center; background-size: cover; box-shadow: inset 0 0 0 1px rgba(18, 15, 23, .13); }
+@media (max-width: 700px) {
+  .flowing-menu { min-height: 420px; }
+  .flowing-menu__item { min-height: 104px; }
+  .flowing-menu__link { gap: 12px; padding-inline: 20px; white-space: normal; font-size: clamp(21px, 7vw, 34px); }
+  .flowing-menu__part > span { font-size: clamp(21px, 7vw, 34px); }
+  .flowing-menu__image { width: 118px; height: 58px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flowing-menu__track { transform: none !important; }
+}

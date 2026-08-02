@@ -1,0 +1,57 @@
+.curved-loop-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  background: var(--paper, #f7f8fa);
+  touch-action: pan-y;
+}
+
+.curved-loop-wrapper--interactive { cursor: grab; }
+.curved-loop-wrapper--interactive:active { cursor: grabbing; }
+
+.curved-loop-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.curved-loop-text {
+  fill: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .curved-loop-svg { min-height: 160px; }
+  .curved-loop-text { font-size: 52px; }
+}
+
+@media (max-width: 480px) {
+  .curved-loop-svg { min-height: 130px; }
+  .curved-loop-text { font-size: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curved-loop-wrapper--interactive { cursor: auto; }
+}
+
+/* Curved blue ribbon follows the same SVG path as the moving text. */
+.curved-loop-ribbon {
+  fill: none;
+  stroke: var(--blue, #225cff);
+  stroke-width: 106px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 768px) {
+  .curved-loop-wrapper { padding-block: 0; }
+  .curved-loop-ribbon { stroke-width: 80px; }
+}

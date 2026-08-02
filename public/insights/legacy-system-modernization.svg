@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title">
+  <title id="title">Legacy system becoming modern modules</title>
+  <defs>
+    <linearGradient id="bg" x1="100" y1="80" x2="1500" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F8FC"/>
+      <stop offset=".52" stop-color="#FAFBFF"/>
+      <stop offset="1" stop-color="#EDF3FF"/>
+    </linearGradient>
+    <linearGradient id="portal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FF9B50"/>
+      <stop offset=".48" stop-color="#E85DAD"/>
+      <stop offset="1" stop-color="#225CFF"/>
+    </linearGradient>
+    <linearGradient id="module" x1="960" y1="220" x2="1380" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8EEFF"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#225CFF" stroke-opacity=".07"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#0A1633" flood-opacity=".16"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#225CFF"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="800" y="48" width="752" height="804" rx="34" fill="url(#grid)"/>
+  <path d="M800 82v736" stroke="#AFC0E7" stroke-width="2" stroke-dasharray="6 12" opacity=".5"/>
+  <path d="M100 164v-64h64M1436 800h64v-64" fill="none" stroke="#0A1633" stroke-width="3" stroke-linecap="round" opacity=".16"/>
+
+  <g filter="url(#shadow)">
+    <rect x="146" y="184" width="388" height="540" rx="28" fill="#111C39"/>
+    <rect x="174" y="214" width="332" height="480" rx="18" fill="#172544" stroke="#394969" stroke-width="2"/>
+  </g>
+  <path d="M174 288h332M174 382h332M174 476h332M174 570h332" stroke="#344463" stroke-width="2"/>
+  <g fill="#6F7E9F">
+    <circle cx="212" cy="251" r="8"/><circle cx="238" cy="251" r="8"/><circle cx="264" cy="251" r="8"/>
+    <circle cx="212" cy="345" r="8"/><circle cx="238" cy="345" r="8"/><circle cx="264" cy="345" r="8"/>
+    <circle cx="212" cy="439" r="8"/><circle cx="238" cy="439" r="8"/><circle cx="264" cy="439" r="8"/>
+    <circle cx="212" cy="533" r="8"/><circle cx="238" cy="533" r="8"/><circle cx="264" cy="533" r="8"/>
+    <circle cx="212" cy="627" r="8"/><circle cx="238" cy="627" r="8"/><circle cx="264" cy="627" r="8"/>
+  </g>
+  <path d="M302 251h160M302 345h112M302 439h148M302 533h92M302 627h132" stroke="#8390AA" stroke-width="12" stroke-linecap="round"/>
+  <path d="M416 214 372 307l42 52-56 84 54 61-48 92 44 98" fill="none" stroke="#FF9B50" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M386 298 349 281M382 370l38 18M370 468l-41 13M395 535l38 18M377 631l-39 18" stroke="#E85DAD" stroke-width="4" stroke-linecap="round"/>
+
+  <path d="M532 454C620 454 633 363 712 363M532 498c92 0 104 39 180 39" fill="none" stroke="#8799C1" stroke-width="3" stroke-dasharray="8 10"/>
+  <g filter="url(#shadow)">
+    <circle cx="782" cy="450" r="118" fill="#FFFFFF" stroke="#D5DFF3" stroke-width="3"/>
+    <circle cx="782" cy="450" r="82" fill="none" stroke="url(#portal)" stroke-width="24" stroke-dasharray="330 190" transform="rotate(-72 782 450)"/>
+  </g>
+  <path d="M742 450h80M782 410v80" stroke="#225CFF" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="782" cy="450" r="15" fill="#225CFF"/>
+  <g fill="#7456FF">
+    <circle cx="641" cy="388" r="8"/><circle cx="672" cy="419" r="6"/><circle cx="632" cy="526" r="7"/>
+  </g>
+  <g fill="#225CFF">
+    <rect x="890" y="374" width="14" height="14" rx="3" transform="rotate(18 897 381)"/>
+    <rect x="918" y="432" width="11" height="11" rx="2" transform="rotate(35 923 437)"/>
+    <rect x="884" y="518" width="16" height="16" rx="3" transform="rotate(28 892 526)"/>
+  </g>
+
+  <path d="M892 450C970 450 966 300 1052 300M892 450c78 0 70 0 156 0M892 450c78 0 74 150 160 150" fill="none" stroke="#225CFF" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)">
+    <rect x="1050" y="188" width="332" height="188" rx="30" fill="url(#module)" stroke="#225CFF" stroke-width="2"/>
+    <rect x="1018" y="392" width="364" height="188" rx="30" fill="url(#module)" stroke="#7456FF" stroke-width="2"/>
+    <rect x="1050" y="596" width="332" height="142" rx="30" fill="url(#module)" stroke="#E85DAD" stroke-width="2"/>
+  </g>
+  <circle cx="1110" cy="248" r="28" fill="#225CFF"/>
+  <path d="M1162 232h164M1162 264h118M1090 329h236" stroke="#9EAFD4" stroke-width="11" stroke-linecap="round"/>
+  <rect x="1062" y="430" width="90" height="90" rx="20" fill="#F1EDFF"/>
+  <path d="M1084 475h46M1107 452v46" stroke="#7456FF" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1184 435h142M1184 469h108M1184 503h128M1062 548h264" stroke="#A7B6D7" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="1110" cy="648" r="26" fill="#FFF0F8" stroke="#E85DAD" stroke-width="3"/>
+  <path d="m1099 648 8 8 16-19" fill="none" stroke="#E85DAD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1160 636h166M1160 668h110M1090 708h236" stroke="#A7B6D7" stroke-width="11" stroke-linecap="round"/>
+  <path d="M1002 780h410" stroke="#225CFF" stroke-width="5" stroke-linecap="round" opacity=".25"/>
+  <circle cx="1050" cy="780" r="10" fill="#225CFF"/><circle cx="1216" cy="780" r="10" fill="#7456FF"/><circle cx="1382" cy="780" r="10" fill="#E85DAD"/>
+</svg>
