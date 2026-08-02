@@ -14,6 +14,20 @@
     <meta name="theme-color" content="#225cff" />
     <link rel="icon" type="image/png" href="/ZextonLogo.png" />
     <link rel="preload" href="/ZextonLogo.png" as="image" />
+    <style id="initial-loader-critical">
+      #initial-loader-shell{position:fixed;inset:0;z-index:9999;display:grid;grid-template-rows:auto 1fr auto;min-height:100dvh;padding:clamp(26px,4vw,64px);overflow:hidden;background:radial-gradient(circle at 82% 16%,rgba(34,92,255,.14),transparent 28%),radial-gradient(circle at 12% 88%,rgba(240,74,145,.09),transparent 25%),#f8faff;color:#111827;font-family:Arial,sans-serif}
+      #initial-loader-shell img{width:104px;height:58px;object-fit:contain;object-position:left center}
+      .initial-loader-shell__center{align-self:center;width:min(100%,1120px)}
+      .initial-loader-shell__eyebrow{display:block;margin-bottom:24px;color:#225cff;font-size:10px;font-weight:800;letter-spacing:.19em}
+      .initial-loader-shell__title{max-width:1080px;font-size:clamp(42px,8vw,116px);font-weight:850;line-height:.92;letter-spacing:-.07em}
+      .initial-loader-shell__bottom{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px}
+      .initial-loader-shell__track{height:4px;margin-bottom:10px;overflow:hidden;border-radius:99px;background:rgba(34,92,255,.11)}
+      .initial-loader-shell__track::after{display:block;width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#1638b8,#225cff,#7395ff);content:'';transform-origin:left;animation:initial-loader-progress 2.05s cubic-bezier(.65,0,.35,1) both}
+      .initial-loader-shell__number{min-width:58px;font-size:28px;font-weight:800;text-align:right}
+      @keyframes initial-loader-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+      @media(max-width:700px){#initial-loader-shell{padding:24px 20px 30px}#initial-loader-shell img{width:84px;height:48px}.initial-loader-shell__title{font-size:clamp(38px,13vw,64px)}}
+      @media(prefers-reduced-motion:reduce){.initial-loader-shell__track::after{animation:none;transform:scaleX(1)}}
+    </style>
     <link rel="canonical" href="https://zexton.com/" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="Zexton AI-readable site guide" />
@@ -77,8 +91,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
+    <div id="initial-loader-shell" aria-hidden="true">
+      <img src="/ZextonLogo.png" alt="" width="104" height="58" />
+      <div class="initial-loader-shell__center">
+        <span class="initial-loader-shell__eyebrow">SOFTWARE FOR WHAT'S NEXT</span>
+        <div class="initial-loader-shell__title">BUILDING DIGITAL ADVANTAGE</div>
+      </div>
+      <div class="initial-loader-shell__bottom">
+        <div class="initial-loader-shell__track"></div>
+        <span class="initial-loader-shell__number">0%</span>
+      </div>
+    </div>
     <div id="root"></div>
-    <noscript><main><h1>Custom Software, SaaS &amp; AI Development</h1><p>Zexton plans and builds custom web applications, SaaS products, React Native apps, cloud platforms, modernization programs, and responsible AI automation.</p><nav aria-label="Essential pages"><a href="/services">Software development services</a> · <a href="/capabilities">Engineering capabilities</a> · <a href="/insights">Software engineering insights</a> · <a href="/pricing">Planning ranges</a> · <a href="/contact">Contact Zexton</a></nav></main></noscript>
+    <noscript><style>#initial-loader-shell{display:none}</style><main><h1>Custom Software, SaaS &amp; AI Development</h1><p>Zexton plans and builds custom web applications, SaaS products, React Native apps, cloud platforms, modernization programs, and responsible AI automation.</p><nav aria-label="Essential pages"><a href="/services">Software development services</a> · <a href="/capabilities">Engineering capabilities</a> · <a href="/insights">Software engineering insights</a> · <a href="/pricing">Planning ranges</a> · <a href="/contact">Contact Zexton</a></nav></main></noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

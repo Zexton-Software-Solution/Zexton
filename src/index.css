@@ -210,31 +210,6 @@ h1, h2, h3, p { margin: 0; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* Homepage loader */
-.page-loader {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  min-height: 100dvh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  padding: clamp(28px, 4vw, 64px);
-  background: #fff;
-  color: var(--ink);
-}
-.page-loader__top { display: flex; align-items: center; }
-.page-loader__top img { width: 96px; height: 54px; object-fit: contain; object-position: left center; }
-.page-loader__center { align-self: center; max-width: 1100px; }
-.page-loader__eyebrow { display: block; margin-bottom: 22px; color: var(--blue); font-size: 11px; font-weight: 800; letter-spacing: .2em; }
-.page-loader__decrypt { max-width: 1050px; font-family: var(--font-heading); font-size: clamp(42px, 8vw, 116px); font-weight: 800; line-height: .95; letter-spacing: -.065em; }
-.page-loader__revealed { color: var(--ink); }
-.page-loader__encrypted { color: var(--blue); }
-.page-loader__progress { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; }
-.page-loader__line { height: 2px; margin-bottom: 11px; overflow: hidden; background: #e2e7ef; }
-.page-loader__line span { display: block; width: 100%; height: 100%; transform-origin: left; background: var(--blue); }
-.page-loader__count { display: flex; align-items: flex-start; color: var(--ink); font-family: var(--font-heading); font-size: 28px; font-weight: 800; }
-.page-loader__count > span:last-child { margin-top: 2px; font-size: 13px; }
-
 /* 404 */
 .not-found { min-height: 100dvh; display: grid; place-items: center; padding: 120px 24px 60px; overflow: hidden; background: radial-gradient(circle at 50% 25%, #23376b, transparent 34%), #101521; color: #fff; }
 .not-found__content { width: min(100%, 960px); display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -248,10 +223,6 @@ h1, h2, h3, p { margin: 0; }
   .approach .section-heading { padding-inline: 28px; }
   .insights__content { padding: 82px 28px 92px; }
   .footer__logo img { width: 148px; height: 83px; }
-  .page-loader { padding: 24px 20px 30px; }
-  .page-loader__top img { width: 78px; height: 46px; }
-  .page-loader__decrypt { font-size: clamp(38px, 13vw, 64px); }
-  .page-loader__progress { gap: 18px; }
   .not-found { padding-inline: 18px; }
 }
 

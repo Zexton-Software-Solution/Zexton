@@ -36,7 +36,7 @@ const resetScroll = () => {
 export default function App() {
   const [route, setRoute] = useState(getRoute);
   const [routeLoading, setRouteLoading] = useState(false);
-  const [showLoader, setShowLoader] = useState(() => getRoute() === 'home' && sessionStorage.getItem('zexton-home-loader-seen') !== 'true');
+  const [showLoader, setShowLoader] = useState(true);
   const timersRef = useRef([]);
 
   const transitionTo = useCallback((nextRoute) => {
@@ -49,7 +49,6 @@ export default function App() {
     resetScroll();
     const swapTimer = window.setTimeout(() => {
       setRoute(nextRoute);
-      if (nextRoute !== 'home') setShowLoader(false);
       requestAnimationFrame(resetScroll);
     }, 70);
     const finishTimer = window.setTimeout(() => setRouteLoading(false), 260);
@@ -108,7 +107,6 @@ export default function App() {
   }, [showLoader]);
 
   const finishLoader = useCallback(() => {
-    sessionStorage.setItem('zexton-home-loader-seen', 'true');
     setShowLoader(false);
   }, []);
   const openContact = useCallback(() => navigate('/contact'), [navigate]);
@@ -136,7 +134,6 @@ export default function App() {
     page = (
       <div className="site-shell">
         <Seo {...metadata} type={metadata.schemaType} />
-        <AnimatePresence>{showLoader && <PageLoader key="homepage-loader" onComplete={finishLoader} />}</AnimatePresence>
         <Navbar />
         <main><Hero /><Partners /><Industries /><Approach /><AgenticCallout onOpenContact={openContact} /><Suspense fallback={null}><Insights /></Suspense></main>
         <RelatedRoutes routes={metadata.relatedRoutes} />
@@ -147,5 +144,9 @@ export default function App() {
     page = <div className="site-shell"><Navbar /><Suspense fallback={<RouteLoader />}>{content}</Suspense><RelatedRoutes routes={routeMetadata[route]?.relatedRoutes} /><Footer /></div>;
   }
 
-  return <><AnimatePresence>{routeLoading && <RouteLoader key="route-loader" />}</AnimatePresence>{page}</>;
+  return <>
+    <AnimatePresence>{showLoader && <PageLoader key="initial-site-loader" onComplete={finishLoader} />}</AnimatePresence>
+    <AnimatePresence>{routeLoading && <RouteLoader key="route-loader" />}</AnimatePresence>
+    {page}
+  </>;
 }
