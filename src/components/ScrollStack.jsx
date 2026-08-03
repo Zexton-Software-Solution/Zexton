@@ -2,7 +2,11 @@ import { useCallback, useLayoutEffect, useRef } from 'react';
 import './ScrollStack.css';
 
 export function ScrollStackItem({ children, itemClassName = '' }) {
-  return <article className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</article>;
+  return (
+    <article className="scroll-stack-card">
+      <div className={`scroll-stack-card__inner ${itemClassName}`.trim()}>{children}</div>
+    </article>
+  );
 }
 
 export default function ScrollStack({
@@ -21,7 +25,9 @@ export default function ScrollStack({
 }) {
   const rootRef = useRef(null);
   const cardsRef = useRef([]);
+  const innersRef = useRef([]);
   const cardTopsRef = useRef([]);
+  const lastTransformRef = useRef([]);
   const frameRef = useRef(null);
   const motionDisabledRef = useRef(false);
   const completedRef = useRef(false);
@@ -34,6 +40,7 @@ export default function ScrollStack({
   const update = useCallback(() => {
     const root = rootRef.current;
     const cards = cardsRef.current;
+    const inners = innersRef.current;
     if (!root || !cards.length || motionDisabledRef.current) return;
 
     const scrollTop = useWindowScroll ? window.scrollY : root.scrollTop;
@@ -49,18 +56,24 @@ export default function ScrollStack({
     }
 
     cards.forEach((card, index) => {
+      const inner = inners[index];
+      if (!inner) return;
       const cardTop = cardTopsRef.current[index];
       const pinStart = cardTop - stackY - itemStackDistance * index;
       const scaleEnd = Math.max(pinStart + 1, cardTop - scaleEndY);
       const scaleProgress = Math.min(1, Math.max(0, (scrollTop - pinStart) / (scaleEnd - pinStart)));
       const targetScale = Math.min(1, baseScale + index * itemScale);
-      const scale = 1 - scaleProgress * (1 - targetScale);
-      const rotation = rotationAmount * index * scaleProgress;
+      const scale = Math.round((1 - scaleProgress * (1 - targetScale)) * 1000) / 1000;
+      const rotation = Math.round(rotationAmount * index * scaleProgress * 1000) / 1000;
 
-      card.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
+      const transform = `translateZ(0) scale(${scale})${rotation ? ` rotate(${rotation}deg)` : ''}`;
+      if (lastTransformRef.current[index] !== transform) {
+        inner.style.transform = transform;
+        lastTransformRef.current[index] = transform;
+      }
       if (blurAmount > 0) {
         const blur = index < activeIndex ? (activeIndex - index) * blurAmount : 0;
-        card.style.filter = blur ? `blur(${blur}px)` : '';
+        inner.style.filter = blur ? `blur(${blur}px)` : '';
       }
     });
 
@@ -99,15 +112,19 @@ export default function ScrollStack({
     if (!root) return undefined;
 
     const cards = Array.from(root.querySelectorAll('.scroll-stack-card'));
+    const inners = cards.map((card) => card.querySelector('.scroll-stack-card__inner') || card);
     const motionQuery = window.matchMedia('(max-width: 760px), (prefers-reduced-motion: reduce)');
     const scrollTarget = useWindowScroll ? window : root;
     const stackPercent = parsePercent(stackPosition);
     cardsRef.current = cards;
+    innersRef.current = inners;
+    lastTransformRef.current = [];
 
     const clearStyles = () => {
-      cards.forEach((card) => {
-        card.style.transform = '';
-        card.style.filter = '';
+      lastTransformRef.current = [];
+      inners.forEach((inner) => {
+        inner.style.transform = '';
+        inner.style.filter = '';
       });
     };
 
@@ -162,6 +179,7 @@ export default function ScrollStack({
         card.style.zIndex = '';
       });
       cardsRef.current = [];
+      innersRef.current = [];
       completedRef.current = false;
     };
   }, [itemDistance, itemStackDistance, parsePercent, requestUpdate, stackPosition, update, useWindowScroll]);

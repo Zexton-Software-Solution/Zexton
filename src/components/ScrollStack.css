@@ -13,8 +13,12 @@
 .scroll-stack-card {
   position: sticky;
   width: 100%;
-  min-height: 32rem;
   margin: 0;
+}
+
+.scroll-stack-card__inner {
+  width: 100%;
+  min-height: 32rem;
   transform-origin: top center;
   will-change: transform;
   backface-visibility: hidden;
@@ -31,9 +35,12 @@
   .scroll-stack-card {
     position: relative !important;
     top: auto !important;
+  }
+  .scroll-stack-card__inner {
     min-height: 0;
     transform: none !important;
     filter: none !important;
+    will-change: auto;
   }
 }
 
@@ -41,8 +48,11 @@
   .scroll-stack-card {
     position: relative !important;
     top: auto !important;
+  }
+  .scroll-stack-card__inner {
     transform: none !important;
     filter: none !important;
+    will-change: auto;
   }
   .scroll-stack-inner { padding-bottom: 72px; }
 }
