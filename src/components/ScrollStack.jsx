@@ -4,9 +4,9 @@ import 'lenis/dist/lenis.css';
 import './ScrollStack.css';
 
 export const ScrollStackItem = ({ children, itemClassName = '' }) => (
-  <div className="scroll-stack-card-wrapper">
-    <div className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</div>
-  </div>
+  <article className="scroll-stack-card">
+    <div className={`scroll-stack-card__surface ${itemClassName}`.trim()}>{children}</div>
+  </article>
 );
 
 const ScrollStack = ({
@@ -27,89 +27,92 @@ const ScrollStack = ({
   const scrollerRef = useRef(null);
   const cardsRef = useRef([]);
   const cardTopsRef = useRef([]);
-  const endTopRef = useRef(0);
   const lastTransformsRef = useRef(new Map());
   const stackCompletedRef = useRef(false);
 
-  const parsePercentage = useCallback((value, containerHeight) => {
+  const parseViewportPosition = useCallback((value, viewportHeight) => {
     if (typeof value === 'string' && value.includes('%')) {
-      return (Number.parseFloat(value) / 100) * containerHeight;
+      return (Number.parseFloat(value) / 100) * viewportHeight;
     }
     return Number.parseFloat(value) || 0;
   }, []);
 
+  const toStickyInset = useCallback((value) => {
+    if (typeof value === 'string' && value.includes('%')) {
+      return `${Number.parseFloat(value)}vh`;
+    }
+    return value;
+  }, []);
+
   const getScrollData = useCallback(() => {
     if (useWindowScroll) {
-      return { scrollTop: window.scrollY, containerHeight: window.innerHeight };
+      return { scrollTop: window.scrollY, viewportHeight: window.innerHeight };
     }
 
     const scroller = scrollerRef.current;
-    return { scrollTop: scroller?.scrollTop || 0, containerHeight: scroller?.clientHeight || 0 };
+    return { scrollTop: scroller?.scrollTop || 0, viewportHeight: scroller?.clientHeight || 0 };
   }, [useWindowScroll]);
 
-  const getElementOffset = useCallback((element) => {
-    if (useWindowScroll) {
-      return element.getBoundingClientRect().top + window.scrollY;
+  const getStaticOffset = useCallback((element) => {
+    let top = 0;
+    let current = element;
+
+    while (current) {
+      top += current.offsetTop;
+      current = current.offsetParent;
     }
-    return element.offsetTop;
-  }, [useWindowScroll]);
 
-  const updateCardTransforms = useCallback(() => {
+    return top;
+  }, []);
+
+  const updateSurfaces = useCallback((scrollTopOverride) => {
     const cards = cardsRef.current;
     if (!cards.length) return;
 
-    const { scrollTop, containerHeight } = getScrollData();
-    if (!containerHeight) return;
+    const { scrollTop: currentScrollTop, viewportHeight } = getScrollData();
+    const scrollTop = Number.isFinite(scrollTopOverride) ? scrollTopOverride : currentScrollTop;
+    if (!viewportHeight) return;
 
-    const stackPositionPx = parsePercentage(stackPosition, containerHeight);
-    const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
-    const pinEnd = endTopRef.current - containerHeight / 2;
-    let topCardIndex = 0;
+    const stackPositionPx = parseViewportPosition(stackPosition, viewportHeight);
+    const scaleEndPositionPx = parseViewportPosition(scaleEndPosition, viewportHeight);
+    let activeIndex = 0;
 
     if (blurAmount > 0) {
       cardTopsRef.current.forEach((cardTop, index) => {
         if (scrollTop >= cardTop - stackPositionPx - itemStackDistance * index) {
-          topCardIndex = index;
+          activeIndex = index;
         }
       });
     }
 
-    cards.forEach((card, index) => {
+    cards.forEach(({ surface }, index) => {
       const cardTop = cardTopsRef.current[index];
       const pinStart = cardTop - stackPositionPx - itemStackDistance * index;
       const scaleEnd = Math.max(pinStart + 1, cardTop - scaleEndPositionPx);
-      const scaleProgress = Math.min(1, Math.max(0, (scrollTop - pinStart) / (scaleEnd - pinStart)));
+      const progress = Math.min(1, Math.max(0, (scrollTop - pinStart) / (scaleEnd - pinStart)));
       const targetScale = Math.min(1, baseScale + index * itemScale);
-      const scale = 1 - scaleProgress * (1 - targetScale);
-      const rotation = rotationAmount * index * scaleProgress;
-
-      let translateY = 0;
-      if (scrollTop >= pinStart) {
-        translateY = Math.min(scrollTop, pinEnd) - cardTop + stackPositionPx + itemStackDistance * index;
-      }
-
-      const blur = index < topCardIndex ? (topCardIndex - index) * blurAmount : 0;
+      const scale = 1 - progress * (1 - targetScale);
+      const rotation = rotationAmount * index * progress;
+      const blur = index < activeIndex ? (activeIndex - index) * blurAmount : 0;
       const nextTransform = {
-        translateY: Math.round(translateY * 100) / 100,
         scale: Math.round(scale * 1000) / 1000,
         rotation: Math.round(rotation * 100) / 100,
         blur: Math.round(blur * 100) / 100,
       };
       const previousTransform = lastTransformsRef.current.get(index);
       const changed = !previousTransform
-        || Math.abs(previousTransform.translateY - nextTransform.translateY) > 0.1
         || Math.abs(previousTransform.scale - nextTransform.scale) > 0.001
         || Math.abs(previousTransform.rotation - nextTransform.rotation) > 0.1
         || Math.abs(previousTransform.blur - nextTransform.blur) > 0.1;
 
       if (changed) {
-        card.style.transform = `translate3d(0, ${nextTransform.translateY}px, 0) scale(${nextTransform.scale}) rotate(${nextTransform.rotation}deg)`;
-        card.style.filter = nextTransform.blur ? `blur(${nextTransform.blur}px)` : '';
+        surface.style.transform = `translateZ(0) scale(${nextTransform.scale}) rotate(${nextTransform.rotation}deg)`;
+        surface.style.filter = nextTransform.blur ? `blur(${nextTransform.blur}px)` : '';
         lastTransformsRef.current.set(index, nextTransform);
       }
 
       if (index === cards.length - 1) {
-        const isComplete = scrollTop >= pinStart && scrollTop <= pinEnd;
+        const isComplete = scrollTop >= pinStart;
         if (isComplete && !stackCompletedRef.current) {
           stackCompletedRef.current = true;
           onStackComplete?.();
@@ -125,7 +128,7 @@ const ScrollStack = ({
     itemScale,
     itemStackDistance,
     onStackComplete,
-    parsePercentage,
+    parseViewportPosition,
     rotationAmount,
     scaleEndPosition,
     stackPosition,
@@ -135,48 +138,38 @@ const ScrollStack = ({
     const scroller = scrollerRef.current;
     if (!scroller) return undefined;
 
-    const transformsCache = lastTransformsRef.current;
-    let animationFrame = null;
-    let measureFrame = null;
-    const wrappers = Array.from(scroller.querySelectorAll('.scroll-stack-card-wrapper'));
-    const cards = wrappers
-      .map((wrapper) => wrapper.querySelector('.scroll-stack-card'))
-      .filter(Boolean);
-    const endElement = scroller.querySelector('.scroll-stack-end');
+    const cards = Array.from(scroller.querySelectorAll('.scroll-stack-card'))
+      .map((card) => ({ card, surface: card.querySelector('.scroll-stack-card__surface') }))
+      .filter(({ surface }) => surface);
     const motionDisabled = window.matchMedia(
       '(max-width: 768px), (prefers-reduced-motion: reduce)'
     ).matches;
+    const stickyInset = toStickyInset(stackPosition);
+    const transformsCache = lastTransformsRef.current;
+    let animationFrame = null;
+    let measureFrame = null;
 
     cardsRef.current = cards;
-    cards.forEach((card, index) => {
-      const wrapper = wrappers[index];
-      wrapper.style.marginBottom = index < cards.length - 1
+    cards.forEach(({ card, surface }, index) => {
+      card.style.marginBottom = index < cards.length - 1
         ? `${motionDisabled ? Math.min(itemDistance, 20) : itemDistance}px`
         : '';
       card.style.zIndex = String(index + 1);
-      card.style.willChange = motionDisabled ? 'auto' : 'transform, filter';
-      card.style.transformOrigin = 'top center';
-      card.style.backfaceVisibility = 'hidden';
-      card.style.webkitBackfaceVisibility = 'hidden';
-      card.style.perspective = '1000px';
-      card.style.webkitPerspective = '1000px';
+      card.style.position = motionDisabled ? '' : 'sticky';
+      card.style.top = motionDisabled ? '' : `calc(${stickyInset} + ${index * itemStackDistance}px)`;
+      surface.style.willChange = motionDisabled ? 'auto' : 'transform, filter';
     });
 
     if (motionDisabled) {
-      cards.forEach((card) => {
-        card.style.transform = '';
-        card.style.filter = '';
-      });
       return () => {
         cardsRef.current = [];
       };
     }
 
     const measure = () => {
-      cardTopsRef.current = wrappers.map(getElementOffset);
-      endTopRef.current = endElement ? getElementOffset(endElement) : 0;
-      lastTransformsRef.current.clear();
-      updateCardTransforms();
+      cardTopsRef.current = cards.map(({ card }) => getStaticOffset(card));
+      transformsCache.clear();
+      updateSurfaces();
     };
 
     const requestMeasure = () => {
@@ -190,8 +183,7 @@ const ScrollStack = ({
     const lenis = new Lenis(
       useWindowScroll
         ? {
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            lerp: 0.1,
             smoothWheel: true,
             syncTouch: true,
             syncTouchLerp: 0.075,
@@ -199,15 +191,14 @@ const ScrollStack = ({
         : {
             wrapper: scroller,
             content: scroller.querySelector('.scroll-stack-inner'),
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            lerp: 0.1,
             smoothWheel: true,
             syncTouch: true,
             syncTouchLerp: 0.075,
           }
     );
 
-    lenis.on('scroll', updateCardTransforms);
+    lenis.on('scroll', ({ scroll }) => updateSurfaces(scroll));
     const animate = (time) => {
       lenis.raf(time);
       animationFrame = requestAnimationFrame(animate);
@@ -216,7 +207,7 @@ const ScrollStack = ({
 
     const resizeObserver = new ResizeObserver(requestMeasure);
     resizeObserver.observe(scroller);
-    wrappers.forEach((wrapper) => resizeObserver.observe(wrapper));
+    cards.forEach(({ card }) => resizeObserver.observe(card));
     window.addEventListener('resize', requestMeasure);
     measure();
 
@@ -226,12 +217,14 @@ const ScrollStack = ({
       if (animationFrame !== null) cancelAnimationFrame(animationFrame);
       if (measureFrame !== null) cancelAnimationFrame(measureFrame);
       lenis.destroy();
-      cards.forEach((card, index) => {
-        card.style.transform = '';
-        card.style.filter = '';
-        card.style.willChange = '';
+      cards.forEach(({ card, surface }) => {
+        card.style.marginBottom = '';
         card.style.zIndex = '';
-        wrappers[index].style.marginBottom = '';
+        card.style.position = '';
+        card.style.top = '';
+        surface.style.transform = '';
+        surface.style.filter = '';
+        surface.style.willChange = '';
       });
       cardsRef.current = [];
       cardTopsRef.current = [];
@@ -239,13 +232,16 @@ const ScrollStack = ({
       stackCompletedRef.current = false;
     };
   }, [
-    getElementOffset,
+    getStaticOffset,
     itemDistance,
-    updateCardTransforms,
+    itemStackDistance,
+    stackPosition,
+    toStickyInset,
+    updateSurfaces,
     useWindowScroll,
   ]);
 
-  // Retained for API compatibility with the React Bits component.
+  // Kept for API compatibility with the React Bits component.
   void scaleDuration;
 
   return (

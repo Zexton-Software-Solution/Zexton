@@ -6,23 +6,24 @@
 }
 
 .scroll-stack-inner {
+  position: relative;
   min-height: 100vh;
-  padding: 10vh clamp(20px, 6vw, 100px) 50vh;
+  padding: 10vh clamp(20px, 6vw, 100px) 18vh;
 }
 
-/* The wrapper stays in document flow for stable measurements. */
-.scroll-stack-card-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-/* The inner card receives the Lenis-synchronised transform. */
+/* Native sticky positioning holds each card perfectly still while scrolling. */
 .scroll-stack-card {
-  position: relative;
+  position: sticky;
   width: 100%;
   min-height: 20rem;
   margin: 0;
   box-sizing: border-box;
+}
+
+/* Only this visual surface is animated, never the sticky card itself. */
+.scroll-stack-card__surface {
+  width: 100%;
+  min-height: inherit;
   transform-origin: top center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -38,6 +39,11 @@
 @media (max-width: 768px) {
   .scroll-stack-inner { padding: 6vh 14px 8vh; }
   .scroll-stack-card {
+    position: relative !important;
+    top: auto !important;
+    min-height: 0;
+  }
+  .scroll-stack-card__surface {
     min-height: 0;
     transform: none !important;
     filter: none !important;
@@ -47,6 +53,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-stack-card {
+    position: relative !important;
+    top: auto !important;
+  }
+  .scroll-stack-card__surface {
     transform: none !important;
     filter: none !important;
     will-change: auto;

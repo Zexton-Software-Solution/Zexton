@@ -7,7 +7,7 @@
 .pricing-hero__link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding-bottom: 5px; border-bottom: 1px solid var(--ink); font-weight: 700; }
 .pricing-trust-strip { display: flex; justify-content: space-between; gap: 28px; padding: 28px clamp(28px, 7vw, 120px); background: #111827; color: #d7deea; }
 .pricing-trust-strip span { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; }
-.pricing-stack-section { position: relative; z-index: 1; padding-top: 40px; overflow: hidden; overflow: clip; isolation: isolate; background: #e8ecf2; }
+.pricing-stack-section { position: relative; z-index: 1; padding-top: 40px; overflow: visible; isolation: isolate; background: #e8ecf2; }
 .pricing-tier { overflow: hidden; padding: clamp(28px, 4vw, 62px); border: 1px solid rgba(255,255,255,.5); border-radius: 40px; box-shadow: 0 30px 80px rgba(15,23,42,.15); color: #111827; }
 .pricing-tier--ice { background: #fdfefe; }
 .pricing-tier--blue { background: #245cff; color: #fff; }
