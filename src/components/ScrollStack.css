@@ -1,13 +1,22 @@
 .scroll-stack-scroller {
   position: relative;
   width: 100%;
-  overflow-x: visible;
+  overflow: visible;
+  isolation: isolate;
 }
 
 .scroll-stack-inner {
-  padding: 10vh clamp(20px, 6vw, 100px) 18vh;
+  min-height: 100vh;
+  padding: 10vh clamp(20px, 6vw, 100px) 50vh;
 }
 
+/* The wrapper stays in document flow for stable measurements. */
+.scroll-stack-card-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* The inner card receives the Lenis-synchronised transform. */
 .scroll-stack-card {
   position: relative;
   width: 100%;
@@ -15,9 +24,10 @@
   margin: 0;
   box-sizing: border-box;
   transform-origin: top center;
-  will-change: transform, filter;
-  backface-visibility: hidden;
   transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, filter;
 }
 
 .scroll-stack-end {
@@ -29,7 +39,6 @@
   .scroll-stack-inner { padding: 6vh 14px 8vh; }
   .scroll-stack-card {
     min-height: 0;
-    margin-bottom: 20px !important;
     transform: none !important;
     filter: none !important;
     will-change: auto;
