@@ -7,15 +7,16 @@
 
 .scroll-stack-inner {
   position: relative;
-  padding: 8vh clamp(20px, 6vw, 100px) 60vh;
+  padding: 8vh clamp(20px, 6vw, 100px) 12vh;
 }
 
 .scroll-stack-card {
-  position: relative;
+  position: sticky;
   width: 100%;
   min-height: 32rem;
   margin: 0;
   transform-origin: top center;
+  will-change: transform;
   backface-visibility: hidden;
   isolation: isolate;
 }
@@ -28,6 +29,8 @@
 @media (max-width: 760px) {
   .scroll-stack-inner { padding: 5vh 14px 72px; }
   .scroll-stack-card {
+    position: relative !important;
+    top: auto !important;
     min-height: 0;
     transform: none !important;
     filter: none !important;
@@ -36,6 +39,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-stack-card {
+    position: relative !important;
+    top: auto !important;
     transform: none !important;
     filter: none !important;
   }
