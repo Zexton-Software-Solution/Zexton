@@ -2,11 +2,7 @@ import { useCallback, useLayoutEffect, useRef } from 'react';
 import './ScrollStack.css';
 
 export function ScrollStackItem({ children, itemClassName = '' }) {
-  return (
-    <article className="scroll-stack-card">
-      <div className={`scroll-stack-card__inner ${itemClassName}`.trim()}>{children}</div>
-    </article>
-  );
+  return <article className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</article>;
 }
 
 export default function ScrollStack({
@@ -25,7 +21,6 @@ export default function ScrollStack({
 }) {
   const rootRef = useRef(null);
   const cardsRef = useRef([]);
-  const innersRef = useRef([]);
   const cardTopsRef = useRef([]);
   const lastTransformRef = useRef([]);
   const frameRef = useRef(null);
@@ -40,7 +35,6 @@ export default function ScrollStack({
   const update = useCallback(() => {
     const root = rootRef.current;
     const cards = cardsRef.current;
-    const inners = innersRef.current;
     if (!root || !cards.length || motionDisabledRef.current) return;
 
     const scrollTop = useWindowScroll ? window.scrollY : root.scrollTop;
@@ -56,8 +50,6 @@ export default function ScrollStack({
     }
 
     cards.forEach((card, index) => {
-      const inner = inners[index];
-      if (!inner) return;
       const cardTop = cardTopsRef.current[index];
       const pinStart = cardTop - stackY - itemStackDistance * index;
       const scaleEnd = Math.max(pinStart + 1, cardTop - scaleEndY);
@@ -68,12 +60,12 @@ export default function ScrollStack({
 
       const transform = `translateZ(0) scale(${scale})${rotation ? ` rotate(${rotation}deg)` : ''}`;
       if (lastTransformRef.current[index] !== transform) {
-        inner.style.transform = transform;
+        card.style.transform = transform;
         lastTransformRef.current[index] = transform;
       }
       if (blurAmount > 0) {
         const blur = index < activeIndex ? (activeIndex - index) * blurAmount : 0;
-        inner.style.filter = blur ? `blur(${blur}px)` : '';
+        card.style.filter = blur ? `blur(${blur}px)` : '';
       }
     });
 
@@ -112,19 +104,17 @@ export default function ScrollStack({
     if (!root) return undefined;
 
     const cards = Array.from(root.querySelectorAll('.scroll-stack-card'));
-    const inners = cards.map((card) => card.querySelector('.scroll-stack-card__inner') || card);
     const motionQuery = window.matchMedia('(max-width: 760px), (prefers-reduced-motion: reduce)');
     const scrollTarget = useWindowScroll ? window : root;
     const stackPercent = parsePercent(stackPosition);
     cardsRef.current = cards;
-    innersRef.current = inners;
     lastTransformRef.current = [];
 
     const clearStyles = () => {
       lastTransformRef.current = [];
-      inners.forEach((inner) => {
-        inner.style.transform = '';
-        inner.style.filter = '';
+      cards.forEach((card) => {
+        card.style.transform = '';
+        card.style.filter = '';
       });
     };
 
@@ -179,7 +169,6 @@ export default function ScrollStack({
         card.style.zIndex = '';
       });
       cardsRef.current = [];
-      innersRef.current = [];
       completedRef.current = false;
     };
   }, [itemDistance, itemStackDistance, parsePercent, requestUpdate, stackPosition, update, useWindowScroll]);
