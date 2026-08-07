@@ -59,17 +59,16 @@ const ScrollStack = ({
     }
   }, [useWindowScroll]);
 
-  const getElementOffset = useCallback(
-    (element) => {
-      if (useWindowScroll) {
-        const rect = element.getBoundingClientRect();
-        return rect.top + window.scrollY;
-      } else {
-        return element.offsetTop;
-      }
-    },
-    [useWindowScroll]
-  );
+  // Measure true static un-transformed offset to prevent recursive layout feedback jitter
+  const getElementOffset = useCallback((element) => {
+    let top = 0;
+    let curr = element;
+    while (curr) {
+      top += curr.offsetTop;
+      curr = curr.offsetParent;
+    }
+    return top;
+  }, []);
 
   const updateCardTransforms = useCallback(() => {
     if (!cardsRef.current.length || isUpdatingRef.current) return;
