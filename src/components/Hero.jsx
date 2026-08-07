@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import StrokeText from './StrokeText';
+import Shuffle from './Shuffle';
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -12,45 +12,41 @@ export default function Hero() {
           PRODUCT STRATEGY · DESIGN · ENGINEERING
         </motion.span>
         <motion.h1
-          className="hero__headline"
+          className="hero__headline hero__headline--shuffle"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : .62 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
         >
-          <StrokeText
+          <Shuffle
             text="Custom Software, SaaS &"
-            strokeColor="#225cff"
-            fillColor="#111827"
-            strokeWidth={2}
-            drawDuration={1.3}
-            fillDelay={0.15}
+            shuffleDirection="right"
+            duration={0.35}
+            animationMode="evenodd"
+            shuffleTimes={2}
+            ease="power3.out"
             stagger={0.03}
-            ease="power2.out"
-            trigger="mount"
-            fillMode="wipe"
-            fontSize={108}
-            fontWeight={800}
-            letterSpacing={-4}
-            fontFamily="var(--font-heading), 'Manrope', sans-serif"
-            uppercase
+            threshold={0.1}
+            triggerOnce={true}
+            triggerOnHover={true}
+            respectReducedMotion={true}
+            tag="span"
+            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)' }}
           />
-          <StrokeText
+          <Shuffle
             text="AI Development"
-            strokeColor="#225cff"
-            fillColor="#111827"
-            strokeWidth={2}
-            drawDuration={1.3}
-            fillDelay={0.15}
+            shuffleDirection="right"
+            duration={0.35}
+            animationMode="evenodd"
+            shuffleTimes={2}
+            ease="power3.out"
             stagger={0.03}
-            ease="power2.out"
-            trigger="mount"
-            fillMode="wipe"
-            fontSize={108}
-            fontWeight={800}
-            letterSpacing={-4}
-            fontFamily="var(--font-heading), 'Manrope', sans-serif"
-            uppercase
+            threshold={0.1}
+            triggerOnce={true}
+            triggerOnHover={true}
+            respectReducedMotion={true}
+            tag="span"
+            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)' }}
           />
         </motion.h1>
 
