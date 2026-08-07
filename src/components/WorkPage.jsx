@@ -22,7 +22,6 @@ export default function WorkPage({ onOpenContact }) {
   const [activePreviewProject, setActivePreviewProject] = useState(null);
   const [loadedImages, setLoadedImages] = useState({});
   const [failedImages, setFailedImages] = useState({});
-  const [imgFallbacks, setImgFallbacks] = useState({});
 
   const filteredProjects = useMemo(() => {
     let list = formattedWorkData;
@@ -57,17 +56,8 @@ export default function WorkPage({ onOpenContact }) {
     setLoadedImages((prev) => ({ ...prev, [id]: true }));
   };
 
-  const handleImageError = (id, domain) => {
-    if (!imgFallbacks[id]) {
-      // Switch from primary CDN to secondary CDN
-      setImgFallbacks((prev) => ({
-        ...prev,
-        [id]: `https://api.microlink.io/?url=https://${domain}&screenshot=true&embed=screenshot.url`
-      }));
-    } else {
-      // Both CDNs failed, show clean Zexton brand mock card
-      setFailedImages((prev) => ({ ...prev, [id]: true }));
-    }
+  const handleImageError = (id) => {
+    setFailedImages((prev) => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -140,8 +130,7 @@ export default function WorkPage({ onOpenContact }) {
         <div className="work-projects-grid">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
-              const primaryCdn = `https://s0.wp.com/mshots/v1/https://${project.domain}?w=800`;
-              const currentSrc = imgFallbacks[project.id] || primaryCdn;
+              const screenshotUrl = `https://api.microlink.io/?url=https://${project.domain}&screenshot=true&embed=screenshot.url`;
               const isLoaded = loadedImages[project.id];
               const hasFailed = failedImages[project.id];
 
@@ -188,12 +177,12 @@ export default function WorkPage({ onOpenContact }) {
 
                     {!hasFailed && (
                       <img
-                        src={currentSrc}
+                        src={screenshotUrl}
                         alt={`${project.title} live website preview`}
                         className={`card-preview-img ${isLoaded ? 'is-visible' : 'is-hidden'}`}
                         loading="lazy"
                         onLoad={() => handleImageLoad(project.id)}
-                        onError={() => handleImageError(project.id, project.domain)}
+                        onError={() => handleImageError(project.id)}
                       />
                     )}
 

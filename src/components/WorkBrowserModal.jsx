@@ -26,7 +26,7 @@ export default function WorkBrowserModal({ project, onClose }) {
   if (!project) return null;
 
   const url = project.url || `https://${project.domain}`;
-  const screenshotUrl = `https://image.thum.io/get/width/1200/crop/800/https://${project.domain}`;
+  const screenshotUrl = `https://api.microlink.io/?url=https://${project.domain}&screenshot=true&embed=screenshot.url`;
 
   const handleRefresh = () => {
     setLoading(true);
