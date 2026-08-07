@@ -3,7 +3,7 @@ import TextLoop from './TextLoop';
 import './TechStackExplorer.css';
 
 const skillGroups = {
-  'All': 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ PostgreSQL ✦ MongoDB',
+  'All': 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ Express ✦ PostgreSQL ✦ Redux ✦ .NET ✦ OpenCV ✦ MongoDB ✦ REST APIs ✦ CI/CD Pipelines ✦ Real-time Inference',
   'Programming Languages': 'Python ✦ TypeScript ✦ JavaScript ✦ HTML5 ✦ CSS3 ✦ SQL ✦ C# ✦ Bash ✦ Rust ✦ Go',
   'Frameworks & Libraries': 'React ✦ React Native ✦ Node.js ✦ Expo ✦ Express.js ✦ Flask ✦ Redux ✦ .NET ✦ TensorFlow ✦ OpenCV',
   'AI / Machine Learning': 'Computer Vision ✦ Deep Learning ✦ Object Detection ✦ LLM Integration ✦ Agentic AI ✦ Multi-Agent Systems ✦ NLP',
@@ -109,10 +109,10 @@ export default function TechStackExplorer() {
           speed={80}
           direction="forward"
           separator="✦"
-          curviness={110}
-          fontSize={20}
+          curviness={90}
+          fontSize={17}
           fontWeight={800}
-          letterSpacing={4}
+          letterSpacing={2}
           uppercase
           color="#ffffff"
           ribbon

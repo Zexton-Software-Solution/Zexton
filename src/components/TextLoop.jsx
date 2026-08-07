@@ -35,7 +35,7 @@ const buildPath = (shape, curviness) => {
       return `M -400 ${CY} L ${VIEW_W + 400} ${CY}`;
     case 'wave':
     default: {
-      const a = c * 1.85;
+      const a = c * 1.7;
       return `M -400 ${CY} Q -200 ${CY - a} 0 ${CY} T 400 ${CY} T 800 ${CY} T 1200 ${CY} T 1600 ${CY}`;
     }
   }
@@ -48,15 +48,15 @@ const TextLoop = ({
   speed = 85,
   direction = 'forward',
   separator = '✦',
-  curviness = 110,
-  fontSize = 22,
+  curviness = 90,
+  fontSize = 17,
   fontWeight = 800,
-  letterSpacing = 4,
+  letterSpacing = 2,
   uppercase = true,
   color = '#ffffff',
   ribbon = true,
   ribbonColor = '#225cff',
-  ribbonWidth = 68,
+  ribbonWidth = 64,
   pauseOnHover = false,
   className = '',
   style = {}
@@ -76,7 +76,7 @@ const TextLoop = ({
 
   const unit = useMemo(() => {
     const base = uppercase ? String(text).toUpperCase() : String(text);
-    const gap = separator ? `\u00A0\u00A0\u00A0${separator}\u00A0\u00A0\u00A0` : '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
+    const gap = separator ? `\u00A0\u00A0${separator}\u00A0\u00A0` : '\u00A0\u00A0\u00A0\u00A0';
     return `${base}${gap}`;
   }, [text, separator, uppercase]);
 
@@ -104,7 +104,7 @@ const TextLoop = ({
       }
       if (!length) return;
 
-      const reps = unitWidth > 0 ? Math.max(1, Math.ceil(length / unitWidth) + 1) : 1;
+      const reps = unitWidth > 0 ? Math.max(1, Math.round(length / unitWidth)) : 1;
       setMetrics((prev) => (prev.length === length && prev.reps === reps ? prev : { length, reps }));
     };
 
@@ -164,6 +164,7 @@ const TextLoop = ({
   }, [metrics, speed, direction, pauseOnHover]);
 
   const loopText = unit.repeat(metrics.reps);
+  const fitLength = metrics.length || undefined;
 
   return (
     <div ref={rootRef} className={`text-loop ${className}`.trim()} style={style}>
@@ -190,13 +191,13 @@ const TextLoop = ({
         </text>
 
         <text className="text-loop-text" style={textStyle} fill={color} dominantBaseline="central" aria-hidden="true">
-          <textPath ref={headRef} href={`#${pathId}`} startOffset={0}>
+          <textPath ref={headRef} href={`#${pathId}`} startOffset={0} textLength={fitLength} lengthAdjust="spacing">
             {loopText}
           </textPath>
         </text>
 
         <text className="text-loop-text" style={textStyle} fill={color} dominantBaseline="central" aria-hidden="true">
-          <textPath ref={tailRef} href={`#${pathId}`} startOffset={0}>
+          <textPath ref={tailRef} href={`#${pathId}`} startOffset={0} textLength={fitLength} lengthAdjust="spacing">
             {loopText}
           </textPath>
         </text>
