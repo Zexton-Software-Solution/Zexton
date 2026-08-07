@@ -16,7 +16,7 @@ export default function Hero() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : .62 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}
         >
           <StrokeText
             text="Custom Software, SaaS &"
@@ -29,9 +29,11 @@ export default function Hero() {
             ease="power2.out"
             trigger="mount"
             fillMode="wipe"
-            fontSize={104}
+            fontSize={108}
             fontWeight={800}
-            letterSpacing={-3}
+            letterSpacing={-4}
+            fontFamily="var(--font-heading), 'Manrope', sans-serif"
+            uppercase
           />
           <StrokeText
             text="AI Development"
@@ -44,9 +46,11 @@ export default function Hero() {
             ease="power2.out"
             trigger="mount"
             fillMode="wipe"
-            fontSize={104}
+            fontSize={108}
             fontWeight={800}
-            letterSpacing={-3}
+            letterSpacing={-4}
+            fontFamily="var(--font-heading), 'Manrope', sans-serif"
+            uppercase
           />
         </motion.h1>
 

@@ -13,16 +13,18 @@ const StrokeText = ({
   text = DEFAULT_TEXT,
   strokeColor = '#225cff',
   fillColor = '#111827',
-  strokeWidth = 1.4,
-  drawDuration = 1.6,
-  fillDelay = 0.2,
-  stagger = 0.05,
+  strokeWidth = 2,
+  drawDuration = 1.4,
+  fillDelay = 0.15,
+  stagger = 0.03,
   ease = 'power2.out',
   trigger = 'mount',
   fillMode = 'wipe',
-  fontSize = 128,
+  fontSize = 110,
   fontWeight = 800,
   letterSpacing = -4,
+  fontFamily = "var(--font-heading), 'Manrope', sans-serif",
+  uppercase = true,
   reverse = false,
   className = '',
   style = {}
@@ -36,17 +38,23 @@ const StrokeText = ({
   const rawId = useId();
   const wipeId = `stroke-text-wipe-${rawId.replace(/[^a-zA-Z0-9_-]/g, '')}`;
 
-  const characters = useMemo(() => Array.from(String(text ?? '')), [text]);
+  const formattedText = useMemo(() => {
+    const str = String(text ?? '');
+    return uppercase ? str.toUpperCase() : str;
+  }, [text, uppercase]);
+
+  const characters = useMemo(() => Array.from(formattedText), [formattedText]);
 
   const dash = Math.max(fontSize * 7, 200);
 
   const fontStyle = useMemo(
     () => ({
+      fontFamily,
       fontSize: `${fontSize}px`,
       fontWeight,
       letterSpacing: `${letterSpacing}px`
     }),
-    [fontSize, fontWeight, letterSpacing]
+    [fontFamily, fontSize, fontWeight, letterSpacing]
   );
 
   useLayoutEffect(() => {
@@ -197,9 +205,9 @@ const StrokeText = ({
     <span
       ref={rootRef}
       className={`stroke-text ${trigger === 'hover' ? 'stroke-text--hover' : ''} ${className}`.trim()}
-      style={{ ...style, '--stroke-text-height': `${Math.round(fontSize * 1.3)}px` }}
+      style={{ ...style, '--stroke-text-height': `${Math.round(fontSize * 1.2)}px` }}
       role="img"
-      aria-label={String(text ?? '')}
+      aria-label={formattedText}
     >
       <svg className="stroke-text__svg" viewBox={viewBox} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         {fillMode === 'wipe' && box && (
