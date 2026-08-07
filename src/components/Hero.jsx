@@ -19,7 +19,7 @@ export default function Hero() {
           style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
         >
           <Shuffle
-            text="Custom Software, SaaS &"
+            text="Custom Software,"
             shuffleDirection="right"
             duration={0.35}
             animationMode="evenodd"
@@ -31,10 +31,10 @@ export default function Hero() {
             triggerOnHover={true}
             respectReducedMotion={true}
             tag="span"
-            style={{ fontSize: 'clamp(2.2rem, 5.2vw, 4.5rem)', letterSpacing: '-0.03em' }}
+            style={{ fontSize: 'clamp(2.8rem, 6.2vw, 5.2rem)', letterSpacing: '-0.04em' }}
           />
           <Shuffle
-            text="AI Development"
+            text="SaaS & AI Development"
             shuffleDirection="right"
             duration={0.35}
             animationMode="evenodd"
@@ -46,7 +46,7 @@ export default function Hero() {
             triggerOnHover={true}
             respectReducedMotion={true}
             tag="span"
-            style={{ fontSize: 'clamp(2.2rem, 5.2vw, 4.5rem)', letterSpacing: '-0.03em' }}
+            style={{ fontSize: 'clamp(2.8rem, 6.2vw, 5.2rem)', letterSpacing: '-0.04em' }}
           />
         </motion.h1>
 
