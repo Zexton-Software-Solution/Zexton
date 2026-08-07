@@ -12,6 +12,7 @@ import RelatedRoutes from './components/RelatedRoutes';
 import RouteLoader from './components/RouteLoader';
 import Seo from './components/Seo';
 import { isKnownRoute, pathForRoute, routeFromPath, routeMetadata } from './siteMetadata';
+import ClickSpark from './components/ClickSpark';
 import './App.css';
 
 const CompanyPage = lazy(() => import('./components/CompanyPage'));
@@ -150,6 +151,8 @@ export default function App() {
   return <>
     <AnimatePresence>{showLoader && <PageLoader key="initial-site-loader" onComplete={finishLoader} />}</AnimatePresence>
     <AnimatePresence>{routeLoading && <RouteLoader key="route-loader" />}</AnimatePresence>
-    {page}
+    <ClickSpark sparkColor="#225cff" sparkSize={12} sparkRadius={20} sparkCount={8} duration={400}>
+      {page}
+    </ClickSpark>
   </>;
 }
