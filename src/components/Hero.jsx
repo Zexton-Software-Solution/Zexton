@@ -31,7 +31,7 @@ export default function Hero() {
             triggerOnHover={true}
             respectReducedMotion={true}
             tag="span"
-            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)' }}
+            style={{ fontSize: 'clamp(2.0rem, 4.4vw, 3.8rem)', whiteSpace: 'nowrap' }}
           />
           <Shuffle
             text="AI Development"
@@ -46,7 +46,7 @@ export default function Hero() {
             triggerOnHover={true}
             respectReducedMotion={true}
             tag="span"
-            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)' }}
+            style={{ fontSize: 'clamp(2.0rem, 4.4vw, 3.8rem)', whiteSpace: 'nowrap' }}
           />
         </motion.h1>
 
