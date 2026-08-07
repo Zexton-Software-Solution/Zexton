@@ -1,4 +1,5 @@
 .tech-explorer {
+  position: relative;
   padding: 80px clamp(24px, 6vw, 96px) 60px;
   background: var(--paper, #f7f8fa);
   color: var(--ink, #111827);
@@ -41,6 +42,8 @@
   justify-content: center;
   gap: 10px;
   margin: 36px 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .tech-explorer__cat-btn {
@@ -82,10 +85,73 @@
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  min-height: 480px;
+}
+
+/* Hand-drawn pencil sketch background doodles */
+.tech-doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tech-doodle {
+  position: absolute;
+  opacity: 0.26;
+  pointer-events: none;
+  animation: doodleFloat 7s ease-in-out infinite alternate;
+}
+
+.tech-doodle--top-left {
+  top: 15px;
+  left: max(20px, calc(50% - 560px));
+  width: 150px;
+}
+
+.tech-doodle--top-right {
+  top: 10px;
+  right: max(20px, calc(50% - 580px));
+  width: 160px;
+  animation-delay: -2s;
+}
+
+.tech-doodle--bottom-left {
+  bottom: 15px;
+  left: max(20px, calc(50% - 540px));
+  width: 150px;
+  animation-delay: -4s;
+}
+
+.tech-doodle--bottom-right {
+  bottom: 10px;
+  right: max(20px, calc(50% - 560px));
+  width: 170px;
+  animation-delay: -1.5s;
+}
+
+.tech-doodle--mid-left {
+  top: 25%;
+  left: calc(50% - 360px);
+  width: 85px;
+  animation-delay: -3s;
+}
+
+.tech-doodle--mid-right {
+  bottom: 25%;
+  right: calc(50% - 370px);
+  width: 95px;
+  animation-delay: -5s;
+}
+
+@keyframes doodleFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-8px) rotate(2deg); }
 }
 
 @media (max-width: 820px) {
   .tech-explorer { padding: 60px 20px 40px; }
   .tech-explorer__categories { gap: 8px; }
   .tech-explorer__cat-btn { padding: 6px 14px; font-size: 12px; }
+  .tech-doodle { opacity: 0.16; scale: 0.75; }
 }
