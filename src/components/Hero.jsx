@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import ParticleText from './ParticleText';
+import StrokeText from './StrokeText';
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -12,52 +12,42 @@ export default function Hero() {
           PRODUCT STRATEGY · DESIGN · ENGINEERING
         </motion.span>
         <motion.h1
-          className="hero__headline hero__headline--particle"
+          className="hero__headline"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : .62 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
         >
-          <div style={{ position: 'relative', width: '100%', height: 'clamp(65px, 8.5vw, 115px)' }}>
-            <ParticleText
-              text="Custom Software, SaaS &"
-              particleSize={2.0}
-              density={5}
-              color="#111827"
-              highlightColor="#225cff"
-              scatter={80}
-              gatherDuration={500}
-              stagger={80}
-              pointerRepel={25}
-              repelRadius={80}
-              idleDrift={0}
-              trigger="hover"
-              fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
-              fontWeight={800}
-              fontFamily="'Manrope', sans-serif"
-              glow={false}
-            />
-          </div>
-          <div style={{ position: 'relative', width: '100%', height: 'clamp(65px, 8.5vw, 115px)' }}>
-            <ParticleText
-              text="AI Development"
-              particleSize={2.0}
-              density={5}
-              color="#111827"
-              highlightColor="#225cff"
-              scatter={80}
-              gatherDuration={500}
-              stagger={80}
-              pointerRepel={25}
-              repelRadius={80}
-              idleDrift={0}
-              trigger="hover"
-              fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
-              fontWeight={800}
-              fontFamily="'Manrope', sans-serif"
-              glow={false}
-            />
-          </div>
+          <StrokeText
+            text="Custom Software, SaaS &"
+            strokeColor="#225cff"
+            fillColor="#111827"
+            strokeWidth={2}
+            drawDuration={1.3}
+            fillDelay={0.15}
+            stagger={0.03}
+            ease="power2.out"
+            trigger="mount"
+            fillMode="wipe"
+            fontSize={104}
+            fontWeight={800}
+            letterSpacing={-3}
+          />
+          <StrokeText
+            text="AI Development"
+            strokeColor="#225cff"
+            fillColor="#111827"
+            strokeWidth={2}
+            drawDuration={1.3}
+            fillDelay={0.15}
+            stagger={0.03}
+            ease="power2.out"
+            trigger="mount"
+            fillMode="wipe"
+            fontSize={104}
+            fontWeight={800}
+            letterSpacing={-3}
+          />
         </motion.h1>
 
         <div className="hero__columns">
