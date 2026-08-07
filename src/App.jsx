@@ -21,6 +21,7 @@ const InsightArticlePage = lazy(() => import('./components/InsightArticlePage'))
 const Insights = lazy(() => import('./components/Insights'));
 const NotFound = lazy(() => import('./components/NotFound'));
 const Pricing = lazy(() => import('./components/Pricing'));
+const ServiceDetailPage = lazy(() => import('./components/ServiceDetailPage'));
 const WhoWeAre = lazy(() => import('./components/WhoWeAre'));
 const contentRoutes = new Set(['about', 'work', 'services', 'resources', 'insights', 'capabilities', 'careers']);
 const getRoute = () => {
@@ -116,6 +117,8 @@ export default function App() {
     content = <CompanyPage />;
   } else if (route === 'pricing') {
     content = <Pricing onOpenContact={openContact} />;
+  } else if (route.startsWith('service:')) {
+    content = <ServiceDetailPage route={route} />;
   } else if (route === 'who-we-are') {
     content = <WhoWeAre onOpenContact={openContact} />;
   } else if (route === 'contact') {

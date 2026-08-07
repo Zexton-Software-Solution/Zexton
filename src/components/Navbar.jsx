@@ -24,6 +24,9 @@ const items = [
     textColor: '#fff',
     links: [
       { label: 'Software Services', href: '/services' },
+      { label: 'Custom Software', href: '/services/custom-software-development' },
+      { label: 'SaaS Development', href: '/services/saas-development' },
+      { label: 'AI Automation', href: '/services/ai-automation' },
       { label: 'Technical Capabilities', href: '/capabilities' },
       { label: 'Work & Case Studies', href: '/work' },
     ],

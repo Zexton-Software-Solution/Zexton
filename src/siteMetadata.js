@@ -1,4 +1,5 @@
 import { insightRouteSlugs } from './insightRoutes.js';
+import { serviceRouteMetadata } from './servicePagesData.js';
 
 export const SITE_URL = 'https://zexton.com';
 export const SITE_NAME = 'Zexton';
@@ -6,7 +7,7 @@ export const SITE_LANGUAGE = 'en-IN';
 export const SITE_LOCALE = 'en_IN';
 export const DEFAULT_SOCIAL_IMAGE = '/ZextonLogo.png';
 export const DEFAULT_SOCIAL_IMAGE_ALT = 'Zexton software engineering company logo';
-export const SITE_LAST_MODIFIED = '2026-08-02';
+export const SITE_LAST_MODIFIED = '2026-08-03';
 
 const corePage = (metadata) => ({
   image: DEFAULT_SOCIAL_IMAGE,
@@ -126,7 +127,7 @@ export const routeMetadata = {
     itemType: 'Service',
     searchIntent: 'software development services',
     topics: ['custom software development services', 'SaaS development services', 'web application development', 'React Native app development', 'cloud modernization', 'AI automation services'],
-    relatedRoutes: ['capabilities', 'pricing', 'work', 'contact'],
+    relatedRoutes: ['service:custom-software-development', 'service:saas-development', 'service:ai-automation', 'contact'],
     schemaItems: [
       { name: 'Product discovery and UX', description: 'Workflow discovery, product scope, UX architecture, prototypes, and delivery planning.' },
       { name: 'Custom web application development', description: 'Portals, dashboards, marketplaces, operational tools, commerce, and customer platforms.' },
@@ -141,6 +142,7 @@ export const routeMetadata = {
       { title: 'Cloud modernization and responsible AI', text: 'Improve deployment and reliability, modernize legacy systems incrementally, and connect AI to approved data and tools with evaluation and human control.' },
     ],
   }),
+  ...Object.fromEntries(Object.entries(serviceRouteMetadata).map(([route, metadata]) => [route, corePage(metadata)])),
   resources: corePage({
     path: '/resources',
     title: 'Software Project Planning Resources & Buyer Guides | Zexton',

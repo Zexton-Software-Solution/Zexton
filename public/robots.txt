@@ -1,5 +1,5 @@
-# Zexton public website crawling policy
-# All public pages and assets are crawlable. Form APIs and the static error page are not content.
+# Zexton public crawling policy
+# Public pages and assets are crawlable. API endpoints and the static error document are excluded.
 User-agent: *
 Allow: /
 Disallow: /api/

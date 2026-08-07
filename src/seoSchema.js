@@ -60,6 +60,7 @@ export const buildSeoGraph = ({
   const url = `${SITE_URL}${canonicalPath}`;
   const imageUrl = absoluteUrl(image);
   const isArticle = Boolean(article);
+  const isServicePage = !isArticle && itemType === 'Service' && items.length === 1;
   const normalizedTopics = [...new Set((topics || []).filter(Boolean))];
   const articleHeadline = articleValue(article, 'headline', 'title');
   const articlePublished = articleValue(article, 'datePublished', 'publishedDate');
@@ -95,12 +96,27 @@ export const buildSeoGraph = ({
     })),
   } : null;
 
-  const itemListGraph = items.length ? {
+  const itemListGraph = items.length && !isServicePage ? {
     '@type': 'ItemList',
     '@id': `${url}#itemlist`,
     name: `${breadcrumbLabel || title.split('|')[0].trim()} topics`,
     numberOfItems: items.length,
     itemListElement: items.map((item, index) => buildCollectionItem(item, index, itemType, url)),
+  } : null;
+
+  const serviceGraph = isServicePage ? {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: items[0].name,
+    description: items[0].description || description,
+    url,
+    provider: { '@id': `${SITE_URL}/#organization` },
+    areaServed: [
+      { '@type': 'Country', name: 'India' },
+      { '@type': 'Place', name: 'Worldwide' },
+    ],
+    serviceType: items[0].name,
+    ...(normalizedTopics.length ? { keywords: normalizedTopics.join(', ') } : {}),
   } : null;
 
   const primaryImage = {
@@ -133,6 +149,7 @@ export const buildSeoGraph = ({
     ...(normalizedTopics.length ? { keywords: normalizedTopics.join(', ') } : {}),
     ...(breadcrumbGraph ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
     ...(isArticle ? { mainEntity: { '@id': `${url}#article` } } : {}),
+    ...(isServicePage ? { mainEntity: { '@id': `${url}#service` } } : {}),
     ...(!isArticle && itemListGraph ? { mainEntity: { '@id': `${url}#itemlist` } } : {}),
   };
 
@@ -163,6 +180,7 @@ export const buildSeoGraph = ({
     });
   }
 
+  if (serviceGraph) graph.push(serviceGraph);
   if (itemListGraph) graph.push(itemListGraph);
   if (breadcrumbGraph) graph.push(breadcrumbGraph);
 

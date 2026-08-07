@@ -2,40 +2,45 @@
 
 > Zexton plans and builds custom software, SaaS platforms, web and mobile applications, cloud systems, modernization programs, and responsible AI automation.
 
-Zexton publishes factual service information, planning guidance, indicative pricing ranges, and original long-form engineering insights. Pages do not claim unverified clients, projects, reviews, team members, vacancies, research, or guaranteed search rankings.
+This file is an AI-readable map of the canonical public website. Service and editorial content is factual and does not claim unverified clients, reviews, team members, research, or guaranteed outcomes.
 
 ## Primary pages
 
-- [Home](https://zexton.com/): Overview of Zexton software product engineering.
-- [Software development services](https://zexton.com/services): Product discovery, custom web applications, SaaS, React Native, AI automation, cloud, DevOps, and modernization.
-- [Engineering capabilities](https://zexton.com/capabilities): Product, UX, frontend, backend, mobile, cloud, data, security, accessibility, and applied AI capabilities.
-- [Software pricing](https://zexton.com/pricing): Indicative website, custom software, SaaS, and enterprise planning ranges; not instant quotations.
-- [Company](https://zexton.com/company): Zexton company direction, values, service focus, and engineering principles.
-- [About](https://zexton.com/about): Discovery, delivery, security, quality, handover, and operating principles.
-- [Delivery and case-study standards](https://zexton.com/work): The context and verified evidence required before publishing project outcomes.
-- [Collaboration model](https://zexton.com/who-we-are): Product and engineering role areas; placeholder profiles are not represented as verified employees.
-- [Software planning resources](https://zexton.com/resources): Briefing, estimation, AI readiness, and production-readiness frameworks.
-- [Engineering insights](https://zexton.com/insights): Original long-form articles about software products, architecture, mobile, modernization, teams, and AI.
-- [Careers](https://zexton.com/careers): Future role areas and working principles; an active vacancy exists only when explicitly published.
-- [Contact](https://zexton.com/contact): Project enquiry form and public contact information.
+- [Home](https://zexton.com/): Zexton plans and builds custom software, SaaS platforms, web and mobile applications, cloud systems, and responsible AI automation.
+- [About](https://zexton.com/about): Learn how Zexton approaches software discovery, UX, architecture, secure engineering, visible delivery, launch, handover, and continued improvement.
+- [Capabilities](https://zexton.com/capabilities): Explore product, UX, React, React Native, Node.js, .NET, Python, PostgreSQL, AWS, DevOps, security, data, and applied AI engineering capabilities.
+- [Careers](https://zexton.com/careers): Learn about future product, UX, full-stack, mobile, cloud, quality, and applied AI role areas at Zexton. No active vacancy is implied unless published.
+- [Company](https://zexton.com/company): Explore Zexton’s company direction, engineering values, industry focus, and connected approach to software, AI, cloud, mobile, and enterprise systems.
+- [Contact](https://zexton.com/contact): Contact Zexton about a website, custom software, SaaS, React Native, cloud, modernization, integration, or responsible AI automation requirement.
+- [Insights](https://zexton.com/insights): Long-form engineering insights about SaaS architecture, custom software, React Native, cloud modernization, product delivery, and trustworthy AI systems.
+- [Pricing](https://zexton.com/pricing): Indicative website, e-commerce, SaaS, custom software, and enterprise modernization price ranges in INR, USD, and EUR, plus a project calculator.
+- [Resources](https://zexton.com/resources): Practical guides for software briefs, project estimates, AI readiness, architecture decisions, production readiness, security, content, and launch planning.
+- [Services](https://zexton.com/services): Software development services for product discovery, custom web apps, SaaS, React Native, cloud modernization, DevOps, integrations, and AI automation.
+- [AI Automation](https://zexton.com/services/ai-automation): AI automation and agent development for business workflows using retrieval, tool integration, evaluation, guardrails, human approval, and observability.
+- [Cloud, DevOps & Modernization](https://zexton.com/services/cloud-devops-modernization): Cloud, DevOps, and legacy modernization services covering AWS, CI/CD, containers, observability, security, resilience, performance, and migration.
+- [Custom Software Development](https://zexton.com/services/custom-software-development): Custom software development for business applications, portals, workflow systems, integrations, modernization, and secure cloud delivery from Zexton.
+- [Mobile App Development](https://zexton.com/services/mobile-app-development): React Native mobile app development for Android and cross-platform products with secure APIs, offline workflows, notifications, analytics, and releases.
+- [SaaS Development](https://zexton.com/services/saas-development): End-to-end SaaS development for MVPs and growing platforms: product discovery, multi-tenancy, billing, RBAC, analytics, integrations, and cloud delivery.
+- [Web Application Development](https://zexton.com/services/web-application-development): Web application development for portals, dashboards, marketplaces, commerce, and operations using React, secure APIs, integrations, and cloud delivery.
+- [Who We Are](https://zexton.com/who-we-are): See how product, UX, full-stack, mobile, cloud, quality, and applied AI roles collaborate through ownership, written decisions, and visible milestones.
+- [Work](https://zexton.com/work): See how Zexton structures software delivery stories around verified context, product and architecture decisions, delivered workflows, and approved evidence.
 
 ## Engineering insights
 
-- [How to Take a SaaS Product From Idea to Production](https://zexton.com/insights/saas-idea-to-production)
-- [Building AI Agents Businesses Can Actually Trust](https://zexton.com/insights/trustworthy-ai-agents)
-- [The Architecture Behind Software That Scales](https://zexton.com/insights/scalable-software-architecture)
-- [Mobile Product Decisions Users Can Feel](https://zexton.com/insights/react-native-mobile-product)
-- [Modernizing Legacy Systems Without Stopping Business](https://zexton.com/insights/legacy-system-modernization)
-- [What a High-Performing Product Team Does Differently](https://zexton.com/insights/high-performing-product-teams)
-- [Designing Multi-Tenant Products for Long-Term Growth](https://zexton.com/insights/multi-tenant-saas-architecture)
-- [Finding the AI Opportunities Worth Building](https://zexton.com/insights/ai-opportunities-worth-building)
-- [Shipping Faster Without Creating Engineering Debt](https://zexton.com/insights/ship-faster-without-engineering-debt)
+- [How to Take a SaaS Product From Idea to Production](https://zexton.com/insights/saas-idea-to-production): A practical path from an untested product idea to a focused, observable, production-ready SaaS release.
+- [Building AI Agents Businesses Can Actually Trust](https://zexton.com/insights/trustworthy-ai-agents): Trust comes from bounded authority, evidence-based evaluation, visible actions, and deliberate human control.
+- [The Architecture Behind Software That Scales](https://zexton.com/insights/scalable-software-architecture): Scalable systems handle more than traffic: they preserve reliability and changeability as product complexity grows.
+- [Mobile Product Decisions Users Can Feel](https://zexton.com/insights/react-native-mobile-product): Users feel responsiveness, continuity, clarity, and trust—not the framework named in the architecture document.
+- [Modernizing Legacy Systems Without Stopping Business](https://zexton.com/insights/legacy-system-modernization): Modernization succeeds when it reduces change risk while preserving the workflows the business must keep running.
+- [What a High-Performing Product Team Does Differently](https://zexton.com/insights/high-performing-product-teams): Strong teams make decisions closer to evidence, deliver smaller outcomes, and treat quality as part of daily product work.
+- [Designing Multi-Tenant Products for Long-Term Growth](https://zexton.com/insights/multi-tenant-saas-architecture): Tenancy is a system-wide boundary that shapes identity, data, performance, operations, pricing, and customer trust.
+- [Finding the AI Opportunities Worth Building](https://zexton.com/insights/ai-opportunities-worth-building): The best AI opportunity is a valuable, repeatable workflow with usable data, measurable quality, and a responsible path into daily work.
+- [Shipping Faster Without Creating Engineering Debt](https://zexton.com/insights/ship-faster-without-engineering-debt): Sustainable speed comes from shorter feedback, safer defaults, and less unfinished complexity—not from skipping the work that protects change.
 
-## Usage notes
+## Discovery and contact
 
 - Canonical site: https://zexton.com/
-- Sitemap: https://zexton.com/sitemap.xml
-- Robots policy: https://zexton.com/robots.txt
-- Public language: English (India), `en-IN`.
-- Article illustrations are original Zexton SVG assets.
-- Contact: info@zexton.com
+- XML sitemap: https://zexton.com/sitemap.xml
+- Crawling policy: https://zexton.com/robots.txt
+- Public language: English (India), en-IN
+- Project enquiries: info@zexton.com

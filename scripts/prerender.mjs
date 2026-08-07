@@ -38,6 +38,12 @@ const breadcrumbsFor = (metadata, article) => article
       { name: 'Insights', path: '/insights' },
       { name: article.title, path: article.path },
     ]
+  : metadata.path.startsWith('/services/')
+    ? [
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services' },
+        { name: metadata.breadcrumbLabel || metadata.heading, path: metadata.path },
+      ]
   : metadata.path === '/'
     ? [{ name: 'Home', path: '/' }]
     : [
@@ -81,21 +87,36 @@ const renderRelatedRoutes = (metadata) => {
       </nav>`;
 };
 
+const renderServiceDirectory = () => {
+  const services = Object.values(routeMetadata).filter((item) => item.path.startsWith('/services/'));
+  return `
+    <nav class="prerender-services" aria-labelledby="prerender-services-title">
+      <h2 id="prerender-services-title">Software development services</h2>
+      <ul>${services.map((service) => `<li><a href="${escapeHtml(service.path)}">${escapeHtml(service.breadcrumbLabel)}</a><p>${escapeHtml(service.description)}</p></li>`).join('')}</ul>
+    </nav>`;
+};
+
 const renderGenericPage = (metadata) => {
   const insightDirectory = metadata.path === '/' || metadata.path === '/insights'
     ? renderInsightDirectory()
     : '';
+  const serviceDirectory = metadata.path === '/' || metadata.path === '/services'
+    ? renderServiceDirectory()
+    : '';
+  const breadcrumbItems = breadcrumbsFor(metadata, null);
 
   return `
   <div class="prerender-shell">
     <header class="prerender-header"><a href="/" aria-label="Zexton home"><img src="/ZextonLogo.png" width="96" height="54" alt="Zexton" /></a><nav aria-label="Primary navigation"><a href="/services">Services</a><a href="/work">Work</a><a href="/insights">Insights</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a></nav></header>
     <main class="prerender-main">
+      <nav class="prerender-breadcrumbs" aria-label="Breadcrumb"><ol>${breadcrumbItems.map((item, index) => `<li${index === breadcrumbItems.length - 1 ? ' aria-current="page"' : ''}>${index === breadcrumbItems.length - 1 ? escapeHtml(item.name) : `<a href="${escapeHtml(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join('')}</ol></nav>
       <header>
         <p>${escapeHtml(metadata.eyebrow)}</p>
         <h1>${escapeHtml(metadata.heading)}</h1>
         <p>${escapeHtml(metadata.summary)}</p>
       </header>
       ${renderCrawlSections(metadata)}
+      ${serviceDirectory}
       ${insightDirectory}
       ${renderRelatedRoutes(metadata)}
       <section aria-labelledby="prerender-contact-title"><h2 id="prerender-contact-title">Plan the next useful software decision</h2><p>Share the users, current workflow, desired outcome, constraints, and open questions.</p><p><a href="/contact">Discuss a software project with Zexton</a></p></section>
