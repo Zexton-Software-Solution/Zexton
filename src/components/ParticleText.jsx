@@ -18,7 +18,6 @@ const mixRgb = (from, to, amount) => ({
 });
 
 const rgbToCss = (rgb) => `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -41,31 +40,29 @@ const resolveFontSize = (value, container, fontWeight, fontFamily) => {
 
 const waitForFonts = async (font) => {
   if (!('fonts' in document)) return;
-
   try {
     await document.fonts.load(font);
   } catch {}
-
   await document.fonts.ready;
 };
 
 const ParticleText = ({
   text = 'React Bits',
-  particleSize = 2,
-  density = 4,
-  color = '#ffffff',
-  highlightColor = '#8b5cf6',
-  scatter = 180,
-  gatherDuration = 1600,
-  stagger = 420,
-  pointerRepel = 40,
-  repelRadius = 120,
-  idleDrift = 0.7,
-  trigger = 'mount',
-  fontSize = 'clamp(3rem, 12vw, 8rem)',
+  particleSize = 2.2,
+  density = 5,
+  color = '#111827',
+  highlightColor = '#225cff',
+  scatter = 90,
+  gatherDuration = 500,
+  stagger = 90,
+  pointerRepel = 30,
+  repelRadius = 90,
+  idleDrift = 0,
+  trigger = 'hover',
+  fontSize = 'clamp(2.8rem, 7.2vw, 6.2rem)',
   fontWeight = 800,
   fontFamily = 'inherit',
-  glow = true,
+  glow = false,
   className = '',
   style
 }) => {
@@ -101,55 +98,18 @@ const ParticleText = ({
       smoothY: 0
     };
 
-    const startGather = (fromScatter = true) => {
-      if (!particles.length) return;
-
-      const now = performance.now();
-      const spread = reducedMotion ? 0 : scatter;
-
-      particles.forEach((particle) => {
-        if (fromScatter) {
-          const angle = particle.seed * Math.PI * 2;
-          const distance = spread * (0.35 + particle.depth * 0.75);
-          particle.x = particle.targetX + Math.cos(angle) * distance + (particle.depth - 0.5) * spread * 0.55;
-          particle.y = particle.targetY + Math.sin(angle) * distance + (particle.seed - 0.5) * spread * 0.55;
-        }
-
-        particle.startX = particle.x;
-        particle.startY = particle.y;
-        particle.delay = reducedMotion ? 0 : particle.seed * stagger;
-      });
-
-      gatherStart = now;
-      gathering = true;
-    };
-
-    const drawParticle = (particle) => {
-      const size = particle.size;
-      ctx.fillStyle = particle.color;
-
-      if (size <= 2.1) {
-        ctx.fillRect(particle.x - size / 2, particle.y - size / 2, size, size);
-        return;
-      }
-
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, size / 2, 0, Math.PI * 2);
-      ctx.fill();
-    };
-
     const render = (now) => {
       ctx.clearRect(0, 0, width, height);
 
       if (glow && !reducedMotion) {
-        ctx.shadowBlur = particleSize * 3;
+        ctx.shadowBlur = particleSize * 2.5;
         ctx.shadowColor = highlightColor;
       } else {
         ctx.shadowBlur = 0;
       }
 
-      pointer.smoothX += (pointer.x - pointer.smoothX) * 0.18;
-      pointer.smoothY += (pointer.y - pointer.smoothY) * 0.18;
+      pointer.smoothX += (pointer.x - pointer.smoothX) * 0.22;
+      pointer.smoothY += (pointer.y - pointer.smoothY) * 0.22;
 
       let complete = true;
 
@@ -182,12 +142,20 @@ const ParticleText = ({
           }
         }
 
-        const follow = reducedMotion ? 1 : 0.22;
+        const follow = reducedMotion ? 1 : 0.25;
         particle.x += (baseX - particle.x) * follow;
         particle.y += (baseY - particle.y) * follow;
 
         ctx.globalAlpha = clamp(0.35 + progress * 0.65, 0, 1);
-        drawParticle(particle);
+        const size = particle.size;
+        ctx.fillStyle = particle.color;
+        if (size <= 2.1) {
+          ctx.fillRect(particle.x - size / 2, particle.y - size / 2, size, size);
+        } else {
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
 
       ctx.globalAlpha = 1;
@@ -197,13 +165,42 @@ const ParticleText = ({
         gathering = false;
       }
 
-      animationFrame = window.requestAnimationFrame(render);
+      // Stop RAF when rendering finishes to free up main thread CPU 100%
+      if (gathering || pointer.active || (idleDrift > 0 && !reducedMotion)) {
+        animationFrame = window.requestAnimationFrame(render);
+      } else {
+        animationFrame = null;
+      }
     };
 
     const ensureRenderLoop = () => {
       if (animationFrame === null) {
         animationFrame = window.requestAnimationFrame(render);
       }
+    };
+
+    const startGather = (fromScatter = true) => {
+      if (!particles.length) return;
+
+      const now = performance.now();
+      const spread = reducedMotion ? 0 : scatter;
+
+      particles.forEach((particle) => {
+        if (fromScatter) {
+          const angle = particle.seed * Math.PI * 2;
+          const distance = spread * (0.35 + particle.depth * 0.75);
+          particle.x = particle.targetX + Math.cos(angle) * distance + (particle.depth - 0.5) * spread * 0.55;
+          particle.y = particle.targetY + Math.sin(angle) * distance + (particle.seed - 0.5) * spread * 0.55;
+        }
+
+        particle.startX = particle.x;
+        particle.startY = particle.y;
+        particle.delay = reducedMotion ? 0 : particle.seed * stagger;
+      });
+
+      gatherStart = now;
+      gathering = true;
+      ensureRenderLoop();
     };
 
     const sampleText = async () => {
@@ -266,12 +263,12 @@ const ParticleText = ({
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
       const targets = [];
-      const step = Math.max(2, Math.floor(density));
+      const step = Math.max(3, Math.floor(density));
 
       for (let y = 0; y < offscreen.height; y += step) {
         for (let x = 0; x < offscreen.width; x += step) {
           const alpha = imageData.data[(y * offscreen.width + x) * 4 + 3];
-          if (alpha > 40) {
+          if (alpha > 50) {
             targets.push({
               x: width / 2 - offscreen.width / 2 + x,
               y: height / 2 - offscreen.height / 2 + y,
@@ -281,7 +278,8 @@ const ParticleText = ({
         }
       }
 
-      const maxParticles = Math.max(900, Math.min(5200, Math.floor((width * height) / 90)));
+      // Cap to 600 max particles for ultra-fast 0ms main-thread CPU performance
+      const maxParticles = 600;
       const stride = Math.max(1, Math.ceil(targets.length / maxParticles));
       const baseRgb = hexToRgb(color);
       const highlightRgb = hexToRgb(highlightColor);
@@ -292,16 +290,12 @@ const ParticleText = ({
         const depth = 0.45 + (((index * 233 + 97) % 1000) / 1000) * 0.9;
         const blend = baseRgb && highlightRgb ? clamp(target.x / Math.max(1, width) + (seed - 0.5) * 0.35, 0, 1) : 0;
         const particleColor = baseRgb && highlightRgb ? rgbToCss(mixRgb(baseRgb, highlightRgb, blend)) : color;
-        const angle = seed * Math.PI * 2;
-        const distance = (reducedMotion ? 0 : scatter) * (0.35 + depth * 0.75);
-        const startX = target.x + Math.cos(angle) * distance + (seed - 0.5) * scatter * 0.45;
-        const startY = target.y + Math.sin(angle) * distance + (depth - 0.9) * scatter * 0.45;
 
         return {
-          x: reducedMotion ? target.x : startX,
-          y: reducedMotion ? target.y : startY,
-          startX,
-          startY,
+          x: target.x,
+          y: target.y,
+          startX: target.x,
+          startY: target.y,
           targetX: target.x,
           targetY: target.y,
           size: Math.max(0.6, particleSize * (0.75 + target.alpha * 0.45)),
@@ -317,19 +311,6 @@ const ParticleText = ({
       pointer.smoothX = pointer.x;
       pointer.smoothY = pointer.y;
 
-      if (reducedMotion) {
-        particles.forEach((particle) => {
-          particle.x = particle.targetX;
-          particle.y = particle.targetY;
-          particle.startX = particle.targetX;
-          particle.startY = particle.targetY;
-          particle.delay = 0;
-        });
-        gathering = false;
-      } else {
-        startGather(false);
-      }
-
       ensureRenderLoop();
     };
 
@@ -343,6 +324,7 @@ const ParticleText = ({
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
       pointer.active = true;
+      ensureRenderLoop();
     };
 
     const handlePointerLeave = () => {

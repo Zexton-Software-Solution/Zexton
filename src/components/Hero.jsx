@@ -21,41 +21,41 @@ export default function Hero() {
           <div style={{ position: 'relative', width: '100%', height: 'clamp(65px, 8.5vw, 115px)' }}>
             <ParticleText
               text="Custom Software, SaaS &"
-              particleSize={2.4}
-              density={3}
+              particleSize={2.0}
+              density={5}
               color="#111827"
               highlightColor="#225cff"
-              scatter={90}
-              gatherDuration={600}
-              stagger={100}
-              pointerRepel={30}
-              repelRadius={90}
-              idleDrift={0.5}
+              scatter={80}
+              gatherDuration={500}
+              stagger={80}
+              pointerRepel={25}
+              repelRadius={80}
+              idleDrift={0}
               trigger="hover"
               fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
               fontWeight={800}
               fontFamily="'Manrope', sans-serif"
-              glow
+              glow={false}
             />
           </div>
           <div style={{ position: 'relative', width: '100%', height: 'clamp(65px, 8.5vw, 115px)' }}>
             <ParticleText
               text="AI Development"
-              particleSize={2.4}
-              density={3}
+              particleSize={2.0}
+              density={5}
               color="#111827"
               highlightColor="#225cff"
-              scatter={90}
-              gatherDuration={600}
-              stagger={100}
-              pointerRepel={30}
-              repelRadius={90}
-              idleDrift={0.5}
+              scatter={80}
+              gatherDuration={500}
+              stagger={80}
+              pointerRepel={25}
+              repelRadius={80}
+              idleDrift={0}
               trigger="hover"
               fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
               fontWeight={800}
               fontFamily="'Manrope', sans-serif"
-              glow
+              glow={false}
             />
           </div>
         </motion.h1>
