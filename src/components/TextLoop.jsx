@@ -35,7 +35,7 @@ const buildPath = (shape, curviness) => {
       return `M -400 ${CY} L ${VIEW_W + 400} ${CY}`;
     case 'wave':
     default: {
-      const a = c * 1.85; // Deep curvy wave amplitude
+      const a = c * 1.85;
       return `M -400 ${CY} Q -200 ${CY - a} 0 ${CY} T 400 ${CY} T 800 ${CY} T 1200 ${CY} T 1600 ${CY}`;
     }
   }
@@ -104,7 +104,7 @@ const TextLoop = ({
       }
       if (!length) return;
 
-      const reps = unitWidth > 0 ? Math.max(1, Math.round(length / unitWidth)) : 1;
+      const reps = unitWidth > 0 ? Math.max(1, Math.ceil(length / unitWidth) + 1) : 1;
       setMetrics((prev) => (prev.length === length && prev.reps === reps ? prev : { length, reps }));
     };
 
@@ -164,7 +164,6 @@ const TextLoop = ({
   }, [metrics, speed, direction, pauseOnHover]);
 
   const loopText = unit.repeat(metrics.reps);
-  const fitLength = metrics.length || undefined;
 
   return (
     <div ref={rootRef} className={`text-loop ${className}`.trim()} style={style}>
@@ -191,13 +190,13 @@ const TextLoop = ({
         </text>
 
         <text className="text-loop-text" style={textStyle} fill={color} dominantBaseline="central" aria-hidden="true">
-          <textPath ref={headRef} href={`#${pathId}`} startOffset={0} textLength={fitLength} lengthAdjust="spacing">
+          <textPath ref={headRef} href={`#${pathId}`} startOffset={0}>
             {loopText}
           </textPath>
         </text>
 
         <text className="text-loop-text" style={textStyle} fill={color} dominantBaseline="central" aria-hidden="true">
-          <textPath ref={tailRef} href={`#${pathId}`} startOffset={0} textLength={fitLength} lengthAdjust="spacing">
+          <textPath ref={tailRef} href={`#${pathId}`} startOffset={0}>
             {loopText}
           </textPath>
         </text>
