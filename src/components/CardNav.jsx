@@ -22,17 +22,16 @@ export default function CardNav({
 
   const calculateHeight = useCallback(() => {
     const nav = navRef.current;
-    if (!nav) return 330;
-    if (!window.matchMedia('(max-width: 768px)').matches) return 330;
+    if (!nav) return 348;
     const content = nav.querySelector('.card-nav-content');
-    if (!content) return 400;
+    if (!content) return 348;
     const previous = { position: content.style.position, height: content.style.height, visibility: content.style.visibility };
     content.style.position = 'static';
     content.style.height = 'auto';
     content.style.visibility = 'hidden';
-    const height = 72 + content.scrollHeight + 12;
+    const computedHeight = 72 + content.scrollHeight + 14;
     Object.assign(content.style, previous);
-    return height;
+    return Math.max(computedHeight, window.matchMedia('(max-width: 768px)').matches ? 400 : 348);
   }, []);
 
   const createTimeline = useCallback(() => {
