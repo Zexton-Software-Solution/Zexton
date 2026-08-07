@@ -16,48 +16,6 @@ import { workCategories, formattedWorkData } from '../workData';
 import WorkBrowserModal from './WorkBrowserModal';
 import './WorkPage.css';
 
-// Canvas-based detector to filter out WordPress loading logos and 404 error images
-function checkScreenshotQuality(img) {
-  try {
-    const canvas = document.createElement('canvas');
-    canvas.width = 40;
-    canvas.height = 40;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    ctx.drawImage(img, 0, 0, 40, 40);
-    const data = ctx.getImageData(0, 0, 40, 40).data;
-
-    let totalR = 0;
-    let totalG = 0;
-    let totalB = 0;
-    let count = 0;
-
-    for (let i = 0; i < data.length; i += 16) {
-      totalR += data[i];
-      totalG += data[i + 1];
-      totalB += data[i + 2];
-      count++;
-    }
-
-    const avgR = totalR / count;
-    const avgG = totalG / count;
-    const avgB = totalB / count;
-
-    // Reject pure black WordPress generator placeholder (avg < 28)
-    if (avgR < 28 && avgG < 28 && avgB < 28) {
-      return false;
-    }
-
-    // Reject yellow 404 placeholder (high red/green, low blue)
-    if (avgR > 220 && avgG > 180 && avgB < 80) {
-      return false;
-    }
-
-    return true;
-  } catch {
-    return true; // Fallback to allowing image if CORS blocks canvas read
-  }
-}
-
 export default function WorkPage({ onOpenContact }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,13 +52,8 @@ export default function WorkPage({ onOpenContact }) {
     return counts;
   }, []);
 
-  const handleImageLoad = (id, event) => {
-    const isValid = checkScreenshotQuality(event.target);
-    if (isValid) {
-      setLoadedImages((prev) => ({ ...prev, [id]: true }));
-    } else {
-      setFailedImages((prev) => ({ ...prev, [id]: true }));
-    }
+  const handleImageLoad = (id) => {
+    setLoadedImages((prev) => ({ ...prev, [id]: true }));
   };
 
   const handleImageError = (id) => {
@@ -115,7 +68,7 @@ export default function WorkPage({ onOpenContact }) {
           <span className="eyebrow">PORTFOLIO & LIVE CLIENT WORK</span>
           <h1>Engineered Websites & Business Solutions</h1>
           <p>
-            Explore client platforms, booking systems, properties, and web applications delivered across 22 industry categories. Click any project card to launch its live interactive website browser preview.
+            Explore client platforms, booking systems, properties, and web applications delivered across 21 industry categories. Click any project card to launch its live interactive website preview.
           </p>
 
           {/* Real-time Search Input */}
@@ -177,8 +130,8 @@ export default function WorkPage({ onOpenContact }) {
         <div className="work-projects-grid">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
-              // Fast global CDN with crossOrigin attribute for quality check
-              const screenshotUrl = `https://s0.wp.com/mshots/v1/https://${project.domain}?w=800`;
+              // High-resolution clean screenshot API without any WordPress logo
+              const screenshotUrl = `https://api.microlink.io/?url=https://${project.domain}&screenshot=true&embed=screenshot.url`;
               const isLoaded = loadedImages[project.id];
               const hasFailed = failedImages[project.id];
 
@@ -229,8 +182,7 @@ export default function WorkPage({ onOpenContact }) {
                         alt={`${project.title} live website preview`}
                         className={`card-preview-img ${isLoaded ? 'is-visible' : 'is-hidden'}`}
                         loading="lazy"
-                        crossOrigin="anonymous"
-                        onLoad={(e) => handleImageLoad(project.id, e)}
+                        onLoad={() => handleImageLoad(project.id)}
                         onError={() => handleImageError(project.id)}
                       />
                     )}

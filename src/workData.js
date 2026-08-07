@@ -1,30 +1,79 @@
 export const workCategories = [
   { id: 'all', name: 'All Work' },
-  { id: 'property', name: 'Property' },
-  { id: 'hotel', name: 'Hotel' },
-  { id: 'air-bnb', name: 'Air BNB' },
-  { id: 'all-in-one', name: 'All In One' },
-  { id: 'lifestyle-blog', name: 'Lifestyle & Blog' },
-  { id: 'restaurant', name: 'Restaurant' },
-  { id: 'resort', name: 'Resort' },
-  { id: 'villa', name: 'Villa' },
-  { id: 'wedding-event', name: 'Wedding & Event Venue' },
-  { id: 'fun-park-camp', name: 'Fun Park & Camp' },
-  { id: 'cottage', name: 'Cottage' },
-  { id: 'construction', name: 'Construction' },
-  { id: 'custom-car-shop', name: 'Custom Car Shop' },
-  { id: 'personal-injury', name: 'Personal Injury' },
-  { id: 'wine-shop', name: 'Wine Shop' },
-  { id: 'furniture', name: 'Furniture' },
   { id: 'cake', name: 'Cake' },
-  { id: 'paint', name: 'Paint' },
-  { id: 'farming', name: 'Farming' },
-  { id: 'lodge', name: 'Lodge' },
+  { id: 'hotel', name: 'Hotel' },
+  { id: 'villa', name: 'Villa' },
   { id: 'lounge', name: 'Lounge' },
+  { id: 'all-in-one', name: 'All In One' },
+  { id: 'cottage', name: 'Cottage' },
+  { id: 'property', name: 'Property' },
+  { id: 'air-bnb', name: 'Air BNB' },
+  { id: 'farming', name: 'Farming' },
+  { id: 'paint', name: 'Paint' },
+  { id: 'custom-car-shop', name: 'Custom Car Shop' },
+  { id: 'restaurant', name: 'Restaurant' },
+  { id: 'construction', name: 'Construction' },
+  { id: 'wine-shop', name: 'Wine Shop' },
+  { id: 'personal-injury', name: 'Personal Injury' },
+  { id: 'resort', name: 'Resort' },
+  { id: 'fun-park-camp', name: 'Fun Park & Camp' },
+  { id: 'lifestyle-blog', name: 'Lifestyle & Blog' },
+  { id: 'lodge', name: 'Lodge' },
+  { id: 'wedding-event', name: 'Wedding & Event Venue' },
+  { id: 'furniture', name: 'Furniture' },
   { id: 'games', name: 'Games' },
 ];
 
 export const rawWorkData = [
+  {
+    category: 'Cake',
+    categoryId: 'cake',
+    sites: [
+      'wandascakes'
+    ]
+  },
+  {
+    category: 'Hotel',
+    categoryId: 'hotel',
+    sites: [
+      'almadesedona', 'carriagecornerbandb', 'casasedona',
+      'centralparkbandb', 'chaletbandb', 'chanticleerguesthouse', 'coachstopinn',
+      'creeksideinn', 'cypressinn', 'enchantedaprilinn',
+      'fountainhall', 'headlandsinn', 'kearsargeinn', 'kilburnie',
+      'miramonte', 'riverdaleinn', 'shakermillinn', 'stonoverfarm',
+      'thefrenchmanor', 'thornhedgeinn', 'touchstoneinn', 'turquoisebear',
+      'greenvilleinn', 'wildcattavern'
+    ]
+  },
+  {
+    category: 'Villa',
+    categoryId: 'villa',
+    sites: [
+      'adobegrandvillas', 'sedonadreammaker'
+    ]
+  },
+  {
+    category: 'Lounge',
+    categoryId: 'lounge',
+    sites: [
+      'alicesrestaurantnj'
+    ]
+  },
+  {
+    category: 'All In One',
+    categoryId: 'all-in-one',
+    sites: [
+      'acypressinn', 'americanriverinn', 'innatbayledge', 'historicwebsterhouse',
+      'campjellystone', 'marriottranch', 'stonoverfarm'
+    ]
+  },
+  {
+    category: 'Cottage',
+    categoryId: 'cottage',
+    sites: [
+      'barharborcottages', 'moseleycottage'
+    ]
+  },
   {
     category: 'Property',
     categoryId: 'property',
@@ -42,19 +91,6 @@ export const rawWorkData = [
     ]
   },
   {
-    category: 'Hotel',
-    categoryId: 'hotel',
-    sites: [
-      'almadesedona', 'carriagecornerbandb', 'casasedona',
-      'centralparkbandb', 'chaletbandb', 'chanticleerguesthouse', 'coachstopinn',
-      'creeksideinn', 'cypressinn', 'enchantedaprilinn',
-      'fountainhall', 'headlandsinn', 'kearsargeinn', 'kilburnie',
-      'miramonte', 'riverdaleinn', 'shakermillinn', 'stonoverfarm',
-      'thefrenchmanor', 'thornhedgeinn', 'touchstoneinn', 'turquoisebear',
-      'greenvilleinn', 'wildcattavern'
-    ]
-  },
-  {
     category: 'Air BNB',
     categoryId: 'air-bnb',
     sites: [
@@ -65,102 +101,10 @@ export const rawWorkData = [
     ]
   },
   {
-    category: 'All In One',
-    categoryId: 'all-in-one',
+    category: 'Farming',
+    categoryId: 'farming',
     sites: [
-      'acypressinn', 'americanriverinn', 'innatbayledge', 'historicwebsterhouse',
-      'campjellystone', 'marriottranch', 'stonoverfarm'
-    ]
-  },
-  {
-    category: 'Lifestyle & Blog',
-    categoryId: 'lifestyle-blog',
-    sites: [
-      'jpaugust', 'beaverlakecampground', 'tahoeblackbear'
-    ]
-  },
-  {
-    category: 'Restaurant',
-    categoryId: 'restaurant',
-    sites: [
-      'edairyking', 'bnb1812'
-    ]
-  },
-  {
-    category: 'Resort',
-    categoryId: 'resort',
-    sites: [
-      'headlandsinn', 'wildcattavern'
-    ]
-  },
-  {
-    category: 'Villa',
-    categoryId: 'villa',
-    sites: [
-      'adobegrandvillas', 'sedonadreammaker'
-    ]
-  },
-  {
-    category: 'Wedding & Event Venue',
-    categoryId: 'wedding-event',
-    sites: [
-      'panioloranch', 'stbernardlodge'
-    ]
-  },
-  {
-    category: 'Fun Park & Camp',
-    categoryId: 'fun-park-camp',
-    sites: [
-      'campjellystone', 'swanseajellystone'
-    ]
-  },
-  {
-    category: 'Cottage',
-    categoryId: 'cottage',
-    sites: [
-      'barharborcottages', 'moseleycottage'
-    ]
-  },
-  {
-    category: 'Construction',
-    categoryId: 'construction',
-    sites: [
-      'edgundconstruction'
-    ]
-  },
-  {
-    category: 'Custom Car Shop',
-    categoryId: 'custom-car-shop',
-    sites: [
-      'daloautoglasstinting'
-    ]
-  },
-  {
-    category: 'Personal Injury',
-    categoryId: 'personal-injury',
-    sites: [
-      'graycoteinn'
-    ]
-  },
-  {
-    category: 'Wine Shop',
-    categoryId: 'wine-shop',
-    sites: [
-      'forestedgewine'
-    ]
-  },
-  {
-    category: 'Furniture',
-    categoryId: 'furniture',
-    sites: [
-      'pillars2'
-    ]
-  },
-  {
-    category: 'Cake',
-    categoryId: 'cake',
-    sites: [
-      'wandascakes'
+      'braeutigamorchards'
     ]
   },
   {
@@ -171,10 +115,59 @@ export const rawWorkData = [
     ]
   },
   {
-    category: 'Farming',
-    categoryId: 'farming',
+    category: 'Custom Car Shop',
+    categoryId: 'custom-car-shop',
     sites: [
-      'braeutigamorchards'
+      'daloautoglasstinting'
+    ]
+  },
+  {
+    category: 'Restaurant',
+    categoryId: 'restaurant',
+    sites: [
+      'edairyking', 'bnb1812'
+    ]
+  },
+  {
+    category: 'Construction',
+    categoryId: 'construction',
+    sites: [
+      'edgundconstruction'
+    ]
+  },
+  {
+    category: 'Wine Shop',
+    categoryId: 'wine-shop',
+    sites: [
+      'forestedgewine'
+    ]
+  },
+  {
+    category: 'Personal Injury',
+    categoryId: 'personal-injury',
+    sites: [
+      'graycoteinn'
+    ]
+  },
+  {
+    category: 'Resort',
+    categoryId: 'resort',
+    sites: [
+      'headlandsinn', 'wildcattavern'
+    ]
+  },
+  {
+    category: 'Fun Park & Camp',
+    categoryId: 'fun-park-camp',
+    sites: [
+      'campjellystone', 'swanseajellystone'
+    ]
+  },
+  {
+    category: 'Lifestyle & Blog',
+    categoryId: 'lifestyle-blog',
+    sites: [
+      'jpaugust', 'beaverlakecampground', 'tahoeblackbear'
     ]
   },
   {
@@ -185,10 +178,17 @@ export const rawWorkData = [
     ]
   },
   {
-    category: 'Lounge',
-    categoryId: 'lounge',
+    category: 'Wedding & Event Venue',
+    categoryId: 'wedding-event',
     sites: [
-      'alicesrestaurantnj'
+      'panioloranch', 'stbernardlodge'
+    ]
+  },
+  {
+    category: 'Furniture',
+    categoryId: 'furniture',
+    sites: [
+      'pillars2'
     ]
   },
   {
