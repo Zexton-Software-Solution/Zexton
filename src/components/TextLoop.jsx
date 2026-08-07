@@ -3,23 +3,21 @@ import { gsap } from 'gsap';
 import './TextLoop.css';
 
 const VIEW_W = 1200;
-const VIEW_H = 460;
+const VIEW_H = 480;
 const CX = VIEW_W / 2;
 const CY = VIEW_H / 2;
-const EDGE_PAD = 6;
 
-const buildPath = (shape, curviness, ribbonWidth) => {
+const buildPath = (shape, curviness) => {
   const c = Math.max(0, curviness);
-  const room = Math.max(20, CY - Math.max(0, ribbonWidth) / 2 - EDGE_PAD);
 
   switch (shape) {
     case 'circle': {
-      const r = Math.min(90 + c * 0.95, room);
+      const r = Math.min(90 + c * 0.95, 180);
       return `M ${CX - r} ${CY} A ${r} ${r} 0 1 1 ${CX + r} ${CY} A ${r} ${r} 0 1 1 ${CX - r} ${CY} Z`;
     }
     case 'infinity': {
       const r = 150 + c * 1.4;
-      const h = Math.min(60 + c * 0.95, room);
+      const h = Math.min(60 + c * 0.95, 180);
       return [
         `M ${CX} ${CY}`,
         `C ${CX + r * 0.55} ${CY - h} ${CX + r} ${CY - h} ${CX + r} ${CY}`,
@@ -30,14 +28,14 @@ const buildPath = (shape, curviness, ribbonWidth) => {
       ].join(' ');
     }
     case 'arch': {
-      const rise = Math.min(120 + c * 1.1, room * 2);
+      const rise = Math.min(120 + c * 1.1, 300);
       return `M -100 ${CY + rise / 2} Q ${CX} ${CY - rise * 1.5} ${VIEW_W + 100} ${CY + rise / 2}`;
     }
     case 'line':
       return `M -400 ${CY} L ${VIEW_W + 400} ${CY}`;
     case 'wave':
     default: {
-      const a = Math.min(c * 1.5, room * 1.4);
+      const a = c * 1.85; // Deep curvy wave amplitude
       return `M -400 ${CY} Q -200 ${CY - a} 0 ${CY} T 400 ${CY} T 800 ${CY} T 1200 ${CY} T 1600 ${CY}`;
     }
   }
@@ -47,19 +45,19 @@ const TextLoop = ({
   text = 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ Express ✦ PostgreSQL',
   shape = 'wave',
   path,
-  speed = 80,
+  speed = 85,
   direction = 'forward',
   separator = '✦',
-  curviness = 65,
-  fontSize = 24,
+  curviness = 110,
+  fontSize = 22,
   fontWeight = 800,
-  letterSpacing = 3,
+  letterSpacing = 4,
   uppercase = true,
   color = '#ffffff',
   ribbon = true,
-  ribbonColor = '#0f172a',
-  ribbonWidth = 64,
-  pauseOnHover = true,
+  ribbonColor = '#225cff',
+  ribbonWidth = 68,
+  pauseOnHover = false,
   className = '',
   style = {}
 }) => {
@@ -74,11 +72,11 @@ const TextLoop = ({
   const rawId = useId();
   const pathId = `text-loop-${rawId.replace(/:/g, '')}`;
 
-  const d = useMemo(() => path || buildPath(shape, curviness, ribbonWidth), [path, shape, curviness, ribbonWidth]);
+  const d = useMemo(() => path || buildPath(shape, curviness), [path, shape, curviness]);
 
   const unit = useMemo(() => {
     const base = uppercase ? String(text).toUpperCase() : String(text);
-    const gap = separator ? `\u00A0\u00A0${separator}\u00A0\u00A0` : '\u00A0\u00A0\u00A0\u00A0';
+    const gap = separator ? `\u00A0\u00A0\u00A0${separator}\u00A0\u00A0\u00A0` : '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
     return `${base}${gap}`;
   }, [text, separator, uppercase]);
 

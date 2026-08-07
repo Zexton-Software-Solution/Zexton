@@ -10,11 +10,11 @@ export const ScrollStackItem = ({ children, itemClassName = '' }) => (
 const ScrollStack = ({
   children,
   className = '',
-  itemDistance = 60,
-  itemScale = 0.035,
-  itemStackDistance = 24,
-  stackPosition = '15%',
-  baseScale = 0.86,
+  itemDistance = 280,
+  itemScale = 0.03,
+  itemStackDistance = 28,
+  stackPosition = '80px',
+  baseScale = 0.88,
   rotationAmount = 0,
   blurAmount = 0,
   useWindowScroll = true,
@@ -27,17 +27,23 @@ const ScrollStack = ({
   const stackCompletedRef = useRef(false);
 
   const parseViewportPosition = useCallback((value, viewportHeight) => {
+    if (typeof value === 'string' && value.includes('px')) {
+      return parseFloat(value) || 80;
+    }
     if (typeof value === 'string' && value.includes('%')) {
       return (parseFloat(value) / 100) * viewportHeight;
     }
-    return parseFloat(value) || 0;
+    return parseFloat(value) || 80;
   }, []);
 
   const toStickyInset = useCallback((value) => {
+    if (typeof value === 'string' && value.includes('px')) {
+      return value;
+    }
     if (typeof value === 'string' && value.includes('%')) {
       return `${parseFloat(value)}vh`;
     }
-    return typeof value === 'number' ? `${value}px` : value;
+    return typeof value === 'number' ? `${value}px` : '80px';
   }, []);
 
   const getScrollData = useCallback(() => {
@@ -145,9 +151,8 @@ const ScrollStack = ({
     cardsRef.current = cards;
 
     cards.forEach(({ card, surface }, index) => {
-      card.style.marginBottom = index < cards.length - 1
-        ? `${motionDisabled ? 20 : itemDistance}px`
-        : '';
+      const isLast = index === cards.length - 1;
+      card.style.marginBottom = isLast ? '0px' : `${motionDisabled ? 20 : itemDistance}px`;
       card.style.zIndex = String(index + 1);
       card.style.position = motionDisabled ? 'relative' : 'sticky';
       card.style.top = motionDisabled ? 'auto' : `calc(${stickyInset} + ${index * itemStackDistance}px)`;

@@ -49,19 +49,19 @@ export default function TechStackExplorer() {
           key={activeCategory}
           text={currentText}
           shape="wave"
-          speed={75}
+          speed={85}
           direction="forward"
           separator="✦"
-          curviness={55}
-          fontSize={24}
+          curviness={110}
+          fontSize={22}
           fontWeight={800}
-          letterSpacing={3}
+          letterSpacing={4}
           uppercase
           color="#ffffff"
           ribbon
           ribbonColor="#225cff"
-          ribbonWidth={58}
-          pauseOnHover
+          ribbonWidth={68}
+          pauseOnHover={false}
         />
       </div>
     </section>

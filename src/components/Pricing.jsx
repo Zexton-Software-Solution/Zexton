@@ -31,11 +31,11 @@ export default function Pricing({ onOpenContact }) {
       <section id="pricing-stack" className="pricing-stack-section">
         <ScrollStack
           useWindowScroll
-          itemDistance={110}
-          itemStackDistance={32}
-          baseScale={0.84}
-          itemScale={0.035}
-          stackPosition="15%"
+          itemDistance={180}
+          itemStackDistance={28}
+          baseScale={0.88}
+          itemScale={0.03}
+          stackPosition="80px"
           rotationAmount={0}
           blurAmount={0}
         >
