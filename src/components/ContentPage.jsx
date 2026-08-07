@@ -36,12 +36,6 @@ const aboutPrinciples = [
   ['Useful after launch', 'Build for maintainability, handover, operating cost, measurement, and continued improvement.'],
 ];
 
-const workFormats = [
-  { type: 'SAAS PRODUCT', title: 'From product hypothesis to a production platform', text: 'The future case study will show discovery decisions, user flows, multi-tenant architecture, subscription logic, launch scope, and measurable product outcomes.', color: 'blue' },
-  { type: 'BUSINESS SYSTEM', title: 'Replacing fragmented operations with one clear workflow', text: 'This format will document the process before and after, integrations, permissions, automation, reporting, and verified operational impact.', color: 'violet' },
-  { type: 'CUSTOMER EXPERIENCE', title: 'Turning a complex buying journey into a simple digital path', text: 'Approved work can cover information architecture, responsive UX, performance, search visibility, conversion events, and business results.', color: 'orange' },
-  { type: 'AI AUTOMATION', title: 'Applying AI to a measurable business task', text: 'A responsible AI case study should include data boundaries, evaluation, human review, fallback behavior, monitoring, and verified time or quality gains.', color: 'green' },
-];
 
 const services = [
   { number: '01', title: 'Product discovery & UX', text: 'Turn an unclear requirement into prioritized workflows, a delivery roadmap, interaction design, and a testable first release.', tags: ['Workshops', 'User flows', 'Prototypes', 'MVP scope'] },
@@ -87,14 +81,7 @@ function AboutPage() {
   </>;
 }
 
-function WorkPage() {
-  return <>
-    <header className="work-hero"><span className="route-kicker route-kicker--light">OUR WORK</span><h1>Show the decisions.<br />Prove the outcome.</h1><p>Zexton will publish real case studies only after project details, visuals, links, and client permissions are verified. Until then, this page shows the structure every future story will follow.</p></header>
-    <section className="work-canvas" aria-label="Future case study formats">{workFormats.map((item, index) => <article className={`work-case work-case--${item.color}`} key={item.title}><div><span>{item.type}</span><strong>0{index + 1}</strong></div><h2>{item.title}</h2><p>{item.text}</p><footer><span>AWAITING VERIFIED PROJECT DATA</span><ArrowUpRight size={18} /></footer></article>)}</section>
-    <section className="work-proof"><div><span className="route-kicker">WHAT A CASE STUDY MUST SHOW</span><h2>Context is more useful than a gallery.</h2></div><ol>{['The original workflow and business constraint','The product and architecture decisions made','What was delivered and how quality was checked','Approved evidence of customer or operational impact'].map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ol></section>
-    <RouteCta className="route-cta--work" eyebrow="YOUR PROJECT CAN START HERE" title="Need a product team that explains its decisions?" text="We can help turn the first problem statement into scope, architecture, delivery milestones, and a reliable launch." action="Plan the engagement" />
-  </>;
-}
+import WorkPage from './WorkPage';
 
 function ServicesPage() {
   return <>
@@ -172,7 +159,7 @@ const pageComponents = {
   careers: CareersPage,
 };
 
-export default function ContentPage({ page }) {
+export default function ContentPage({ page, onOpenContact }) {
   const metadata = routeMetadata[page] || routeMetadata.about;
   const Page = pageComponents[page] || AboutPage;
   const schemaItems = metadata.collection === 'insights'
@@ -185,5 +172,5 @@ export default function ContentPage({ page }) {
       }))
     : metadata.schemaItems;
 
-  return <main className={`route-page route-page--${page}`}><Seo {...metadata} type={metadata.schemaType} items={schemaItems} /><Page /></main>;
+  return <main className={`route-page route-page--${page}`}><Seo {...metadata} type={metadata.schemaType} items={schemaItems} /><Page onOpenContact={onOpenContact} /></main>;
 }
