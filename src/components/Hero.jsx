@@ -2,8 +2,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import ParticleText from './ParticleText';
 
-const heroHeadline = 'Custom Software, SaaS & AI Development';
-
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -18,26 +16,48 @@ export default function Hero() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : .62 }}
-          style={{ position: 'relative', width: '100%', height: 'clamp(140px, 18vw, 240px)' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}
         >
-          <ParticleText
-            text={heroHeadline}
-            particleSize={2.2}
-            density={3}
-            color="#111827"
-            highlightColor="#225cff"
-            scatter={140}
-            gatherDuration={1400}
-            stagger={300}
-            pointerRepel={35}
-            repelRadius={100}
-            idleDrift={0.6}
-            trigger="hover"
-            fontSize="clamp(2.2rem, 5.8vw, 5.2rem)"
-            fontWeight={800}
-            fontFamily="inherit"
-            glow
-          />
+          <div style={{ position: 'relative', width: '100%', height: 'clamp(65px, 8.5vw, 115px)' }}>
+            <ParticleText
+              text="Custom Software, SaaS &"
+              particleSize={2.4}
+              density={3}
+              color="#111827"
+              highlightColor="#225cff"
+              scatter={140}
+              gatherDuration={1400}
+              stagger={300}
+              pointerRepel={35}
+              repelRadius={100}
+              idleDrift={0.6}
+              trigger="hover"
+              fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
+              fontWeight={800}
+              fontFamily="inherit"
+              glow
+            />
+          </div>
+          <div style={{ position: 'relative', width: '100%', height: 'clamp(65px, 8.5vw, 115px)' }}>
+            <ParticleText
+              text="AI Development"
+              particleSize={2.4}
+              density={3}
+              color="#111827"
+              highlightColor="#225cff"
+              scatter={140}
+              gatherDuration={1400}
+              stagger={300}
+              pointerRepel={35}
+              repelRadius={100}
+              idleDrift={0.6}
+              trigger="hover"
+              fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
+              fontWeight={800}
+              fontFamily="inherit"
+              glow
+            />
+          </div>
         </motion.h1>
 
         <div className="hero__columns">
