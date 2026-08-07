@@ -14,7 +14,7 @@ export default function CompanyPage() {
 
       <header className="company-hero">
         <div className="company-hero__main">
-          <span className="eyebrow">ZEXTON SOFTWARE SULT OVERVIEW</span>
+          <span className="eyebrow">ZEXTON SOFTWARE SOLUTIONS OVERVIEW</span>
           <h1>Engineering intelligent software for modern businesses.</h1>
         </div>
         <div className="company-hero__copy">

@@ -25,16 +25,16 @@ export default function Hero() {
               density={3}
               color="#111827"
               highlightColor="#225cff"
-              scatter={140}
-              gatherDuration={1400}
-              stagger={300}
-              pointerRepel={35}
-              repelRadius={100}
-              idleDrift={0.6}
+              scatter={90}
+              gatherDuration={600}
+              stagger={100}
+              pointerRepel={30}
+              repelRadius={90}
+              idleDrift={0.5}
               trigger="hover"
               fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
               fontWeight={800}
-              fontFamily="inherit"
+              fontFamily="'Manrope', sans-serif"
               glow
             />
           </div>
@@ -45,16 +45,16 @@ export default function Hero() {
               density={3}
               color="#111827"
               highlightColor="#225cff"
-              scatter={140}
-              gatherDuration={1400}
-              stagger={300}
-              pointerRepel={35}
-              repelRadius={100}
-              idleDrift={0.6}
+              scatter={90}
+              gatherDuration={600}
+              stagger={100}
+              pointerRepel={30}
+              repelRadius={90}
+              idleDrift={0.5}
               trigger="hover"
               fontSize="clamp(2.8rem, 7.2vw, 6.2rem)"
               fontWeight={800}
-              fontFamily="inherit"
+              fontFamily="'Manrope', sans-serif"
               glow
             />
           </div>
