@@ -29,7 +29,17 @@ export default function Pricing({ onOpenContact }) {
       <div className="pricing-trust-strip"><span><IndianRupee size={17} /> Milestone-based billing</span><span><Clock3 size={17} /> Written timeline &amp; scope</span><span><Check size={17} /> Source-code ownership after payment</span></div>
 
       <section id="pricing-stack" className="pricing-stack-section">
-        <ScrollStack useWindowScroll itemDistance={64} itemStackDistance={16} baseScale={.9} itemScale={.022} stackPosition="14%" scaleEndPosition="7%">
+        <ScrollStack
+          useWindowScroll
+          itemDistance={160}
+          itemStackDistance={44}
+          baseScale={0.80}
+          itemScale={0.045}
+          stackPosition="25%"
+          scaleEndPosition="12%"
+          rotationAmount={-0.5}
+          blurAmount={1}
+        >
           {plans.map((plan, index) => <ScrollStackItem key={plan.id} itemClassName={`pricing-tier pricing-tier--${plan.theme}`}>
             <div className="pricing-tier__top"><span className="pricing-tier__number">{plan.number}</span><span className={`pricing-tier__label ${plan.featured ? 'pricing-tier__label--featured' : ''}`}>{plan.label}</span></div>
             <div className="pricing-tier__main">
