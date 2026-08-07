@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import DecryptedText from './DecryptedText';
+import ParticleText from './ParticleText';
 
 const heroHeadline = 'Custom Software, SaaS & AI Development';
 
@@ -14,24 +14,30 @@ export default function Hero() {
           PRODUCT STRATEGY · DESIGN · ENGINEERING
         </motion.span>
         <motion.h1
-          className="hero__headline"
+          className="hero__headline hero__headline--particle"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : .62 }}
+          style={{ position: 'relative', width: '100%', height: 'clamp(140px, 18vw, 240px)' }}
         >
-          {shouldReduceMotion ? heroHeadline : (
-            <DecryptedText
-              text={heroHeadline}
-              animateOn="view"
-              sequential
-              revealDirection="start"
-              speed={26}
-              characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*"
-              className="hero__headline-char"
-              encryptedClassName="hero__headline-char hero__headline-char--encrypted"
-              parentClassName="hero__headline-decrypt"
-            />
-          )}
+          <ParticleText
+            text={heroHeadline}
+            particleSize={2.2}
+            density={3}
+            color="#111827"
+            highlightColor="#225cff"
+            scatter={140}
+            gatherDuration={1400}
+            stagger={300}
+            pointerRepel={35}
+            repelRadius={100}
+            idleDrift={0.6}
+            trigger="hover"
+            fontSize="clamp(2.2rem, 5.8vw, 5.2rem)"
+            fontWeight={800}
+            fontFamily="inherit"
+            glow
+          />
         </motion.h1>
 
         <div className="hero__columns">
