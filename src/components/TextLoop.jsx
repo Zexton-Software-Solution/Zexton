@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import './TextLoop.css';
 
 const VIEW_W = 1200;
-const VIEW_H = 520;
+const VIEW_H = 460;
 const CX = VIEW_W / 2;
 const CY = VIEW_H / 2;
 const EDGE_PAD = 6;
@@ -31,34 +31,34 @@ const buildPath = (shape, curviness, ribbonWidth) => {
     }
     case 'arch': {
       const rise = Math.min(120 + c * 1.1, room * 2);
-      return `M 120 ${CY + rise / 2} Q ${CX} ${CY - rise * 1.5} ${VIEW_W - 120} ${CY + rise / 2}`;
+      return `M -100 ${CY + rise / 2} Q ${CX} ${CY - rise * 1.5} ${VIEW_W + 100} ${CY + rise / 2}`;
     }
     case 'line':
-      return `M -320 ${CY} L ${VIEW_W + 320} ${CY}`;
+      return `M -400 ${CY} L ${VIEW_W + 400} ${CY}`;
     case 'wave':
     default: {
-      const a = Math.min(c * 2.2, room * 2);
-      return `M -320 ${CY} Q -160 ${CY - a} 0 ${CY} T 320 ${CY} T 640 ${CY} T 960 ${CY} T 1280 ${CY} T ${VIEW_W + 320} ${CY}`;
+      const a = Math.min(c * 1.5, room * 1.4);
+      return `M -400 ${CY} Q -200 ${CY - a} 0 ${CY} T 400 ${CY} T 800 ${CY} T 1200 ${CY} T 1600 ${CY}`;
     }
   }
 };
 
 const TextLoop = ({
-  text = 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ Express ✦ PostgreSQL ✦ Redux ✦ .NET ✦ OpenAPI ✦ OpenCV',
+  text = 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ Express ✦ PostgreSQL',
   shape = 'wave',
   path,
-  speed = 90,
+  speed = 80,
   direction = 'forward',
   separator = '✦',
-  curviness = 90,
-  fontSize = 38,
+  curviness = 65,
+  fontSize = 24,
   fontWeight = 800,
-  letterSpacing = 2,
+  letterSpacing = 3,
   uppercase = true,
   color = '#ffffff',
   ribbon = true,
-  ribbonColor = '#225cff',
-  ribbonWidth = 86,
+  ribbonColor = '#0f172a',
+  ribbonWidth = 64,
   pauseOnHover = true,
   className = '',
   style = {}
@@ -78,7 +78,7 @@ const TextLoop = ({
 
   const unit = useMemo(() => {
     const base = uppercase ? String(text).toUpperCase() : String(text);
-    const gap = separator ? `\u00A0${separator}\u00A0` : '\u00A0\u00A0\u00A0';
+    const gap = separator ? `\u00A0\u00A0${separator}\u00A0\u00A0` : '\u00A0\u00A0\u00A0\u00A0';
     return `${base}${gap}`;
   }, [text, separator, uppercase]);
 
@@ -107,7 +107,7 @@ const TextLoop = ({
       if (!length) return;
 
       const reps = unitWidth > 0 ? Math.max(1, Math.round(length / unitWidth)) : 1;
-      setMetrics(prev => (prev.length === length && prev.reps === reps ? prev : { length, reps }));
+      setMetrics((prev) => (prev.length === length && prev.reps === reps ? prev : { length, reps }));
     };
 
     measure();
@@ -126,7 +126,7 @@ const TextLoop = ({
     const tail = tailRef.current;
     if (!head || !tail || !length) return undefined;
 
-    const apply = offset => {
+    const apply = (offset) => {
       const partner = offset >= 0 ? offset - length : offset + length;
       head.setAttribute('startOffset', String(offset));
       tail.setAttribute('startOffset', String(partner));
@@ -173,7 +173,7 @@ const TextLoop = ({
       <svg
         className="text-loop-svg"
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="none"
         role="img"
         aria-label={text}
       >

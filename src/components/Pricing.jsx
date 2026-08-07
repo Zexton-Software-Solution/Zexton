@@ -31,14 +31,13 @@ export default function Pricing({ onOpenContact }) {
       <section id="pricing-stack" className="pricing-stack-section">
         <ScrollStack
           useWindowScroll
-          itemDistance={160}
-          itemStackDistance={44}
-          baseScale={0.80}
-          itemScale={0.045}
-          stackPosition="25%"
-          scaleEndPosition="12%"
-          rotationAmount={-0.5}
-          blurAmount={1}
+          itemDistance={110}
+          itemStackDistance={32}
+          baseScale={0.84}
+          itemScale={0.035}
+          stackPosition="15%"
+          rotationAmount={0}
+          blurAmount={0}
         >
           {plans.map((plan, index) => <ScrollStackItem key={plan.id} itemClassName={`pricing-tier pricing-tier--${plan.theme}`}>
             <div className="pricing-tier__top"><span className="pricing-tier__number">{plan.number}</span><span className={`pricing-tier__label ${plan.featured ? 'pricing-tier__label--featured' : ''}`}>{plan.label}</span></div>

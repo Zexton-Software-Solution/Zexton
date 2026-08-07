@@ -3,7 +3,7 @@ import TextLoop from './TextLoop';
 import './TechStackExplorer.css';
 
 const skillGroups = {
-  'All': 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ Express ✦ PostgreSQL ✦ Redux ✦ .NET ✦ OpenCV ✦ Multi-Agent Systems ✦ MongoDB ✦ GraphQL ✦ REST APIs ✦ CI/CD Pipelines ✦ AsyncLocalStorage ✦ Real-time Inference',
+  'All': 'Python ✦ TypeScript ✦ React ✦ Node.js ✦ Docker ✦ TensorFlow ✦ Agentic AI ✦ Supabase ✦ Express ✦ PostgreSQL ✦ Redux ✦ .NET ✦ OpenCV ✦ Multi-Agent Systems ✦ MongoDB ✦ REST APIs ✦ CI/CD Pipelines ✦ AsyncLocalStorage ✦ Real-time Inference',
   'Programming Languages': 'Python ✦ TypeScript ✦ JavaScript (ES6+) ✦ HTML5 ✦ CSS3 ✦ SQL ✦ C# ✦ Bash ✦ Rust ✦ Go',
   'Frameworks & Libraries': 'React (Vite) ✦ React Native ✦ Node.js ✦ Expo ✦ Express.js ✦ Elysia JS ✦ Flask ✦ Redux Toolkit ✦ .NET ✦ TensorFlow ✦ OpenCV ✦ YOLOv8',
   'AI / Machine Learning': 'Computer Vision ✦ Deep Learning ✦ Object Detection & Tracking ✦ LLM Integration ✦ Agentic AI ✦ Multi-Agent Systems ✦ Graph Neural Networks ✦ NLP',
@@ -49,18 +49,18 @@ export default function TechStackExplorer() {
           key={activeCategory}
           text={currentText}
           shape="wave"
-          speed={85}
+          speed={75}
           direction="forward"
           separator="✦"
-          curviness={85}
-          fontSize={34}
+          curviness={55}
+          fontSize={24}
           fontWeight={800}
-          letterSpacing={2}
+          letterSpacing={3}
           uppercase
           color="#ffffff"
           ribbon
           ribbonColor="#225cff"
-          ribbonWidth={76}
+          ribbonWidth={58}
           pauseOnHover
         />
       </div>
