@@ -25,15 +25,23 @@ export default function CardNav({
     if (!nav) return 348;
     const content = nav.querySelector('.card-nav-content');
     if (!content) return 348;
-    const previous = { position: content.style.position, height: content.style.height, visibility: content.style.visibility };
+    const previous = {
+      position: content.style.position,
+      height: content.style.height,
+      visibility: content.style.visibility,
+      display: content.style.display
+    };
+
     content.style.position = 'static';
     content.style.height = 'auto';
     content.style.visibility = 'hidden';
-    const computedHeight = 72 + content.scrollHeight + 16;
+    content.style.display = 'flex';
+
+    const computedHeight = 72 + content.scrollHeight + 14;
     Object.assign(content.style, previous);
-    
+
     if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
-      return Math.min(computedHeight, Math.round(window.innerHeight * 0.88));
+      return Math.min(computedHeight, Math.round(window.innerHeight * 0.86));
     }
     return Math.max(computedHeight, 348);
   }, []);
@@ -41,12 +49,18 @@ export default function CardNav({
   const createTimeline = useCallback(() => {
     const nav = navRef.current;
     if (!nav) return null;
-    gsap.set(nav, { height: 72 });
-    gsap.set(cardsRef.current, { y: 30, opacity: 0 });
-    return gsap.timeline({ paused: true })
-      .to(nav, { height: calculateHeight, duration: 0.4, ease })
-      .to(cardsRef.current, { y: 0, opacity: 1, duration: 0.35, ease, stagger: 0.06 }, '-=0.2');
-  }, [calculateHeight, ease]);
+    const baseH = isCompact ? 58 : 72;
+    gsap.set(nav, { height: baseH });
+    gsap.set(cardsRef.current.filter(Boolean), { y: 26, opacity: 0 });
+    return gsap
+      .timeline({ paused: true })
+      .to(nav, { height: calculateHeight, duration: 0.42, ease })
+      .to(
+        cardsRef.current.filter(Boolean),
+        { y: 0, opacity: 1, duration: 0.36, ease, stagger: 0.06 },
+        '-=0.22'
+      );
+  }, [calculateHeight, ease, isCompact]);
 
   useLayoutEffect(() => {
     timelineRef.current = createTimeline();
