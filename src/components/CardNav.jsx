@@ -29,19 +29,23 @@ export default function CardNav({
     content.style.position = 'static';
     content.style.height = 'auto';
     content.style.visibility = 'hidden';
-    const computedHeight = 72 + content.scrollHeight + 14;
+    const computedHeight = 72 + content.scrollHeight + 16;
     Object.assign(content.style, previous);
-    return Math.max(computedHeight, window.matchMedia('(max-width: 768px)').matches ? 400 : 348);
+    
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
+      return Math.min(computedHeight, Math.round(window.innerHeight * 0.88));
+    }
+    return Math.max(computedHeight, 348);
   }, []);
 
   const createTimeline = useCallback(() => {
     const nav = navRef.current;
     if (!nav) return null;
-    gsap.set(nav, { height: 72, overflow: 'hidden' });
-    gsap.set(cardsRef.current, { y: 42, opacity: 0 });
+    gsap.set(nav, { height: 72 });
+    gsap.set(cardsRef.current, { y: 30, opacity: 0 });
     return gsap.timeline({ paused: true })
-      .to(nav, { height: calculateHeight, duration: 0.42, ease })
-      .to(cardsRef.current, { y: 0, opacity: 1, duration: 0.38, ease, stagger: 0.07 }, '-=0.18');
+      .to(nav, { height: calculateHeight, duration: 0.4, ease })
+      .to(cardsRef.current, { y: 0, opacity: 1, duration: 0.35, ease, stagger: 0.06 }, '-=0.2');
   }, [calculateHeight, ease]);
 
   useLayoutEffect(() => {
