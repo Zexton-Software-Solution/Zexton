@@ -2,7 +2,9 @@
   display: block;
   width: 100%;
   white-space: normal;
-  word-wrap: break-word;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
   will-change: transform;
   line-height: 1.05;
   font-family: var(--font-heading), 'Manrope', sans-serif;
@@ -22,6 +24,8 @@
   overflow: hidden;
   vertical-align: baseline;
   position: relative;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .shuffle-char-wrapper > span {
@@ -33,4 +37,6 @@
   line-height: 1;
   display: inline-block;
   text-align: center;
+  word-break: keep-all;
+  hyphens: none;
 }
