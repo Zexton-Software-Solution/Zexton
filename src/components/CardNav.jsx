@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
 import './CardNav.css';
@@ -8,7 +8,6 @@ export default function CardNav({
   logoAlt = 'Logo',
   items = [],
   className = '',
-  ease = 'power3.out',
   baseColor = '#fff',
   menuColor = '#111827',
   buttonBgColor = '#225cff',
@@ -18,86 +17,95 @@ export default function CardNav({
   const [isCompact, setIsCompact] = useState(false);
   const navRef = useRef(null);
   const cardsRef = useRef([]);
-  const timelineRef = useRef(null);
 
-  const calculateHeight = useCallback(() => {
+  const openMenu = useCallback(() => {
+    if (isCompact) return;
     const nav = navRef.current;
-    if (!nav) return 350;
+    if (!nav) return;
+
+    setIsExpanded(true);
+
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
     const content = nav.querySelector('.card-nav-content');
-    if (!content) return 350;
 
-    const prevPos = content.style.position;
-    const prevH = content.style.height;
-    const prevVis = content.style.visibility;
-    const prevTop = content.style.top;
+    let targetH = isMobile ? 560 : 360;
 
-    content.style.position = 'absolute';
-    content.style.top = '64px';
-    content.style.height = 'auto';
-    content.style.visibility = 'hidden';
+    if (content) {
+      const prevPos = content.style.position;
+      const prevH = content.style.height;
+      const prevVis = content.style.visibility;
+      const prevDisplay = content.style.display;
 
-    const measuredH = content.offsetHeight || content.scrollHeight || 480;
-    const totalH = 64 + measuredH + 16;
+      content.style.position = 'relative';
+      content.style.height = 'auto';
+      content.style.visibility = 'hidden';
+      content.style.display = 'flex';
 
-    content.style.position = prevPos;
-    content.style.height = prevH;
-    content.style.visibility = prevVis;
-    content.style.top = prevTop;
+      const measuredH = content.offsetHeight || content.scrollHeight || 460;
+      const headerH = isMobile ? 64 : 72;
+      const totalH = headerH + measuredH + 16;
 
-    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
-      return Math.min(totalH, Math.round(window.innerHeight * 0.96));
+      content.style.position = prevPos;
+      content.style.height = prevH;
+      content.style.visibility = prevVis;
+      content.style.display = prevDisplay;
+
+      if (isMobile) {
+        targetH = Math.min(totalH, Math.round(window.innerHeight * 0.92));
+      } else {
+        targetH = Math.max(totalH, 350);
+      }
     }
 
-    return Math.max(totalH, 348);
-  }, []);
+    gsap.killTweensOf(nav);
+    gsap.killTweensOf(cardsRef.current.filter(Boolean));
 
-  const createTimeline = useCallback(() => {
+    gsap.to(nav, { height: targetH, duration: 0.4, ease: 'power3.out' });
+    gsap.fromTo(
+      cardsRef.current.filter(Boolean),
+      { y: isMobile ? 18 : 26, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.35, ease: 'power3.out', stagger: 0.06, delay: 0.08 }
+    );
+  }, [isCompact]);
+
+  const closeMenu = useCallback(() => {
     const nav = navRef.current;
-    if (!nav) return null;
+    if (!nav) return;
+
     const baseH = isCompact ? 58 : 72;
-    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
-    
-    gsap.set(nav, { height: baseH });
-    gsap.set(cardsRef.current.filter(Boolean), { y: isMobile ? 16 : 26, opacity: 0 });
 
-    const targetH = calculateHeight();
+    gsap.killTweensOf(nav);
+    gsap.killTweensOf(cardsRef.current.filter(Boolean));
 
-    return gsap
-      .timeline({ paused: true })
-      .to(nav, { height: targetH, duration: 0.38, ease })
-      .to(
-        cardsRef.current.filter(Boolean),
-        { y: 0, opacity: 1, duration: 0.32, ease, stagger: 0.05 },
-        '-=0.2'
-      );
-  }, [calculateHeight, ease, isCompact]);
+    gsap.to(cardsRef.current.filter(Boolean), {
+      y: 16,
+      opacity: 0,
+      duration: 0.2,
+      ease: 'power2.in',
+      stagger: 0.03
+    });
 
-  useLayoutEffect(() => {
-    timelineRef.current = createTimeline();
-    return () => {
-      timelineRef.current?.kill();
-      timelineRef.current = null;
-    };
-  }, [createTimeline]);
+    gsap.to(nav, {
+      height: baseH,
+      duration: 0.35,
+      ease: 'power3.inOut',
+      onComplete: () => setIsExpanded(false)
+    });
+  }, [isCompact]);
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      timelineRef.current?.kill();
-      timelineRef.current = createTimeline();
-      if (isExpanded) timelineRef.current?.progress(1);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [createTimeline, isExpanded]);
+  const toggleMenu = () => {
+    if (isCompact) return;
+    if (isExpanded) closeMenu();
+    else openMenu();
+  };
 
   useEffect(() => {
     const updateCompactState = () => {
       const nextCompact = window.scrollY > 160;
       setIsCompact((current) => {
         if (current === nextCompact) return current;
-        if (nextCompact) {
-          timelineRef.current?.pause(0);
-          setIsExpanded(false);
+        if (nextCompact && isExpanded) {
+          closeMenu();
         }
         if (navRef.current) gsap.to(navRef.current, { height: nextCompact ? 58 : 72, duration: 0.3, ease: 'power3.out' });
         return nextCompact;
@@ -106,29 +114,7 @@ export default function CardNav({
     updateCompactState();
     window.addEventListener('scroll', updateCompactState, { passive: true });
     return () => window.removeEventListener('scroll', updateCompactState);
-  }, []);
-
-  const openMenu = useCallback(() => {
-    if (isCompact) return;
-    const timeline = timelineRef.current;
-    if (!timeline) return;
-    setIsExpanded(true);
-    timeline.eventCallback('onReverseComplete', null);
-    timeline.play();
-  }, [isCompact]);
-
-  const closeMenu = useCallback(() => {
-    const timeline = timelineRef.current;
-    if (!timeline) return;
-    timeline.eventCallback('onReverseComplete', () => setIsExpanded(false));
-    timeline.reverse();
-  }, []);
-
-  const toggleMenu = () => {
-    if (isCompact) return;
-    if (isExpanded) closeMenu();
-    else openMenu();
-  };
+  }, [closeMenu, isExpanded]);
 
   const handleLink = () => {
     if (isExpanded) closeMenu();

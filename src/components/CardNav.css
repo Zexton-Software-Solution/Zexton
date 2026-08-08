@@ -78,10 +78,16 @@
   }
 
   .card-nav-content {
+    position: absolute;
     inset: 60px 0 0;
     flex-direction: column;
     gap: 6px;
     padding: 4px 6px 10px;
+  }
+
+  .card-nav.open .card-nav-content {
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-card, .nav-card--company, .nav-card--build, .nav-card--explore {
