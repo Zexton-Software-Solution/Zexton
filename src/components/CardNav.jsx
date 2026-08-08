@@ -22,43 +22,54 @@ export default function CardNav({
 
   const calculateHeight = useCallback(() => {
     const nav = navRef.current;
-    if (!nav) return 348;
+    if (!nav) return 350;
     const content = nav.querySelector('.card-nav-content');
-    if (!content) return 348;
-    const previous = {
-      position: content.style.position,
-      height: content.style.height,
-      visibility: content.style.visibility,
-      display: content.style.display
-    };
+    if (!content) return 350;
 
-    content.style.position = 'static';
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      return Math.min(520, Math.round(window.innerHeight * 0.86));
+    }
+
+    const prevPos = content.style.position;
+    const prevH = content.style.height;
+    const prevVis = content.style.visibility;
+    const prevTop = content.style.top;
+
+    content.style.position = 'absolute';
+    content.style.top = '72px';
     content.style.height = 'auto';
     content.style.visibility = 'hidden';
-    content.style.display = 'flex';
 
-    const computedHeight = 72 + content.scrollHeight + 14;
-    Object.assign(content.style, previous);
+    const measuredH = content.offsetHeight || content.scrollHeight || 270;
+    const totalH = 72 + measuredH + 14;
 
-    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
-      return Math.min(computedHeight, Math.round(window.innerHeight * 0.86));
-    }
-    return Math.max(computedHeight, 348);
+    content.style.position = prevPos;
+    content.style.height = prevH;
+    content.style.visibility = prevVis;
+    content.style.top = prevTop;
+
+    return Math.max(totalH, 348);
   }, []);
 
   const createTimeline = useCallback(() => {
     const nav = navRef.current;
     if (!nav) return null;
     const baseH = isCompact ? 58 : 72;
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+    
     gsap.set(nav, { height: baseH });
-    gsap.set(cardsRef.current.filter(Boolean), { y: 26, opacity: 0 });
+    gsap.set(cardsRef.current.filter(Boolean), { y: isMobile ? 18 : 26, opacity: 0 });
+
+    const targetH = calculateHeight();
+
     return gsap
       .timeline({ paused: true })
-      .to(nav, { height: calculateHeight, duration: 0.42, ease })
+      .to(nav, { height: targetH, duration: 0.38, ease })
       .to(
         cardsRef.current.filter(Boolean),
-        { y: 0, opacity: 1, duration: 0.36, ease, stagger: 0.06 },
-        '-=0.22'
+        { y: 0, opacity: 1, duration: 0.32, ease, stagger: 0.05 },
+        '-=0.2'
       );
   }, [calculateHeight, ease, isCompact]);
 
