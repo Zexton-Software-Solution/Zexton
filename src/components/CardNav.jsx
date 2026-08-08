@@ -26,28 +26,27 @@ export default function CardNav({
     const content = nav.querySelector('.card-nav-content');
     if (!content) return 350;
 
-    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
-      return Math.min(520, Math.round(window.innerHeight * 0.86));
-    }
-
     const prevPos = content.style.position;
     const prevH = content.style.height;
     const prevVis = content.style.visibility;
     const prevTop = content.style.top;
 
     content.style.position = 'absolute';
-    content.style.top = '72px';
+    content.style.top = '64px';
     content.style.height = 'auto';
     content.style.visibility = 'hidden';
 
-    const measuredH = content.offsetHeight || content.scrollHeight || 270;
-    const totalH = 72 + measuredH + 14;
+    const measuredH = content.offsetHeight || content.scrollHeight || 480;
+    const totalH = 64 + measuredH + 16;
 
     content.style.position = prevPos;
     content.style.height = prevH;
     content.style.visibility = prevVis;
     content.style.top = prevTop;
+
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
+      return Math.min(totalH, Math.round(window.innerHeight * 0.96));
+    }
 
     return Math.max(totalH, 348);
   }, []);
@@ -59,7 +58,7 @@ export default function CardNav({
     const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
     
     gsap.set(nav, { height: baseH });
-    gsap.set(cardsRef.current.filter(Boolean), { y: isMobile ? 18 : 26, opacity: 0 });
+    gsap.set(cardsRef.current.filter(Boolean), { y: isMobile ? 16 : 26, opacity: 0 });
 
     const targetH = calculateHeight();
 
