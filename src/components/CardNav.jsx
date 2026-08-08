@@ -51,7 +51,7 @@ export default function CardNav({
       content.style.display = prevDisplay;
 
       if (isMobile) {
-        targetH = Math.min(totalH, Math.round(window.innerHeight * 0.92));
+        targetH = Math.min(totalH, Math.round(window.innerHeight * 0.94));
       } else {
         targetH = Math.max(totalH, 350);
       }
@@ -72,7 +72,8 @@ export default function CardNav({
     const nav = navRef.current;
     if (!nav) return;
 
-    const baseH = isCompact ? 58 : 72;
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+    const baseH = isCompact ? 58 : (isMobile ? 64 : 72);
 
     gsap.killTweensOf(nav);
     gsap.killTweensOf(cardsRef.current.filter(Boolean));
@@ -107,7 +108,9 @@ export default function CardNav({
         if (nextCompact && isExpanded) {
           closeMenu();
         }
-        if (navRef.current) gsap.to(navRef.current, { height: nextCompact ? 58 : 72, duration: 0.3, ease: 'power3.out' });
+        const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+        const defaultH = isMobile ? 64 : 72;
+        if (navRef.current) gsap.to(navRef.current, { height: nextCompact ? 58 : defaultH, duration: 0.3, ease: 'power3.out' });
         return nextCompact;
       });
     };
