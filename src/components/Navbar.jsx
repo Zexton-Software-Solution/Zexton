@@ -2,51 +2,66 @@ import CardNav from './CardNav';
 
 const items = [
   {
-    label: 'Company',
-    eyebrow: '01 / ORGANISATION',
-    description: 'Purpose, people, principles, and the direction behind Zexton.',
+    label: 'Hosting',
+    eyebrow: '01 / CLOUD & INFRASTRUCTURE',
+    description: 'High-speed NVMe web hosting, cloud VPS, business email, and managed cloud servers.',
     variant: 'company',
     bgColor: '#ffffff',
     textColor: '#111827',
     links: [
-      { label: 'Company Overview', href: '/company' },
-      { label: 'About Zexton', href: '/about' },
-      { label: 'Team & Roles', href: '/who-we-are' },
-      { label: 'Careers', href: '/careers' },
+      { label: 'Web Hosting (Shared NVMe)', href: '/#hosting' },
+      { label: 'Cloud VPS Servers', href: '/#hosting' },
+      { label: 'WordPress & E-Com Hosting', href: '/#hosting' },
+      { label: 'Business Email Suite', href: '/contact?service=business-email' },
+      { label: 'Domain Registration', href: '/contact?service=domain-hosting' },
+      { label: 'Hosting & Server Pricing', href: '/pricing' },
     ],
   },
   {
-    label: 'Build',
-    eyebrow: '02 / DELIVERY',
-    description: 'Choose an outcome, then connect the capabilities required to ship it.',
+    label: 'Services',
+    eyebrow: '02 / DESIGN & DEVELOPMENT',
+    description: 'Custom business websites, e-commerce, software engineering, mobile apps, and AI solutions.',
     variant: 'build',
     bgColor: '#225cff',
     textColor: '#fff',
     links: [
-      { label: 'Software Services', href: '/services' },
-      { label: 'Custom Software', href: '/services/custom-software-development' },
-      { label: 'SaaS Development', href: '/services/saas-development' },
-      { label: 'AI Automation', href: '/services/ai-automation' },
-      { label: 'Technical Capabilities', href: '/capabilities' },
-      { label: 'Work & Case Studies', href: '/work' },
+      { label: 'Website Design & Dev', href: '/services/web-application-development' },
+      { label: 'Custom Software Development', href: '/services/custom-software-development' },
+      { label: 'SaaS Product Engineering', href: '/services/saas-development' },
+      { label: 'React Native Mobile Apps', href: '/services/mobile-app-development' },
+      { label: 'AI Automation & Agents', href: '/services/ai-automation' },
+      { label: 'Cloud & Modernization', href: '/services/cloud-devops-modernization' },
     ],
   },
   {
-    label: 'Explore',
-    eyebrow: '03 / DECISIONS',
-    description: 'Planning notes, engineering viewpoints, pricing, and the next conversation.',
+    label: 'Company',
+    eyebrow: '03 / DECISIONS & WORK',
+    description: 'About Zexton, portfolio, engineering insights, planning guides, and contact.',
     variant: 'explore',
     bgColor: '#d94382',
     textColor: '#fff',
     links: [
+      { label: 'About Zexton', href: '/about' },
+      { label: 'Portfolio & Work Standards', href: '/work' },
+      { label: 'Pricing & Cost Calculator', href: '/pricing' },
+      { label: 'Planning Resources & Briefs', href: '/resources' },
       { label: 'Engineering Insights', href: '/insights' },
-      { label: 'Planning Resources', href: '/resources' },
-      { label: 'Pricing & Calculator', href: '/pricing' },
-      { label: 'Contact Zexton', href: '/contact' },
+      { label: 'Contact Our Team', href: '/contact' },
     ],
   },
 ];
 
 export default function Navbar() {
-  return <CardNav logo="/ZextonLogo.png" logoAlt="Zexton custom software development company" items={items} baseColor="rgba(255,255,255,.97)" menuColor="#111827" buttonBgColor="#225cff" buttonTextColor="#fff" ease="power3.out" />;
+  return (
+    <CardNav
+      logo="/ZextonLogo.png"
+      logoAlt="Zexton Web Hosting & Custom Software Development"
+      items={items}
+      baseColor="rgba(255,255,255,.98)"
+      menuColor="#111827"
+      buttonBgColor="#225cff"
+      buttonTextColor="#fff"
+      ease="power3.out"
+    />
+  );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CheckCircle2, Clock3, Mail, MapPin, Send } from 'lucide-react';
 import Seo from './Seo';
 import { routeMetadata } from '../siteMetadata';
@@ -9,7 +9,7 @@ const initialForm = {
   email: '',
   company: '',
   phone: '',
-  service: 'Custom software development',
+  service: 'Web Hosting & Cloud Servers',
   budget: 'Not decided yet',
   timeline: 'Flexible',
   message: '',
@@ -22,6 +22,37 @@ const mapUrl = 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3807.28846
 export default function ContactPage() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ type: 'idle', message: '' });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service');
+    const planParam = params.get('plan');
+    const domainParam = params.get('domain');
+
+    if (serviceParam || planParam || domainParam) {
+      setForm((prev) => {
+        let selectedService = prev.service;
+        let initialMsg = prev.message;
+
+        if (serviceParam === 'business-email') {
+          selectedService = 'Business Email & Domain Setup';
+          initialMsg = 'I am interested in setting up professional business email accounts for my company.';
+        } else if (serviceParam === 'domain-hosting') {
+          selectedService = 'Web Hosting & Cloud Servers';
+          initialMsg = domainParam ? `I would like to check and register the domain: ${domainParam} with cloud hosting.` : 'I am looking for domain registration and hosting.';
+        } else if (serviceParam === 'hosting') {
+          selectedService = 'Web Hosting & Cloud Servers';
+          if (planParam) initialMsg = `I want to get started with the plan: ${planParam}.`;
+        }
+
+        return {
+          ...prev,
+          service: selectedService,
+          message: initialMsg || prev.message,
+        };
+      });
+    }
+  }, []);
 
   const updateField = (event) => {
     const { name, value, checked, type } = event.target;
@@ -54,25 +85,27 @@ export default function ContactPage() {
       <header className="contact-hero">
         <div className="contact-hero__intro">
           <span className="eyebrow">CONTACT ZEXTON</span>
-          <h1>Let&apos;s plan software that solves the right problem.</h1>
-          <p>Tell us about the users, workflow, business goal, and delivery constraints. We can help with websites, custom software, SaaS products, React Native apps, .NET and Node.js systems, cloud platforms, and practical AI automation.</p>
+          <h1>Let&apos;s build, host, and scale your digital presence.</h1>
+          <p>
+            Tell us about your requirements—whether you need high-speed web hosting, domain registration, professional business emails, website design, or custom software engineering.
+          </p>
         </div>
         <div className="contact-hero__details" aria-label="Contact details">
           <a href="mailto:info@zexton.com"><Mail size={18} /><span><small>EMAIL</small>info@zexton.com</span></a>
-          <div><MapPin size={18} /><span><small>LOCATION</small>Hyderabad, India · Remote worldwide</span></div>
-          <div><Clock3 size={18} /><span><small>RESPONSE</small>Usually within one business day</span></div>
+          <div><MapPin size={18} /><span><small>LOCATION</small>Hyderabad, India · Serving Worldwide</span></div>
+          <div><Clock3 size={18} /><span><small>RESPONSE TIME</small>Usually within 1–2 hours</span></div>
         </div>
       </header>
 
       <section className="contact-workspace" aria-labelledby="contact-form-title">
         <div className="contact-workspace__copy">
-          <span className="eyebrow">PROJECT ENQUIRY</span>
-          <h2 id="contact-form-title">Share the useful details.</h2>
-          <p>A clear brief helps us recommend the smallest sensible first step. You do not need a finished specification.</p>
+          <span className="eyebrow">GET IN TOUCH</span>
+          <h2 id="contact-form-title">Start Your Project or Hosting Plan.</h2>
+          <p>Share your goals with our team. We provide transparent upfront quotes with zero hidden fees and no long sales cycles.</p>
           <ul>
-            <li><CheckCircle2 size={17} /> Requirements reviewed by the delivery team</li>
-            <li><CheckCircle2 size={17} /> No obligation and no automated sales sequence</li>
-            <li><CheckCircle2 size={17} /> Your details are used only to answer this enquiry</li>
+            <li><CheckCircle2 size={17} /> Direct response from real technical engineers</li>
+            <li><CheckCircle2 size={17} /> Free website migration and 1-click hosting setup</li>
+            <li><CheckCircle2 size={17} /> Transparent milestone pricing and 100% ownership</li>
           </ul>
         </div>
 
@@ -80,39 +113,40 @@ export default function ContactPage() {
           <div className="contact-form__grid">
             <label>Full name *<input name="name" value={form.name} onChange={updateField} autoComplete="name" maxLength={80} required placeholder="Your name" /></label>
             <label>Work email *<input name="email" type="email" value={form.email} onChange={updateField} autoComplete="email" maxLength={160} required placeholder="you@company.com" /></label>
-            <label>Company<input name="company" value={form.company} onChange={updateField} autoComplete="organization" maxLength={120} placeholder="Company or organisation" /></label>
-            <label>Phone (optional)<input name="phone" type="tel" value={form.phone} onChange={updateField} autoComplete="tel" maxLength={30} placeholder="Country code + number" /></label>
-            <label>What do you need? *
+            <label>Company<input name="company" value={form.company} onChange={updateField} autoComplete="organization" maxLength={120} placeholder="Company or business name" /></label>
+            <label>Phone / WhatsApp<input name="phone" type="tel" value={form.phone} onChange={updateField} autoComplete="tel" maxLength={30} placeholder="+91 9876543210" /></label>
+            <label>Service required *
               <select name="service" value={form.service} onChange={updateField} required>
-                <option>Custom software development</option>
-                <option>Business website or e-commerce</option>
-                <option>SaaS product development</option>
-                <option>React Native mobile app</option>
-                <option>.NET or backend modernization</option>
-                <option>Cloud and DevOps engineering</option>
-                <option>AI automation or agentic AI</option>
-                <option>Product discovery and technical audit</option>
+                <option>Web Hosting &amp; Cloud Servers</option>
+                <option>Business Website or E-Commerce Store</option>
+                <option>Business Email &amp; Domain Setup</option>
+                <option>Custom Software Development</option>
+                <option>SaaS Product Engineering</option>
+                <option>React Native Mobile App</option>
+                <option>AI Automation &amp; Intelligent Agents</option>
+                <option>Cloud &amp; DevOps Migration</option>
               </select>
             </label>
             <label>Indicative budget
               <select name="budget" value={form.budget} onChange={updateField}>
                 <option>Not decided yet</option>
-                <option>₹25,000 – ₹75,000</option>
-                <option>₹75,000 – ₹2,50,000</option>
-                <option>₹2,50,000 – ₹10,00,000</option>
-                <option>₹10,00,000+</option>
+                <option>Under ₹10,000 (Hosting / Email)</option>
+                <option>₹10,000 – ₹49,000 (Starter Website)</option>
+                <option>₹49,000 – ₹1,50,000 (Growth Web / Store)</option>
+                <option>₹1,50,000 – ₹5,00,000 (Custom MVP / Software)</option>
+                <option>₹5,00,000+ (Enterprise / SaaS)</option>
               </select>
             </label>
             <label>Preferred timeline
               <select name="timeline" value={form.timeline} onChange={updateField}>
                 <option>Flexible</option>
-                <option>Within 1 month</option>
-                <option>1–3 months</option>
-                <option>3–6 months</option>
-                <option>6+ months</option>
+                <option>Immediate / Urgent (1–3 days)</option>
+                <option>Within 2 weeks</option>
+                <option>1–2 months</option>
+                <option>3+ months</option>
               </select>
             </label>
-            <label className="contact-form__message">Project details *<textarea name="message" value={form.message} onChange={updateField} minLength={20} maxLength={4000} rows={7} required placeholder="What should the product do, who will use it, and what outcome matters?" /></label>
+            <label className="contact-form__message">Details &amp; Requirements *<textarea name="message" value={form.message} onChange={updateField} minLength={10} maxLength={4000} rows={6} required placeholder="Describe your website, hosting needs, or software goals..." /></label>
           </div>
 
           <label className="contact-form__honeypot" aria-hidden="true">Website<input name="website" value={form.website} onChange={updateField} tabIndex={-1} autoComplete="off" /></label>
@@ -120,7 +154,7 @@ export default function ContactPage() {
 
           <div className="contact-form__actions">
             <button className="btn-primary" type="submit" disabled={status.type === 'loading'}>
-              {status.type === 'loading' ? 'Sending…' : 'Send project enquiry'} <Send size={17} />
+              {status.type === 'loading' ? 'Sending…' : 'Send Project Enquiry'} <Send size={17} />
             </button>
             <p className={`contact-form__status is-${status.type}`} aria-live="polite">{status.message}</p>
           </div>
@@ -128,7 +162,7 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-location" aria-labelledby="location-title">
-        <div><span className="eyebrow">WHERE WE WORK</span><h2 id="location-title">Based in Hyderabad.<br />Built for anywhere.</h2><p>We collaborate remotely with businesses across India and international markets. Meetings are scheduled around the project team and time zone.</p></div>
+        <div><span className="eyebrow">OUR LOCATION</span><h2 id="location-title">Based in Hyderabad.<br />Serving Clients Worldwide.</h2><p>We work seamlessly with clients across India, North America, Europe, and the Middle East.</p></div>
         <div className="contact-location__map">
           <iframe src={mapUrl} width="600" height="450" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" title="Zexton location in Hyderabad, India" />
         </div>

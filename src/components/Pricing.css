@@ -3,9 +3,13 @@
 .pricing-hero > .eyebrow { grid-column: 1 / -1; align-self: end; margin-bottom: -15px; }
 .pricing-hero h1 { font-family: var(--font-heading); font-size: clamp(62px, 9.5vw, 138px); line-height: .88; letter-spacing: -.075em; }
 .pricing-hero__copy { align-self: end; padding-bottom: 12px; }
-.pricing-hero__copy p { max-width: 570px; color: var(--muted); font-size: 18px; line-height: 1.7; }
+.pricing-hero__copy p { max-width: 570px; color: var(--muted); font-size: 18px; line-height: 1.7; margin-bottom: 24px; }
 .pricing-hero__link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding-bottom: 5px; border-bottom: 1px solid var(--ink); font-weight: 700; }
-.pricing-trust-strip { display: flex; justify-content: space-between; gap: 28px; padding: 28px clamp(28px, 7vw, 120px); background: #111827; color: #d7deea; }
+.pricing-main-tab-switcher { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.main-tab-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; border: 1px solid var(--line, #dde3ea); background: #ffffff; color: #475569; font-size: 14px; font-weight: 750; cursor: pointer; transition: all 0.2s ease; }
+.main-tab-btn:hover { background: #f8fafc; color: #0f172a; border-color: #cbd5e1; }
+.main-tab-btn.is-active { background: var(--blue, #225cff); color: #ffffff; border-color: var(--blue, #225cff); box-shadow: 0 8px 20px rgba(34, 92, 255, 0.25); }
+.pricing-trust-strip { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 24px clamp(28px, 7vw, 120px); background: #111827; color: #d7deea; }
 .pricing-trust-strip span { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; }
 .pricing-stack-section { position: relative; z-index: 1; padding-top: 40px; overflow: visible; isolation: isolate; background: #e8ecf2; }
 .pricing-tier { overflow: hidden; padding: clamp(28px, 4vw, 62px); border: 1px solid rgba(255,255,255,.5); border-radius: 40px; box-shadow: 0 30px 80px rgba(15,23,42,.15); color: #111827; }

@@ -6,7 +6,7 @@ This file is an AI-readable map of the canonical public website. Service and edi
 
 ## Primary pages
 
-- [Home](https://zexton.com/): Zexton plans and builds custom software, SaaS platforms, web and mobile applications, cloud systems, and responsible AI automation.
+- [Home](https://zexton.com/): Zexton delivers high-speed web hosting, cloud VPS servers, custom business websites, SaaS platforms, and enterprise software with 99.9% uptime and 24/7 support.
 - [About](https://zexton.com/about): Learn how Zexton approaches software discovery, UX, architecture, secure engineering, visible delivery, launch, handover, and continued improvement.
 - [Capabilities](https://zexton.com/capabilities): Explore product, UX, React, React Native, Node.js, .NET, Python, PostgreSQL, AWS, DevOps, security, data, and applied AI engineering capabilities.
 - [Careers](https://zexton.com/careers): Learn about future product, UX, full-stack, mobile, cloud, quality, and applied AI role areas at Zexton. No active vacancy is implied unless published.

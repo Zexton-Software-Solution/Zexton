@@ -1,0 +1,116 @@
+.tech-grid-section {
+  padding: 90px 0;
+  background: #ffffff;
+  border-top: 1px solid var(--line, #dde3ea);
+}
+
+.tech-grid-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 52px;
+}
+
+.tech-grid-header h2 {
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--ink, #111827);
+  margin-bottom: 14px;
+}
+
+.tech-grid-header p {
+  color: var(--muted, #64748b);
+  font-size: 16.5px;
+  line-height: 1.6;
+}
+
+.tech-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.tech-group-card {
+  border-radius: 18px;
+  padding: 28px 24px;
+  background: var(--paper, #f7f8fa);
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.tech-group-card:hover {
+  border-color: #cbd5e1;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+}
+
+.tech-group-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tech-group-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: var(--blue, #225cff);
+  flex-shrink: 0;
+}
+
+.tech-group-title {
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.tech-group-desc {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tech-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-skill-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.tech-group-card:hover .tech-skill-tag {
+  border-color: #cbd5e1;
+}
+
+.tech-skill-tag:hover {
+  background: var(--blue, #225cff);
+  color: #ffffff;
+  border-color: var(--blue, #225cff);
+}
+
+@media (max-width: 768px) {
+  .tech-grid-section {
+    padding: 60px 0;
+  }
+}

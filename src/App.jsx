@@ -2,17 +2,18 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import DomainSearchBanner from './components/DomainSearchBanner';
+import ServicesShowcase from './components/ServicesShowcase';
+import HostingPlans from './components/HostingPlans';
+import WhyChooseZexton from './components/WhyChooseZexton';
+import TechStackGrid from './components/TechStackGrid';
 import Partners from './components/Partners';
-import Industries from './components/Industries';
-import Approach from './components/Approach';
 import AgenticCallout from './components/AgenticCallout';
 import Footer from './components/Footer';
-import PageLoader from './components/PageLoader';
 import RelatedRoutes from './components/RelatedRoutes';
 import RouteLoader from './components/RouteLoader';
 import Seo from './components/Seo';
 import { isKnownRoute, pathForRoute, routeFromPath, routeMetadata } from './siteMetadata';
-import ClickSpark from './components/ClickSpark';
 import './App.css';
 
 const CompanyPage = lazy(() => import('./components/CompanyPage'));
@@ -24,11 +25,14 @@ const NotFound = lazy(() => import('./components/NotFound'));
 const Pricing = lazy(() => import('./components/Pricing'));
 const ServiceDetailPage = lazy(() => import('./components/ServiceDetailPage'));
 const WhoWeAre = lazy(() => import('./components/WhoWeAre'));
+
 const contentRoutes = new Set(['about', 'work', 'services', 'resources', 'insights', 'capabilities', 'careers']);
+
 const getRoute = () => {
   const legacyHash = window.location.hash.match(/^#\/([^?#]+)/);
   return legacyHash?.[1] || routeFromPath(window.location.pathname);
 };
+
 const resetScroll = () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   document.documentElement.scrollTop = 0;
@@ -38,7 +42,6 @@ const resetScroll = () => {
 export default function App() {
   const [route, setRoute] = useState(getRoute);
   const [routeLoading, setRouteLoading] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
   const timersRef = useRef([]);
 
   const transitionTo = useCallback((nextRoute) => {
@@ -52,8 +55,8 @@ export default function App() {
     const swapTimer = window.setTimeout(() => {
       setRoute(nextRoute);
       requestAnimationFrame(resetScroll);
-    }, 70);
-    const finishTimer = window.setTimeout(() => setRouteLoading(false), 260);
+    }, 50);
+    const finishTimer = window.setTimeout(() => setRouteLoading(false), 200);
     timersRef.current = [swapTimer, finishTimer];
   }, [route]);
 
@@ -101,16 +104,6 @@ export default function App() {
     resetScroll();
   }, [route]);
 
-  useEffect(() => {
-    if (!showLoader) return undefined;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = previous; };
-  }, [showLoader]);
-
-  const finishLoader = useCallback(() => {
-    setShowLoader(false);
-  }, []);
   const openContact = useCallback(() => navigate('/contact'), [navigate]);
 
   let content;
@@ -139,20 +132,38 @@ export default function App() {
       <div className="site-shell">
         <Seo {...metadata} type={metadata.schemaType} />
         <Navbar />
-        <main><Hero /><Partners /><Industries /><Approach /><AgenticCallout onOpenContact={openContact} /><Suspense fallback={null}><Insights /></Suspense></main>
+        <main>
+          <Hero />
+          <DomainSearchBanner onOpenContact={openContact} />
+          <ServicesShowcase />
+          <HostingPlans onOpenContact={openContact} />
+          <WhyChooseZexton />
+          <Partners />
+          <TechStackGrid />
+          <AgenticCallout onOpenContact={openContact} />
+          <Suspense fallback={null}>
+            <Insights />
+          </Suspense>
+        </main>
         <RelatedRoutes routes={metadata.relatedRoutes} />
         <Footer />
       </div>
     );
   } else {
-    page = <div className="site-shell"><Navbar /><Suspense fallback={<RouteLoader />}>{content}</Suspense><RelatedRoutes routes={routeMetadata[route]?.relatedRoutes} /><Footer /></div>;
+    page = (
+      <div className="site-shell">
+        <Navbar />
+        <Suspense fallback={<RouteLoader />}>{content}</Suspense>
+        <RelatedRoutes routes={routeMetadata[route]?.relatedRoutes} />
+        <Footer />
+      </div>
+    );
   }
 
-  return <>
-    <AnimatePresence>{showLoader && <PageLoader key="initial-site-loader" onComplete={finishLoader} />}</AnimatePresence>
-    <AnimatePresence>{routeLoading && <RouteLoader key="route-loader" />}</AnimatePresence>
-    <ClickSpark sparkColor="#225cff" sparkSize={12} sparkRadius={20} sparkCount={8} duration={400}>
+  return (
+    <>
+      <AnimatePresence>{routeLoading && <RouteLoader key="route-loader" />}</AnimatePresence>
       {page}
-    </ClickSpark>
-  </>;
+    </>
+  );
 }
