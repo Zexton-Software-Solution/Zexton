@@ -1,10 +1,12 @@
-import { ArrowRight, Check, CheckCircle2, Headphones, ShieldCheck, Sparkles, Zap } from 'lucide-react';
-import { inr, lowestPrice, productGroups, productPages, tlds } from '../productPagesData';
+import { ArrowRight, Check, CheckCircle2, Headphones, Minus, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { inr, lowestPrice, planComparisons, productGroups, productPages, tlds } from '../productPagesData';
 import { routeMetadata } from '../siteMetadata';
 import DomainSearchBanner from './DomainSearchBanner';
 import { productIcons } from './productIcons';
 import Seo from './Seo';
 import './ProductPage.css';
+
+const cell = (value) => (value === true ? <Check size={18} aria-label="Included" className="pp-yes" /> : value === false ? <Minus size={18} aria-label="Not included" className="pp-no" /> : value);
 
 const orderUrl = (page, plan) => `/contact?service=${page.group}&plan=${encodeURIComponent(`${page.breadcrumbLabel} – ${plan}`)}`;
 
@@ -13,6 +15,7 @@ export default function ProductPage({ route }) {
   const metadata = routeMetadata[route];
   if (!page || !metadata) return null;
 
+  const compare = planComparisons[route];
   const group = productGroups.find((item) => item.id === page.group);
   const Icon = productIcons[page.icon] || Zap;
   const from = lowestPrice(page);
@@ -80,6 +83,20 @@ export default function ProductPage({ route }) {
                 </article>
               ))}
             </div>
+            {compare && (
+              <div className="pp-compare">
+                <h3>Compare plans</h3>
+                <div className="pp-table-wrap">
+                  <table className="pp-table pp-table--compare">
+                    <thead><tr><th>Feature</th>{page.plans.map((plan) => <th key={plan.name}>{plan.name}</th>)}</tr></thead>
+                    <tbody>
+                      <tr><td>Price</td>{page.plans.map((plan) => <td key={plan.name}><strong>{plan.priceText || inr(plan.price)}</strong>{plan.unit}</td>)}</tr>
+                      {compare.map(([feature, ...values]) => <tr key={feature}><td>{feature}</td>{values.map((value, index) => <td key={page.plans[index].name}>{cell(value)}</td>)}</tr>)}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )}

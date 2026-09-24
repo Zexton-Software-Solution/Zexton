@@ -121,3 +121,14 @@
   .pp-plans--2, .pp-plans--3, .pp-plans--4, .pp-features, .pp-steps, .pp-specs dl { grid-template-columns: 1fr; }
   .pp-plan.is-popular { margin-top: 10px; }
 }
+
+/* Plan comparison */
+.pp-compare { margin-top: 64px; }
+.pp-compare h3 { margin-bottom: 20px; font-family: var(--font-heading); font-size: 26px; text-align: center; letter-spacing: -.02em; }
+.pp-table--compare th:not(:first-child), .pp-table--compare td:not(:first-child) { text-align: center; }
+.pp-table--compare td:first-child { position: sticky; left: 0; background: #fff; color: var(--slate-700); font-weight: 600; }
+.pp-table--compare th:first-child { position: sticky; left: 0; z-index: 1; }
+.pp-table--compare tbody tr:first-child td { background: #f5f8ff; }
+.pp-table--compare tbody tr:hover td:first-child { background: #f5f8ff; }
+.pp-yes { color: #16a34a; vertical-align: middle; }
+.pp-no { color: #cbd5e1; vertical-align: middle; }
