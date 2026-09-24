@@ -1,67 +1,125 @@
-import CardNav from './CardNav';
+import { useEffect, useState } from 'react';
+import { ArrowRight, BookOpen, ChevronDown, Code2, Headphones, LifeBuoy, Mail, Menu, MessageSquare, Receipt, ShieldCheck, X } from 'lucide-react';
+import { extraServiceLinks, inr, lowestPrice, productGroups, productsInGroup } from '../productPagesData';
+import { routeMetadata } from '../siteMetadata';
+import { productIcons } from './productIcons';
+import './Navbar.css';
 
-const items = [
+const productMenus = productGroups.map((group) => ({
+  ...group,
+  links: productsInGroup(group.id).map((page) => {
+    const price = lowestPrice(page);
+    return {
+      href: page.path,
+      label: page.breadcrumbLabel,
+      desc: page.navDesc,
+      icon: productIcons[page.icon],
+      price: price === 0 ? 'Free' : `From ${inr(price)}`,
+    };
+  }),
+}));
+
+const menus = [
+  ...productMenus,
   {
-    label: 'Hosting',
-    eyebrow: '01 / CLOUD & INFRASTRUCTURE',
-    description: 'High-speed NVMe web hosting, cloud VPS, business email, and managed cloud servers.',
-    variant: 'company',
-    bgColor: '#ffffff',
-    textColor: '#111827',
-    links: [
-      { label: 'Web Hosting (Shared NVMe)', href: '/#hosting' },
-      { label: 'Cloud VPS Servers', href: '/#hosting' },
-      { label: 'WordPress & E-Com Hosting', href: '/#hosting' },
-      { label: 'Business Email Suite', href: '/contact?service=business-email' },
-      { label: 'Domain Registration', href: '/contact?service=domain-hosting' },
-      { label: 'Hosting & Server Pricing', href: '/pricing' },
-    ],
-  },
-  {
+    id: 'services',
     label: 'Services',
-    eyebrow: '02 / DESIGN & DEVELOPMENT',
-    description: 'Custom business websites, e-commerce, software engineering, mobile apps, and AI solutions.',
-    variant: 'build',
-    bgColor: '#225cff',
-    textColor: '#fff',
-    links: [
-      { label: 'Website Design & Dev', href: '/services/web-application-development' },
-      { label: 'Custom Software Development', href: '/services/custom-software-development' },
-      { label: 'SaaS Product Engineering', href: '/services/saas-development' },
-      { label: 'React Native Mobile Apps', href: '/services/mobile-app-development' },
-      { label: 'AI Automation & Agents', href: '/services/ai-automation' },
-      { label: 'Cloud & Modernization', href: '/services/cloud-devops-modernization' },
-    ],
+    blurb: 'Custom software, apps, AI and managed IT from the Zexton engineering team.',
+    links: extraServiceLinks.map(([route, label]) => ({
+      href: routeMetadata[route].path,
+      label,
+      desc: routeMetadata[route].description.split(/[.:]/)[0],
+      icon: Code2,
+    })),
   },
   {
-    label: 'Company',
-    eyebrow: '03 / DECISIONS & WORK',
-    description: 'About Zexton, portfolio, engineering insights, planning guides, and contact.',
-    variant: 'explore',
-    bgColor: '#d94382',
-    textColor: '#fff',
+    id: 'support',
+    label: 'Support',
+    blurb: 'Help articles, tickets and people who answer — 24 hours a day.',
     links: [
-      { label: 'About Zexton', href: '/about' },
-      { label: 'Portfolio & Work Standards', href: '/work' },
-      { label: 'Pricing & Cost Calculator', href: '/pricing' },
-      { label: 'Planning Resources & Briefs', href: '/resources' },
-      { label: 'Engineering Insights', href: '/insights' },
-      { label: 'Contact Our Team', href: '/contact' },
+      { href: '/support', label: 'Help Center', desc: 'Guides for domains, hosting, email & servers', icon: LifeBuoy },
+      { href: '/contact', label: 'Raise a Ticket', desc: 'Technical, billing and sales help', icon: MessageSquare },
+      { href: '/pricing', label: 'Project Pricing', desc: 'Website & software cost calculator', icon: Receipt },
+      { href: '/insights', label: 'Knowledge & Insights', desc: 'Articles and technology guides', icon: BookOpen },
+      { href: '/about', label: 'About Zexton', desc: 'Who we are and how we work', icon: ShieldCheck },
     ],
   },
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(null);
+  const [drawer, setDrawer] = useState(false);
+
+  useEffect(() => {
+    const onKey = (event) => { if (event.key === 'Escape') { setOpen(null); setDrawer(false); } };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = drawer ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [drawer]);
+
+  const close = () => { setOpen(null); setDrawer(false); };
+
   return (
-    <CardNav
-      logo="/ZextonLogo.png"
-      logoAlt="Zexton Web Hosting & Custom Software Development"
-      items={items}
-      baseColor="rgba(255,255,255,.98)"
-      menuColor="#111827"
-      buttonBgColor="#225cff"
-      buttonTextColor="#fff"
-      ease="power3.out"
-    />
+    <header className="zx-header">
+      <div className="zx-topbar">
+        <div className="zx-bar">
+          <span><ShieldCheck size={14} /> Free SSL, migration &amp; 24/7 support on every hosting plan</span>
+          <nav aria-label="Utility">
+            <a href="/support"><Headphones size={14} /> Help Center</a>
+            <a href="mailto:info@zexton.com"><Mail size={14} /> info@zexton.com</a>
+            <a href="/contact">Contact Sales</a>
+          </nav>
+        </div>
+      </div>
+
+      <div className="zx-main" onMouseLeave={() => setOpen(null)}>
+        <div className="zx-bar">
+          <a href="/" className="zx-logo" aria-label="Zexton home" onClick={close}><img src="/ZextonLogo.png" alt="Zexton" /></a>
+
+          <nav className={`zx-nav ${drawer ? 'is-open' : ''}`} aria-label="Primary navigation">
+            <ul>
+              {menus.map((menu) => (
+                <li key={menu.id} className={open === menu.id ? 'is-active' : ''} onMouseEnter={() => window.matchMedia('(hover: hover)').matches && setOpen(menu.id)}>
+                  <button type="button" aria-expanded={open === menu.id} onClick={() => setOpen(open === menu.id ? null : menu.id)}>
+                    {menu.label} <ChevronDown size={15} />
+                  </button>
+                  <div className="zx-panel">
+                    <div className="zx-panel__inner">
+                      <div className="zx-panel__intro">
+                        <strong>{menu.label}</strong>
+                        <p>{menu.blurb}</p>
+                        <a href="/contact" onClick={close}>Talk to an expert <ArrowRight size={15} /></a>
+                      </div>
+                      <div className="zx-panel__links">
+                        {menu.links.map(({ href, label, desc, icon: Icon, price }) => (
+                          <a key={href} href={href} onClick={close}>
+                            <span className="zx-panel__icon">{Icon && <Icon size={19} />}</span>
+                            <span>
+                              <strong>{label}</strong>
+                              <small>{desc}</small>
+                              {price && <em>{price}</em>}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <a className="zx-cta zx-cta--mobile" href="/contact" onClick={close}>Get Started <ArrowRight size={16} /></a>
+          </nav>
+
+          <a className="zx-cta" href="/contact">Get Started <ArrowRight size={16} /></a>
+          <button type="button" className="zx-burger" aria-label={drawer ? 'Close menu' : 'Open menu'} aria-expanded={drawer} onClick={() => setDrawer(!drawer)}>
+            {drawer ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+    </header>
   );
 }

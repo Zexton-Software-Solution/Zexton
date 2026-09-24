@@ -1,29 +1,15 @@
 import { useState } from 'react';
 import { Search, Globe, ShieldCheck, Zap, Headphones, CheckCircle2, ArrowRight } from 'lucide-react';
+import { domainSearchUrl, inr, tlds } from '../productPagesData';
 import './DomainSearchBanner.css';
 
-const tlds = [
-  { ext: '.com', price: '₹799/yr', tag: 'POPULAR' },
-  { ext: '.in', price: '₹499/yr', tag: 'BEST FOR INDIA' },
-  { ext: '.org', price: '₹899/yr', tag: 'TRUSTED' },
-  { ext: '.net', price: '₹949/yr', tag: 'TECH' },
-  { ext: '.io', price: '₹2,499/yr', tag: 'STARTUPS' },
-  { ext: '.co', price: '₹699/yr', tag: 'GLOBAL' },
-];
-
-export default function DomainSearchBanner({ onOpenContact }) {
+export default function DomainSearchBanner() {
   const [domainInput, setDomainInput] = useState('');
   const [selectedTld, setSelectedTld] = useState('.com');
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const cleanDomain = domainInput.trim() || 'mycompany';
-    const fullQuery = cleanDomain.includes('.') ? cleanDomain : `${cleanDomain}${selectedTld}`;
-    if (onOpenContact) {
-      window.location.href = `/contact?service=domain-hosting&domain=${encodeURIComponent(fullQuery)}`;
-    } else {
-      window.location.href = `/contact?service=domain-hosting&domain=${encodeURIComponent(fullQuery)}`;
-    }
+    window.location.href = domainSearchUrl(domainInput, selectedTld);
   };
 
   return (
@@ -61,7 +47,7 @@ export default function DomainSearchBanner({ onOpenContact }) {
           </form>
 
           <div className="domain-tld-list">
-            {tlds.map((item) => (
+            {tlds.slice(0, 6).map((item) => (
               <button
                 key={item.ext}
                 type="button"
@@ -69,7 +55,7 @@ export default function DomainSearchBanner({ onOpenContact }) {
                 onClick={() => setSelectedTld(item.ext)}
               >
                 <span className="domain-tld-ext">{item.ext}</span>
-                <span className="domain-tld-price">{item.price}</span>
+                <span className="domain-tld-price">{inr(item.price)}/yr</span>
                 {item.tag && <span className="domain-tld-tag">{item.tag}</span>}
               </button>
             ))}

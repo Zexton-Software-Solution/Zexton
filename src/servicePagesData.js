@@ -161,6 +161,33 @@ export const servicePages = {
     ],
     relatedRoutes: ['services', 'service:custom-software-development', 'service:saas-development', 'capabilities'],
   },
+  'service:it-support': {
+    path: '/services/it-support',
+    breadcrumbLabel: 'IT Support & Server Management',
+    eyebrow: 'MANAGED IT SERVICES',
+    heading: 'IT support and server management your business can rely on',
+    summary: 'Linux and Windows server administration, monitoring, backups, security hardening, email and network support, and remote help desk for growing businesses.',
+    title: 'Managed IT Support & Server Management Services India | Zexton',
+    description: 'Managed IT services: Linux and Windows server management, monitoring, patching, backup and disaster recovery, cybersecurity, network and remote IT support.',
+    searchIntent: 'server management services India',
+    topics: ['server management services', 'managed IT services', 'Linux server administration', 'IT support company', 'backup and disaster recovery'],
+    challenge: 'Small teams often run critical websites, email and servers without anyone responsible for patching, monitoring, backups or incident response — until something breaks.',
+    outcome: 'Servers and business systems that are patched, monitored, backed up and documented, with a named team to call when something goes wrong.',
+    goodFor: ['VPS and dedicated server management', 'Businesses without an in-house IT team', 'Backup and disaster recovery planning', 'Security hardening and audits', 'Email, DNS and network troubleshooting'],
+    deliverables: ['24/7 uptime and resource monitoring', 'OS and control panel patching', 'Firewall, SSH and security hardening', 'Backup setup and restore testing', 'Remote help desk and incident response'],
+    process: [
+      ['Assess', 'Review servers, services, access, backups and risks.'],
+      ['Harden', 'Apply security baseline, monitoring and backup policies.'],
+      ['Operate', 'Patch, monitor and respond to alerts on an agreed schedule.'],
+      ['Report', 'Monthly health reports with recommendations.'],
+    ],
+    faqs: [
+      ['Do you manage servers hosted elsewhere?', 'Yes. We manage servers at Zexton and at other providers such as AWS, Azure, DigitalOcean and Hetzner.'],
+      ['What response times do you offer?', 'Response targets are agreed in the service plan, with faster response for business-critical incidents.'],
+      ['Can you help with a one-time problem?', 'Yes. One-time troubleshooting, migrations and security cleanups are available without a monthly contract.'],
+    ],
+    relatedRoutes: ['services', 'product:vps-hosting', 'product:dedicated-servers', 'service:cloud-modernization'],
+  },
 };
 
 export const serviceRouteMetadata = Object.fromEntries(

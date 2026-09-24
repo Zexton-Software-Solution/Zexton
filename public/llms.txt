@@ -6,22 +6,45 @@ This file is an AI-readable map of the canonical public website. Service and edi
 
 ## Primary pages
 
-- [Home](https://zexton.com/): Zexton delivers high-speed web hosting, cloud VPS servers, custom business websites, SaaS platforms, and enterprise software with 99.9% uptime and 24/7 support.
+- [Home](https://zexton.com/): Register domains, buy fast NVMe web hosting, cloud VPS and dedicated servers, business email, SSL certificates, website design and SEO services from Zexton with 24/7 support.
 - [About](https://zexton.com/about): Learn how Zexton approaches software discovery, UX, architecture, secure engineering, visible delivery, launch, handover, and continued improvement.
 - [Capabilities](https://zexton.com/capabilities): Explore product, UX, React, React Native, Node.js, .NET, Python, PostgreSQL, AWS, DevOps, security, data, and applied AI engineering capabilities.
 - [Careers](https://zexton.com/careers): Learn about future product, UX, full-stack, mobile, cloud, quality, and applied AI role areas at Zexton. No active vacancy is implied unless published.
 - [Company](https://zexton.com/company): Explore Zexton’s company direction, engineering values, industry focus, and connected approach to software, AI, cloud, mobile, and enterprise systems.
 - [Contact](https://zexton.com/contact): Contact Zexton about a website, custom software, SaaS, React Native, cloud, modernization, integration, or responsible AI automation requirement.
+- [DNS Management](https://zexton.com/domains/dns-management): Manage A, CNAME, MX, TXT, SRV and CAA records, set up domain forwarding, and configure SPF, DKIM and DMARC with free Zexton DNS management.
+- [Domain Privacy & Protection](https://zexton.com/domains/domain-privacy): Protect your name, email, phone and address from public WHOIS lookups with Zexton domain privacy, theft protection and registrar lock.
+- [Domain Registration](https://zexton.com/domains/domain-registration): Register .com, .in, .co.in, .org, .net and new domain extensions with free DNS management, domain forwarding, theft protection and 24/7 support from Zexton.
+- [Domain Transfer](https://zexton.com/domains/domain-transfer): Transfer your .com, .in, .org or .net domain to Zexton with zero downtime, a 1-year extension, free DNS management and help from our support team.
+- [Business Email](https://zexton.com/email/business-email): Professional business email on your own domain with webmail, IMAP/POP/SMTP, mobile sync, calendars, anti-spam, anti-virus and free migration.
+- [Google Workspace & Microsoft 365](https://zexton.com/email/google-workspace-microsoft-365): Buy and set up Google Workspace or Microsoft 365 with domain verification, MX/SPF/DKIM records, user creation and email migration handled by Zexton.
+- [Cloud Hosting](https://zexton.com/hosting/cloud-hosting): Managed cloud hosting with guaranteed CPU and RAM, isolated resources, NVMe storage, cPanel, free SSL, daily backups and instant scaling.
+- [Reseller Hosting](https://zexton.com/hosting/reseller-hosting): Reseller hosting for agencies and web designers: WHM, cPanel accounts, white-label nameservers, free SSL, NVMe storage and 24/7 support.
+- [Linux Web Hosting](https://zexton.com/hosting/web-hosting): Affordable Linux shared web hosting in India with NVMe storage, cPanel, free SSL, business email, LiteSpeed cache, daily backups and 24/7 support.
+- [Windows Hosting](https://zexton.com/hosting/windows-hosting): Windows shared hosting with Plesk, ASP.NET, .NET Core, MSSQL databases, free SSL, business email and 24/7 expert support from Zexton.
+- [WordPress Hosting](https://zexton.com/hosting/wordpress-hosting): Fast managed WordPress hosting with pre-installed WordPress, LiteSpeed cache, automatic updates, staging, free SSL, CDN and WooCommerce-ready plans.
 - [Insights](https://zexton.com/insights): Long-form engineering insights about SaaS architecture, custom software, React Native, cloud modernization, product delivery, and trustworthy AI systems.
+- [Digital Marketing](https://zexton.com/marketing/digital-marketing): Digital marketing services: Google Ads, Meta (Facebook & Instagram) ads, LinkedIn ads, social media management, email marketing and conversion tracking.
+- [SEO Services](https://zexton.com/marketing/seo-services): Monthly SEO services for Indian businesses: SEO audit, keyword research, on-page and technical SEO, Google Business Profile, content and link building.
 - [Pricing](https://zexton.com/pricing): Indicative website, e-commerce, SaaS, custom software, and enterprise modernization price ranges in INR, USD, and EUR, plus a project calculator.
 - [Resources](https://zexton.com/resources): Practical guides for software briefs, project estimates, AI readiness, architecture decisions, production readiness, security, content, and launch planning.
+- [SSL Certificates](https://zexton.com/security/ssl-certificates): Domain-validated, organisation-validated, EV and wildcard SSL certificates with installation, 256-bit encryption, warranty and 24/7 support from Zexton.
+- [Website Backup](https://zexton.com/security/website-backup): Automated daily website and database backups stored off-site with 30–90 day history, one-click restore and malware-safe versions.
+- [Website Security](https://zexton.com/security/website-security): Protect your website with daily malware scanning, automatic malware removal, web application firewall, DDoS mitigation and blacklist monitoring.
+- [Dedicated Servers](https://zexton.com/servers/dedicated-servers): Dedicated bare-metal servers with Intel Xeon / AMD EPYC CPUs, NVMe RAID storage, high bandwidth, DDoS protection, IPMI and managed support.
+- [VPS Hosting](https://zexton.com/servers/vps-hosting): Linux and Windows KVM VPS hosting with NVMe storage, dedicated IPv4, full root access, DDoS protection, snapshots and optional managed support.
 - [Services](https://zexton.com/services): Software development services for product discovery, custom web apps, SaaS, React Native, cloud modernization, DevOps, integrations, and AI automation.
 - [AI Automation](https://zexton.com/services/ai-automation): AI automation and agent development for business workflows using retrieval, tool integration, evaluation, guardrails, human approval, and observability.
 - [Cloud, DevOps & Modernization](https://zexton.com/services/cloud-devops-modernization): Cloud, DevOps, and legacy modernization services covering AWS, CI/CD, containers, observability, security, resilience, performance, and migration.
 - [Custom Software Development](https://zexton.com/services/custom-software-development): Custom software development for business applications, portals, workflow systems, integrations, modernization, and secure cloud delivery from Zexton.
+- [IT Support & Server Management](https://zexton.com/services/it-support): Managed IT services: Linux and Windows server management, monitoring, patching, backup and disaster recovery, cybersecurity, network and remote IT support.
 - [Mobile App Development](https://zexton.com/services/mobile-app-development): React Native mobile app development for Android and cross-platform products with secure APIs, offline workflows, notifications, analytics, and releases.
 - [SaaS Development](https://zexton.com/services/saas-development): End-to-end SaaS development for MVPs and growing platforms: product discovery, multi-tenancy, billing, RBAC, analytics, integrations, and cloud delivery.
 - [Web Application Development](https://zexton.com/services/web-application-development): Web application development for portals, dashboards, marketplaces, commerce, and operations using React, secure APIs, integrations, and cloud delivery.
+- [Support](https://zexton.com/support): Get help with domains, hosting, business email, VPS, SSL and billing. Browse knowledge base answers or raise a support ticket with the Zexton team.
+- [E-commerce Website](https://zexton.com/websites/ecommerce-website): E-commerce website development with WooCommerce, Shopify or custom code, Razorpay/UPI payments, shipping, GST invoicing and hosting from Zexton.
+- [Website Builder](https://zexton.com/websites/website-builder): Drag-and-drop website builder with business templates, mobile-responsive design, free SSL, hosting, SEO tools, WhatsApp button and online store options.
+- [Website Design & Development](https://zexton.com/websites/website-design): Professional website design and development for businesses: responsive design, WordPress or custom code, SEO setup, hosting, SSL and ongoing support.
 - [Who We Are](https://zexton.com/who-we-are): See how product, UX, full-stack, mobile, cloud, quality, and applied AI roles collaborate through ownership, written decisions, and visible milestones.
 - [Work](https://zexton.com/work): See how Zexton structures software delivery stories around verified context, product and architecture decisions, delivered workflows, and approved evidence.
 

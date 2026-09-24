@@ -1,75 +1,51 @@
-import { ArrowUpRight, Mail, MapPin, ShieldCheck, Zap } from 'lucide-react';
+import { Headphones, Mail, MapPin, ShieldCheck, Zap } from 'lucide-react';
+import { extraServiceLinks, productGroups, productsInGroup } from '../productPagesData';
+import { routeMetadata } from '../siteMetadata';
+
+const columns = [
+  ...productGroups.map((group) => ({
+    title: group.label,
+    links: productsInGroup(group.id).map((page) => [page.path, page.breadcrumbLabel]),
+  })),
+  { title: 'Services', links: extraServiceLinks.map(([route, label]) => [routeMetadata[route].path, label]) },
+  {
+    title: 'Company & Support',
+    links: [['/support', 'Help Center'], ['/contact', 'Contact Us'], ['/about', 'About Zexton'], ['/work', 'Our Work'], ['/pricing', 'Project Pricing'], ['/insights', 'Insights & Guides'], ['/careers', 'Careers']],
+  },
+];
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer__top">
+        <div className="footer__top footer__top--wide">
           <div className="footer__brand">
             <a href="/" className="footer__logo" aria-label="Zexton home">
               <img src="/ZextonLogo.png" alt="Zexton" />
             </a>
-            <p>
-              High-speed web hosting, cloud infrastructure, custom website design, SaaS platforms, and enterprise software solutions.
-            </p>
-            <a href="mailto:info@zexton.com" className="footer__contact">
-              <Mail size={15} /> info@zexton.com
-            </a>
-            <span className="footer__location">
-              <MapPin size={15} /> Hyderabad, India · Serving Clients Globally
-            </span>
-            <div className="footer__badges" style={{ display: 'flex', gap: '16px', marginTop: '16px', color: '#94a3b8', fontSize: '12px' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><Zap size={14} color="#225cff" /> 99.9% Uptime</span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><ShieldCheck size={14} color="#22c55e" /> Free SSL &amp; Security</span>
+            <p>Domains, hosting, cloud servers, business email, websites and IT solutions — everything your business needs online, in one place.</p>
+            <a href="mailto:info@zexton.com" className="footer__contact"><Mail size={15} /> info@zexton.com</a>
+            <span className="footer__location"><MapPin size={15} /> Hyderabad, India · Serving clients globally</span>
+            <div className="footer__badges">
+              <span><Zap size={14} /> 99.9% Uptime</span>
+              <span><ShieldCheck size={14} /> Free SSL</span>
+              <span><Headphones size={14} /> 24/7 Support</span>
             </div>
           </div>
 
-          <nav className="footer__nav" aria-label="Footer navigation" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
-            <div>
-              <h3>Hosting &amp; Cloud</h3>
-              <a href="/#hosting">Web Hosting</a>
-              <a href="/#hosting">Cloud VPS Servers</a>
-              <a href="/#hosting">WordPress Hosting</a>
-              <a href="/contact?service=business-email">Business Email</a>
-              <a href="/contact?service=domain-hosting">Domain Names</a>
-              <a href="/pricing">Hosting Pricing</a>
-            </div>
-
-            <div>
-              <h3>Services</h3>
-              <a href="/services/web-application-development">Website Design</a>
-              <a href="/services/custom-software-development">Custom Software</a>
-              <a href="/services/saas-development">SaaS Platforms</a>
-              <a href="/services/mobile-app-development">Mobile Apps (iOS/Android)</a>
-              <a href="/services/ai-automation">AI Automation</a>
-              <a href="/services/cloud-devops-modernization">Cloud Modernization</a>
-            </div>
-
-            <div>
-              <h3>Company</h3>
-              <a href="/company">Company Overview</a>
-              <a href="/about">About Zexton</a>
-              <a href="/work">Portfolio &amp; Work</a>
-              <a href="/who-we-are">Who We Are</a>
-              <a href="/careers">Careers</a>
-            </div>
-
-            <div>
-              <h3>Explore</h3>
-              <a href="/pricing">Pricing &amp; Calculator</a>
-              <a href="/resources">Planning Resources</a>
-              <a href="/insights">Engineering Insights</a>
-              <a href="/contact">Contact Our Team</a>
-              <a className="footer__conversation" href="/contact">
-                Start a conversation <ArrowUpRight size={16} />
-              </a>
-            </div>
+          <nav className="footer__nav footer__nav--wide" aria-label="Footer navigation">
+            {columns.map((column) => (
+              <div key={column.title}>
+                <h3>{column.title}</h3>
+                {column.links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
+              </div>
+            ))}
           </nav>
         </div>
 
         <div className="footer__bottom">
-          <span>© {new Date().getFullYear()} Zexton. All rights reserved.</span>
-          <a href="/contact">Deploy website or software</a>
+          <span>© {new Date().getFullYear()} Zexton IT Solutions. All rights reserved. Prices exclude GST.</span>
+          <a href="/contact">Talk to sales</a>
         </div>
       </div>
     </footer>

@@ -9,7 +9,7 @@ const services = [
     title: 'Website Design & Development',
     description: 'Custom, fast-loading, mobile-friendly business websites, landing pages, and e-commerce stores designed to build trust and convert visitors into customers.',
     highlights: ['5–10 Page Corporate Websites', 'E-Commerce & Online Stores', '100% Mobile Responsive UX', 'SEO & Speed Optimized'],
-    link: '/services/web-application-development',
+    link: '/websites/website-design',
     color: '#225cff',
   },
   {
@@ -19,7 +19,7 @@ const services = [
     title: 'Web Hosting & Cloud Servers',
     description: 'High-speed NVMe shared hosting, scalable Cloud VPS, dedicated bare-metal servers, and managed cloud deployments with 99.9% uptime and 24/7 support.',
     highlights: ['Pure NVMe High-Speed Storage', 'Full Root Access & KVM VPS', 'Free SSL & 1-Click Backup', '24/7 Real Human Support'],
-    link: '#hosting',
+    link: '/hosting/web-hosting',
     color: '#0891b2',
   },
   {
@@ -29,7 +29,7 @@ const services = [
     title: 'Business Email & Domain Solutions',
     description: 'Professional email accounts (@yourdomain.com) with anti-spam security, webmail, mobile sync, and Google Workspace / Microsoft 365 setup.',
     highlights: ['Custom Domain Business Emails', 'Spam & Phishing Shield', 'Outlook, iOS & Android Sync', 'DNS, DKIM & SPF Setup'],
-    link: '/contact?service=business-email',
+    link: '/email/business-email',
     color: '#d946ef',
   },
   {

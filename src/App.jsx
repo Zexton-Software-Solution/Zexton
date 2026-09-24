@@ -2,13 +2,10 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import DomainSearchBanner from './components/DomainSearchBanner';
+import { ProductGrid, SupportBand, WebsiteOptions } from './components/HomeSections';
 import ServicesShowcase from './components/ServicesShowcase';
 import HostingPlans from './components/HostingPlans';
 import WhyChooseZexton from './components/WhyChooseZexton';
-import TechStackGrid from './components/TechStackGrid';
-import Partners from './components/Partners';
-import AgenticCallout from './components/AgenticCallout';
 import Footer from './components/Footer';
 import RelatedRoutes from './components/RelatedRoutes';
 import RouteLoader from './components/RouteLoader';
@@ -23,7 +20,9 @@ const InsightArticlePage = lazy(() => import('./components/InsightArticlePage'))
 const Insights = lazy(() => import('./components/Insights'));
 const NotFound = lazy(() => import('./components/NotFound'));
 const Pricing = lazy(() => import('./components/Pricing'));
+const ProductPage = lazy(() => import('./components/ProductPage'));
 const ServiceDetailPage = lazy(() => import('./components/ServiceDetailPage'));
+const SupportPage = lazy(() => import('./components/SupportPage'));
 const WhoWeAre = lazy(() => import('./components/WhoWeAre'));
 
 const contentRoutes = new Set(['about', 'work', 'services', 'resources', 'insights', 'capabilities', 'careers']);
@@ -111,6 +110,10 @@ export default function App() {
     content = <CompanyPage />;
   } else if (route === 'pricing') {
     content = <Pricing onOpenContact={openContact} />;
+  } else if (route.startsWith('product:')) {
+    content = <ProductPage route={route} />;
+  } else if (route === 'support') {
+    content = <SupportPage />;
   } else if (route.startsWith('service:')) {
     content = <ServiceDetailPage route={route} />;
   } else if (route === 'who-we-are') {
@@ -134,13 +137,12 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
-          <DomainSearchBanner onOpenContact={openContact} />
-          <ServicesShowcase />
+          <ProductGrid />
           <HostingPlans onOpenContact={openContact} />
+          <WebsiteOptions />
+          <ServicesShowcase />
           <WhyChooseZexton />
-          <Partners />
-          <TechStackGrid />
-          <AgenticCallout onOpenContact={openContact} />
+          <SupportBand />
           <Suspense fallback={null}>
             <Insights />
           </Suspense>

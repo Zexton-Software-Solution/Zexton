@@ -10,7 +10,7 @@ export default function RelatedRoutes({ routes = [] }) {
     <nav className="related-routes" aria-labelledby="related-routes-title">
       <div className="related-routes__heading">
         <span>EXPLORE ZEXTON</span>
-        <h2 id="related-routes-title">Continue with a related software topic.</h2>
+        <h2 id="related-routes-title">Explore related products and services.</h2>
       </div>
       <div className="related-routes__grid">
         {items.map((item, index) => (

@@ -1,5 +1,6 @@
 import { insightRouteSlugs } from './insightRoutes.js';
 import { serviceRouteMetadata } from './servicePagesData.js';
+import { productRouteMetadata } from './productPagesData.js';
 
 export const SITE_URL = 'https://zexton.com';
 export const SITE_NAME = 'Zexton';
@@ -31,8 +32,8 @@ const insightRouteMetadata = Object.fromEntries(
 export const routeMetadata = {
   home: corePage({
     path: '/',
-    title: 'Web Hosting, Website Design & Custom Software Development | Zexton',
-    description: 'Zexton delivers high-speed web hosting, cloud VPS servers, custom business websites, SaaS platforms, and enterprise software with 99.9% uptime and 24/7 support.',
+    title: 'Domains, Web Hosting, VPS, Business Email & Websites | Zexton',
+    description: 'Register domains, buy fast NVMe web hosting, cloud VPS and dedicated servers, business email, SSL certificates, website design and SEO services from Zexton with 24/7 support.',
     eyebrow: 'WEB HOSTING · WEBSITE DESIGN · CUSTOM SOFTWARE',
     heading: 'Web Hosting, Website Design & Custom Software Development',
     summary: 'High-speed cloud hosting, domain registration, professional business emails, responsive website design, and custom software engineering for growing businesses.',
@@ -40,7 +41,7 @@ export const routeMetadata = {
     schemaType: 'WebPage',
     searchIntent: 'web hosting and custom software development company',
     topics: ['web hosting', 'cloud VPS servers', 'website design and development', 'business email hosting', 'custom software development', 'SaaS engineering', 'AI automation'],
-    relatedRoutes: ['services', 'capabilities', 'pricing', 'insights'],
+    relatedRoutes: ['product:domain-registration', 'product:web-hosting', 'product:vps-hosting', 'product:website-design'],
     crawlSections: [
       { title: 'Reliable Cloud Hosting & Infrastructure', text: 'Zexton provides ultra-fast NVMe shared hosting, scalable Cloud VPS, dedicated bare-metal servers, and managed cloud deployments with 99.9% uptime and 24/7 expert technical support.' },
       { title: 'Modern Website Design & Custom Development', text: 'We design and engineer responsive business websites, e-commerce stores, custom SaaS platforms, React Native mobile apps, and internal tools with clean architecture and zero technical debt.' },
@@ -143,6 +144,24 @@ export const routeMetadata = {
     ],
   }),
   ...Object.fromEntries(Object.entries(serviceRouteMetadata).map(([route, metadata]) => [route, corePage(metadata)])),
+  ...Object.fromEntries(Object.entries(productRouteMetadata).map(([route, metadata]) => [route, corePage(metadata)])),
+  support: corePage({
+    path: '/support',
+    title: 'Help Center & 24/7 Support – Domains, Hosting, Email | Zexton',
+    description: 'Get help with domains, hosting, business email, VPS, SSL and billing. Browse knowledge base answers or raise a support ticket with the Zexton team.',
+    eyebrow: 'ZEXTON HELP CENTER',
+    heading: 'How can we help you today?',
+    summary: 'Answers to common questions about domains, hosting, email, servers, security and billing — and a direct line to our support team when you need a person.',
+    breadcrumbLabel: 'Support',
+    schemaType: 'WebPage',
+    searchIntent: 'Zexton support',
+    topics: ['hosting support', 'domain help', 'business email setup', 'knowledge base'],
+    relatedRoutes: ['contact', 'product:web-hosting', 'product:business-email', 'product:domain-registration'],
+    crawlSections: [
+      { title: 'Knowledge base', text: 'Guides for connecting domains, configuring email clients, installing WordPress, managing DNS, SSL and VPS servers.' },
+      { title: 'Raise a support ticket', text: 'Contact the Zexton support team by email or the contact form for technical, billing and sales questions.' },
+    ],
+  }),
   resources: corePage({
     path: '/resources',
     title: 'Software Project Planning Resources & Buyer Guides | Zexton',

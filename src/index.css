@@ -319,3 +319,17 @@ h1, h2, h3, p { margin: 0; }
 .callout h2 { color: #111827; }
 .callout p { color: #5f6b7d; }
 .callout .btn-light { background: #225cff; color: #fff; box-shadow: 0 10px 26px rgba(34,92,255,.22); }
+
+/* Wide product footer */
+.footer__top--wide { grid-template-columns: 300px 1fr; gap: 64px; }
+.footer__nav--wide { grid-template-columns: repeat(4, 1fr); gap: 44px 32px; }
+.footer__nav--wide > div:last-child { grid-column: auto; }
+.footer__badges { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; color: #94a3b8; font-size: 12px; }
+.footer__badges span { display: inline-flex; align-items: center; gap: 6px; }
+.footer__badges svg { color: #4ade80; }
+@media (max-width: 1024px) {
+  .footer__top--wide { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .footer__nav--wide { grid-template-columns: 1fr 1fr; gap: 36px 20px; }
+}

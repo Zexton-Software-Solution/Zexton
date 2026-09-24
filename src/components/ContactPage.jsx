@@ -34,16 +34,21 @@ export default function ContactPage() {
         let selectedService = prev.service;
         let initialMsg = prev.message;
 
-        if (serviceParam === 'business-email') {
-          selectedService = 'Business Email & Domain Setup';
-          initialMsg = 'I am interested in setting up professional business email accounts for my company.';
-        } else if (serviceParam === 'domain-hosting') {
+        if (serviceParam === 'business-email' || serviceParam === 'email-security') {
+          selectedService = 'Business Email, SSL & Security';
+        } else if (serviceParam === 'websites') {
+          selectedService = 'Business Website or E-Commerce Store';
+        } else if (serviceParam === 'marketing') {
+          selectedService = 'SEO & Digital Marketing';
+        } else if (serviceParam === 'domains' || serviceParam === 'domain-hosting') {
+          selectedService = 'Domain Registration & Transfer';
+        } else if (serviceParam) {
           selectedService = 'Web Hosting & Cloud Servers';
-          initialMsg = domainParam ? `I would like to check and register the domain: ${domainParam} with cloud hosting.` : 'I am looking for domain registration and hosting.';
-        } else if (serviceParam === 'hosting') {
-          selectedService = 'Web Hosting & Cloud Servers';
-          if (planParam) initialMsg = `I want to get started with the plan: ${planParam}.`;
         }
+
+        if (domainParam) initialMsg = `I would like to check and register the domain: ${domainParam}.`;
+        else if (planParam) initialMsg = `I want to get started with: ${planParam}.`;
+        else if (serviceParam === 'business-email') initialMsg = 'I am interested in setting up professional business email accounts for my company.';
 
         return {
           ...prev,
@@ -119,7 +124,9 @@ export default function ContactPage() {
               <select name="service" value={form.service} onChange={updateField} required>
                 <option>Web Hosting &amp; Cloud Servers</option>
                 <option>Business Website or E-Commerce Store</option>
-                <option>Business Email &amp; Domain Setup</option>
+                <option>Domain Registration &amp; Transfer</option>
+                <option>Business Email, SSL &amp; Security</option>
+                <option>SEO &amp; Digital Marketing</option>
                 <option>Custom Software Development</option>
                 <option>SaaS Product Engineering</option>
                 <option>React Native Mobile App</option>
