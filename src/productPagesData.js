@@ -29,7 +29,8 @@ const fromHosting = (categoryId) => hostingCategories
     tag: plan.tag,
     price: plan.priceYearlyINR,
     unit: '/mo',
-    note: `Billed yearly · ${inr(plan.priceMonthlyINR)}/mo on monthly billing`,
+    monthly: plan.priceMonthlyINR,
+    note: 'Billed yearly',
     features: plan.features,
     popular: plan.popular,
   }));
@@ -1015,8 +1016,8 @@ export const productPages = {
     plansNote: 'Revenue share is paid on the net project value of referred work after the client pays.',
     plans: [
       { name: 'Registered', tag: 'Getting started', priceText: '10%', unit: ' revenue share', features: ['Referral revenue share', 'Partner dashboard', 'Sales collateral', 'Email support'] },
-      { name: 'Silver', tag: '₹5 lakh+ referred / year', priceText: '12%', unit: ' revenue share', popular: true, features: ['Everything in Registered', 'Co-branded proposals', 'White-label development option', 'Priority support', 'Partner badge for your website'] },
-      { name: 'Gold', tag: '₹20 lakh+ referred / year', priceText: '15%', unit: ' revenue share', features: ['Everything in Silver', 'Dedicated partner manager', 'Joint marketing & case studies', 'Leads shared from Zexton', 'Quarterly planning'] },
+      { name: 'Silver', tag: '₹5,00,000+ referred / year', priceText: '12%', unit: ' revenue share', popular: true, features: ['Everything in Registered', 'Co-branded proposals', 'White-label development option', 'Priority support', 'Partner badge for your website'] },
+      { name: 'Gold', tag: '₹20,00,000+ referred / year', priceText: '15%', unit: ' revenue share', features: ['Everything in Silver', 'Dedicated partner manager', 'Joint marketing & case studies', 'Leads shared from Zexton', 'Quarterly planning'] },
     ],
     features: [
       ['Referral revenue', 'Earn on website, software, AI, cloud and marketing projects you refer.'],

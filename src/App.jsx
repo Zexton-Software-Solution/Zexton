@@ -2,10 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import { ProductGrid, SupportBand, WebsiteOptions } from './components/HomeSections';
-import ServicesShowcase from './components/ServicesShowcase';
-import HostingPlans from './components/HostingPlans';
-import WhyChooseZexton from './components/WhyChooseZexton';
+import { ClosingCta, Engineering, HomeFaq, HostingPricing, Numbers, ProductIndex, Websites } from './components/HomeSections';
 import Footer from './components/Footer';
 import RelatedRoutes from './components/RelatedRoutes';
 import RouteLoader from './components/RouteLoader';
@@ -18,7 +15,7 @@ const ContactPage = lazy(() => import('./components/ContactPage'));
 const ContentPage = lazy(() => import('./components/ContentPage'));
 const LegalPage = lazy(() => import('./components/LegalPage'));
 const InsightArticlePage = lazy(() => import('./components/InsightArticlePage'));
-const Insights = lazy(() => import('./components/Insights'));
+const HomeGuides = lazy(() => import('./components/HomeGuides'));
 const NotFound = lazy(() => import('./components/NotFound'));
 const Pricing = lazy(() => import('./components/Pricing'));
 const ProductPage = lazy(() => import('./components/ProductPage'));
@@ -140,15 +137,16 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
-          <ProductGrid />
-          <HostingPlans onOpenContact={openContact} />
-          <WebsiteOptions />
-          <ServicesShowcase />
-          <WhyChooseZexton />
-          <SupportBand />
+          <ProductIndex />
+          <HostingPricing />
+          <Numbers />
+          <Websites />
+          <Engineering />
           <Suspense fallback={null}>
-            <Insights />
+            <HomeGuides />
           </Suspense>
+          <HomeFaq />
+          <ClosingCta />
         </main>
         <RelatedRoutes routes={metadata.relatedRoutes} />
         <Footer />

@@ -1,8 +1,8 @@
-import { ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { servicePages } from '../servicePagesData';
 import { routeMetadata } from '../siteMetadata';
 import Seo from './Seo';
-import './ServiceDetailPage.css';
+import './ProductPage.css';
 
 export default function ServiceDetailPage({ route }) {
   const page = servicePages[route];
@@ -16,23 +16,72 @@ export default function ServiceDetailPage({ route }) {
   ];
 
   return (
-    <main className="service-detail">
+    <main className="product-page">
       <Seo {...metadata} type={metadata.schemaType} breadcrumbs={breadcrumbs} items={metadata.schemaItems} />
-      <nav className="service-detail__breadcrumbs" aria-label="Breadcrumb">
-        <ol><li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li aria-current="page">{page.breadcrumbLabel}</li></ol>
-      </nav>
-      <header className="service-detail__hero">
-        <div><span>{page.eyebrow}</span><h1>{page.heading}</h1><p>{page.summary}</p><div className="service-detail__actions"><a href="/contact">Discuss your project <ArrowUpRight size={18} /></a><a href="/pricing">View planning ranges <ArrowRight size={18} /></a></div></div>
-        <aside><strong>THE CHALLENGE</strong><p>{page.challenge}</p></aside>
+      <header className="pp-hero">
+        <div className="wrap pp-hero__grid">
+          <div>
+            <nav className="pp-crumbs" aria-label="Breadcrumb">
+              <ol><li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li aria-current="page">{page.breadcrumbLabel}</li></ol>
+            </nav>
+            <h1>{page.heading}</h1>
+            <p className="pp-hero__summary">{page.summary}</p>
+            <div className="pp-hero__actions">
+              <a className="btn btn--primary btn--lg" href="/contact">Discuss your project</a>
+              <a className="btn btn--secondary btn--lg" href="/pricing">See pricing</a>
+            </div>
+          </div>
+          <aside className="pp-glance" aria-label="The challenge">
+            <p>The challenge</p>
+            <div className="pp-glance__text">{page.challenge}</div>
+          </aside>
+        </div>
       </header>
-      <section className="service-detail__outcome"><span>THE INTENDED OUTCOME</span><h2>{page.outcome}</h2></section>
-      <section className="service-detail__split" aria-label={`${page.breadcrumbLabel} scope`}>
-        <div><span className="service-detail__label">GOOD FIT FOR</span><h2>Where this service creates value</h2><ul>{page.goodFor.map((item) => <li key={item}><CheckCircle2 size={18} />{item}</li>)}</ul></div>
-        <div><span className="service-detail__label">DELIVERY CAN INCLUDE</span><h2>Connected from decision to production</h2><ul>{page.deliverables.map((item) => <li key={item}><CheckCircle2 size={18} />{item}</li>)}</ul></div>
+
+      <section className="section section--surface">
+        <div className="wrap pp-split">
+          <div><span className="kicker">The outcome</span><h2 className="h2">What you end up with</h2></div>
+          <p className="pp-outcome">{page.outcome}</p>
+        </div>
       </section>
-      <section className="service-detail__process"><div className="service-detail__section-heading"><span className="service-detail__label">A PRACTICAL DELIVERY PATH</span><h2>Reduce uncertainty before increasing investment.</h2></div><div>{page.process.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-      <section className="service-detail__faq"><div className="service-detail__section-heading"><span className="service-detail__label">COMMON QUESTIONS</span><h2>{page.breadcrumbLabel} FAQ</h2></div><div>{page.faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
-      <section className="service-detail__cta"><div><span>START WITH THE WORKFLOW</span><h2>Bring the problem before the specification.</h2><p>Share the users, current process, systems, constraints, timeline, and desired outcome. We will identify the next useful decision.</p></div><a href="/contact">Contact Zexton <ArrowUpRight size={19} /></a></section>
+
+      <section className="section">
+        <div className="wrap pp-two-lists">
+          <div>
+            <span className="kicker">Good fit for</span>
+            <h2 className="h2">Where this helps</h2>
+            <ul className="pp-checks">{page.goodFor.map((item) => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}</ul>
+          </div>
+          <div>
+            <span className="kicker">Deliverables</span>
+            <h2 className="h2">What’s included</h2>
+            <ul className="pp-checks">{page.deliverables.map((item) => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head"><div><span className="kicker">Process</span><h2 className="h2">How we work</h2></div></div>
+          <ol className="pp-steps">
+            {page.process.map(([title, text], index) => <li key={title}><span className="num">{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></li>)}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap pp-split">
+          <div><span className="kicker">FAQ</span><h2 className="h2">Questions, answered</h2></div>
+          <div className="faq-list">{page.faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+        </div>
+      </section>
+
+      <section className="section section--surface">
+        <div className="wrap pp-cta">
+          <div><h2 className="h2">Bring the problem, not a specification.</h2><p className="lead">Share your users, current process, systems and timeline. We’ll suggest a sensible first step.</p></div>
+          <div className="pp-hero__actions"><a className="btn btn--primary btn--lg" href="/contact">Contact us <ArrowRight size={16} /></a></div>
+        </div>
+      </section>
     </main>
   );
 }

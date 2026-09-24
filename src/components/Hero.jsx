@@ -1,63 +1,49 @@
-import { useState } from 'react';
-import { ArrowRight, Cpu, Headphones, Lock, Mail, Search, Server, ShieldCheck, Zap } from 'lucide-react';
-import { domainSearchUrl, inr, lowestPrice, productPages, tlds } from '../productPagesData';
+import { ArrowRight, Check } from 'lucide-react';
+import { lowestPrice, productPages } from '../productPagesData';
+import { money, useRegion } from '../region';
+import DomainSearch from './DomainSearch';
 import './Hero.css';
 
-const badges = [
-  { icon: Zap, label: '99.9% uptime guarantee' },
-  { icon: ShieldCheck, label: 'Free SSL & migration' },
-  { icon: Headphones, label: '24/7 expert support' },
-];
-
-const quick = [
-  [Server, 'Web Hosting', 'product:web-hosting', '/mo'],
-  [Cpu, 'Cloud VPS', 'product:vps-hosting', '/mo'],
-  [Mail, 'Business Email', 'product:business-email', '/mo'],
-  [Lock, 'SSL Certificate', 'product:ssl-certificates', '/yr'],
-].map(([icon, label, route, unit]) => ({ icon, label, unit, price: lowestPrice(productPages[route]), href: productPages[route].path }));
+const startingPrices = [
+  ['Web hosting', 'product:web-hosting', '/mo'],
+  ['WordPress hosting', 'product:wordpress-hosting', '/mo'],
+  ['Cloud VPS', 'product:vps-hosting', '/mo'],
+  ['Business email', 'product:business-email', '/mo'],
+  ['SSL certificate', 'product:ssl-certificates', '/yr'],
+  ['Website design', 'product:website-design', ' one-time'],
+].map(([label, route, unit]) => ({ label, unit, price: lowestPrice(productPages[route]), href: productPages[route].path }));
 
 export default function Hero() {
-  const [query, setQuery] = useState('');
-
-  const submit = (event) => {
-    event.preventDefault();
-    window.location.href = domainSearchUrl(query);
-  };
-
+  const region = useRegion();
   return (
-    <section className="zx-hero">
-      <div className="zx-hero__inner">
-        <div className="zx-hero__copy">
-          <span className="zx-hero__pill"><span /> DOMAINS · HOSTING · SERVERS · EMAIL · WEBSITES</span>
-          <h1>Build your digital future <em>with Zexton</em></h1>
-          <p>Domains, hosting, cloud servers, business email, websites and IT solutions — everything your business needs to get online and grow, in one place.</p>
-
-          <form className="zx-hero__search" onSubmit={submit} role="search">
-            <Search size={20} aria-hidden="true" />
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find your perfect domain, e.g. yourbusiness.com" aria-label="Search for a domain name" />
-            <button type="submit">Search Domain</button>
-          </form>
-
-          <ul className="zx-hero__tlds">
-            {tlds.slice(0, 6).map((tld) => <li key={tld.ext}><strong>{tld.ext}</strong> {inr(tld.price)}</li>)}
-          </ul>
-
-          <ul className="zx-hero__badges">
-            {badges.map(({ icon: Icon, label }) => <li key={label}><Icon size={16} />{label}</li>)}
+    <section className="hero-v2">
+      <div className="wrap hero-v2__grid">
+        <div>
+          <p className="hero-v2__eyebrow">Domains · Hosting · Servers · Email · Websites</p>
+          <h1>Everything your business needs to get online.</h1>
+          <p className="hero-v2__lead">Register a domain, host your website, run cloud servers and professional email — with engineers on call 24/7 when you need help.</p>
+          <DomainSearch />
+          <ul className="hero-v2__proof">
+            <li><Check size={16} aria-hidden="true" /> 99.9% uptime SLA</li>
+            <li><Check size={16} aria-hidden="true" /> Free SSL &amp; migration</li>
+            <li><Check size={16} aria-hidden="true" /> 30-day money-back</li>
           </ul>
         </div>
 
-        <aside className="zx-hero__panel" aria-label="Popular products">
-          <span className="zx-hero__panel-label">POPULAR RIGHT NOW</span>
-          {quick.map(({ icon: Icon, label, price, unit, href }) => (
-            <a key={label} href={href}>
-              <span className="zx-hero__panel-icon"><Icon size={20} /></span>
-              <span className="zx-hero__panel-name">{label}<small>Starting at</small></span>
-              <span className="zx-hero__panel-price">{inr(price)}<small>{unit}</small></span>
-              <ArrowRight size={16} />
-            </a>
-          ))}
-          <a className="zx-hero__panel-cta" href="/websites/website-design">Need a website built for you? <strong>See design packages →</strong></a>
+        <aside className="hero-v2__prices" aria-labelledby="starting-prices">
+          <div className="hero-v2__prices-head"><span id="starting-prices">Starting prices</span><span>{region.currency}</span></div>
+          <ul>
+            {startingPrices.map(({ label, unit, price, href }) => (
+              <li key={label}>
+                <a href={href}>
+                  <span>{label}</span>
+                  <span className="num"><strong>{money(price, region)}</strong>{unit}</span>
+                  <ArrowRight size={15} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p>{region.tax}</p>
         </aside>
       </div>
     </section>

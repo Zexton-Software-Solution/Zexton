@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ArrowUpRight, Check, Clock3, IndianRupee, Server, Globe, ShieldCheck } from 'lucide-react';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import ProjectCalculator from './ProjectCalculator';
-import HostingPlans from './HostingPlans';
+import { HostingPricing } from './HomeSections';
 import Seo from './Seo';
 import { routeMetadata } from '../siteMetadata';
 import './Pricing.css';
@@ -172,7 +172,7 @@ export default function Pricing({ onOpenContact }) {
       </div>
 
       {activeTab === 'hosting' ? (
-        <HostingPlans onOpenContact={onOpenContact} />
+        <HostingPricing />
       ) : (
         <section id="pricing-stack" className="pricing-stack-section">
           <div className="container" style={{ marginBottom: '32px', textAlign: 'center' }}>

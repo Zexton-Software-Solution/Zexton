@@ -1,5 +1,5 @@
 .work-page-wrapper {
-  background: var(--paper, #f7f8fa);
+  background: var(--paper, var(--surface));
   color: var(--ink, #111827);
   min-height: 100vh;
 }
@@ -7,9 +7,7 @@
 /* Hero Header */
 .work-page-hero {
   padding: 160px clamp(24px, 6vw, 96px) 60px;
-  background: radial-gradient(circle at 82% 20%, rgba(34, 92, 255, 0.08), transparent 35%),
-              radial-gradient(circle at 18% 80%, rgba(240, 74, 145, 0.05), transparent 30%),
-              var(--paper, #f7f8fa);
+  background: var(--paper, var(--surface));
   border-bottom: 1px solid var(--line, #dde3ea);
 }
 
@@ -49,12 +47,12 @@
 }
 
 .work-search-bar:focus-within {
-  border-color: var(--blue, #225cff);
+  border-color: var(--blue, var(--brand));
   box-shadow: 0 0 20px rgba(34, 92, 255, 0.18);
 }
 
 .search-icon {
-  color: var(--blue, #225cff);
+  color: var(--blue, var(--brand));
   flex-shrink: 0;
 }
 
@@ -128,15 +126,15 @@
 }
 
 .category-pill:hover {
-  background: #f8fafc;
+  background: var(--surface);
   color: var(--ink, #111827);
   border-color: #cbd5e1;
 }
 
 .category-pill.is-active {
-  background: var(--blue, #225cff);
+  background: var(--blue, var(--brand));
   color: #ffffff;
-  border-color: var(--blue, #225cff);
+  border-color: var(--blue, var(--brand));
   box-shadow: 0 6px 18px rgba(34, 92, 255, 0.28);
 }
 
@@ -162,7 +160,7 @@
 }
 
 .work-results-info strong {
-  color: var(--blue, #225cff);
+  color: var(--blue, var(--brand));
 }
 
 /* Projects Grid */
@@ -231,7 +229,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  background: #f8fafc;
+  background: var(--surface);
   overflow: hidden;
   border-bottom: 1px solid #f1f5f9;
   cursor: pointer;
@@ -333,7 +331,7 @@
   gap: 8px;
   padding: 10px 18px;
   background: #ffffff;
-  color: var(--blue, #225cff);
+  color: var(--blue, var(--brand));
   font-size: 13px;
   font-weight: 750;
   border-radius: 999px;
@@ -369,7 +367,7 @@
   padding: 4px 10px;
   border-radius: 999px;
   background: #eef3ff;
-  color: var(--blue, #225cff);
+  color: var(--blue, var(--brand));
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -409,7 +407,7 @@
   align-items: center;
   gap: 10px;
   padding: 14px 20px;
-  background: #f8fafc;
+  background: var(--surface);
   border-top: 1px solid #f1f5f9;
 }
 
@@ -420,7 +418,7 @@
   justify-content: center;
   gap: 8px;
   padding: 10px 16px;
-  background: var(--blue, #225cff);
+  background: var(--blue, var(--brand));
   color: #ffffff;
   border: none;
   border-radius: 10px;
@@ -432,7 +430,7 @@
 }
 
 .btn-preview:hover {
-  background: #1638b8;
+  background: var(--brand-ink);
   box-shadow: 0 6px 20px rgba(34, 92, 255, 0.35);
 }
 
@@ -452,8 +450,8 @@
 
 .btn-visit:hover {
   background: #f1f5f9;
-  color: var(--blue, #225cff);
-  border-color: var(--blue, #225cff);
+  color: var(--blue, var(--brand));
+  border-color: var(--blue, var(--brand));
 }
 
 /* Empty State */
@@ -465,7 +463,7 @@
 }
 
 .empty-icon {
-  color: var(--blue, #225cff);
+  color: var(--blue, var(--brand));
   margin-bottom: 20px;
 }
 
@@ -483,9 +481,7 @@
 /* CTA Section */
 .work-cta-section {
   padding: 100px clamp(24px, 6vw, 96px);
-  background: radial-gradient(circle at 16% 14%, rgba(87, 118, 255, 0.7), transparent 30%),
-              radial-gradient(circle at 92% 90%, rgba(229, 62, 132, 0.5), transparent 28%),
-              #121828;
+  background: #111111;
   text-align: center;
   color: #ffffff;
 }

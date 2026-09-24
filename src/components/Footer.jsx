@@ -1,7 +1,9 @@
-import { Headphones, Mail, MapPin, ShieldCheck, Zap } from 'lucide-react';
 import { extraServiceLinks, productGroups, productsInGroup } from '../productPagesData';
 import { legalPages } from '../legalPagesData';
+import { useRegion } from '../region';
 import { routeMetadata } from '../siteMetadata';
+import RegionSelect from './RegionSelect';
+import './Footer.css';
 
 const columns = [
   ...productGroups.map((group) => ({
@@ -10,45 +12,36 @@ const columns = [
   })),
   { title: 'Services', links: extraServiceLinks.map(([route, label]) => [routeMetadata[route].path, label]) },
   {
-    title: 'Company & Support',
-    links: [['/support', 'Help Center'], ['/contact', 'Contact Us'], ['/about', 'About Zexton'], ['/work', 'Our Work'], ['/pricing', 'Project Pricing'], ['/insights', 'Insights & Guides'], ['/careers', 'Careers'], ...productsInGroup('partners').map((page) => [page.path, page.breadcrumbLabel])],
+    title: 'Company',
+    links: [['/support', 'Help Center'], ['/contact', 'Contact'], ['/about', 'About'], ['/work', 'Our work'], ['/insights', 'Guides'], ['/careers', 'Careers'], ...productsInGroup('partners').map((page) => [page.path, page.breadcrumbLabel])],
   },
 ];
 
 export default function Footer() {
+  const region = useRegion();
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer__top footer__top--wide">
-          <div className="footer__brand">
-            <a href="/" className="footer__logo" aria-label="Zexton home">
-              <img src="/ZextonLogo.png" alt="Zexton" />
-            </a>
-            <p>Domains, hosting, cloud servers, business email, websites and IT solutions — everything your business needs online, in one place.</p>
-            <a href="mailto:info@zexton.com" className="footer__contact"><Mail size={15} /> info@zexton.com</a>
-            <span className="footer__location"><MapPin size={15} /> Hyderabad, India · Serving clients globally</span>
-            <div className="footer__badges">
-              <span><Zap size={14} /> 99.9% Uptime</span>
-              <span><ShieldCheck size={14} /> Free SSL</span>
-              <span><Headphones size={14} /> 24/7 Support</span>
-            </div>
+    <footer className="site-footer">
+      <div className="wrap">
+        <div className="site-footer__top">
+          <div className="site-footer__brand">
+            <a href="/" aria-label="Zexton home"><img src="/ZextonLogo.png" alt="Zexton" /></a>
+            <p>Domains, hosting, servers, email and websites for growing businesses.</p>
+            <a href="mailto:info@zexton.com">info@zexton.com</a>
+            <p>Hyderabad, India</p>
           </div>
-
-          <nav className="footer__nav footer__nav--wide" aria-label="Footer navigation">
+          <nav className="site-footer__nav" aria-label="Footer">
             {columns.map((column) => (
               <div key={column.title}>
-                <h3>{column.title}</h3>
-                {column.links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
+                <h2>{column.title}</h2>
+                <ul>{column.links.map(([href, label]) => <li key={href}><a href={href}>{label}</a></li>)}</ul>
               </div>
             ))}
           </nav>
         </div>
-
-        <div className="footer__bottom">
-          <span>© {new Date().getFullYear()} Zexton IT Solutions. All rights reserved. Prices exclude GST.</span>
-          <nav className="footer__legal" aria-label="Legal">
-            {Object.values(legalPages).map((page) => <a key={page.path} href={page.path}>{page.breadcrumbLabel}</a>)}
-          </nav>
+        <div className="site-footer__bottom">
+          <span>© {new Date().getFullYear()} Zexton IT Solutions. {region.tax}</span>
+          <nav aria-label="Legal">{Object.values(legalPages).map((page) => <a key={page.path} href={page.path}>{page.breadcrumbLabel}</a>)}</nav>
+          <RegionSelect />
         </div>
       </div>
     </footer>

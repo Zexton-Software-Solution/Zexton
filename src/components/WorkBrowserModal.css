@@ -86,7 +86,7 @@
 }
 
 .tab-icon {
-  color: #225cff;
+  color: var(--brand);
   flex-shrink: 0;
 }
 
@@ -132,7 +132,7 @@
 }
 
 .device-btn.is-active {
-  background: #225cff;
+  background: var(--brand);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(34, 92, 255, 0.3);
 }
@@ -158,7 +158,7 @@
 /* Browser Navigation / Toolbar */
 .browser-toolbar {
   height: 48px;
-  background: #f8fafc;
+  background: var(--surface);
   display: flex;
   align-items: center;
   padding: 0 16px;
@@ -248,7 +248,7 @@
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: #225cff;
+  background: var(--brand);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -260,7 +260,7 @@
 }
 
 .open-external-btn:hover {
-  background: #1638b8;
+  background: var(--brand-ink);
   box-shadow: 0 4px 16px rgba(34, 92, 255, 0.35);
 }
 
@@ -354,7 +354,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: #225cff;
+  background: var(--brand);
   color: #ffffff;
   border-radius: 999px;
   font-size: 13px;
@@ -365,14 +365,14 @@
 }
 
 .btn-launch-live:hover {
-  background: #1638b8;
+  background: var(--brand-ink);
   transform: translateY(-1px);
 }
 
 /* Statusbar */
 .browser-statusbar {
   height: 32px;
-  background: #f8fafc;
+  background: var(--surface);
   border-top: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
@@ -399,7 +399,7 @@
 
 .category-badge {
   background: #eef3ff;
-  color: #225cff;
+  color: var(--brand);
   padding: 3px 10px;
   border-radius: 999px;
   font-weight: 750;

@@ -239,10 +239,3 @@ export const hostingCategories = [
     ],
   },
 ];
-
-export const hostingAddons = [
-  { name: 'Free Domain Name', description: 'Free .com / .in / .org domain with 1-year annual hosting plan', icon: 'Globe' },
-  { name: 'Free Website Migration', description: 'Our engineers will migrate your existing website & emails with zero downtime', icon: 'ArrowRightLeft' },
-  { name: 'Free Lifetime SSL', description: 'Automated 256-bit SSL certificates for all your domains & subdomains', icon: 'ShieldCheck' },
-  { name: '24/7 Real Human Support', description: 'Direct assistance via Phone, WhatsApp, and Tickets whenever you need help', icon: 'Headphones' },
-];

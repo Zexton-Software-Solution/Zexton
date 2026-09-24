@@ -1,119 +1,174 @@
-import { ArrowRight, CheckCircle2, MessageSquare, Clock3, Headphones, LayoutTemplate, LifeBuoy, Mail, Palette, RotateCcw, ShieldCheck } from 'lucide-react';
-import { inr, lowestPrice, productGroups, productPages, productsInGroup } from '../productPagesData';
-import { groupIcons } from './productIcons';
+import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { extraServiceLinks, lowestPrice, productGroups, productPages, productsInGroup } from '../productPagesData';
+import { money, useRegion } from '../region';
+import { routeMetadata } from '../siteMetadata';
+import PlanTable from './PlanTable';
 import './HomeSections.css';
 
-export function ProductGrid() {
+export function ProductIndex() {
+  const region = useRegion();
   return (
-    <section className="hs-section" id="products">
-      <div className="hs-wrap">
-        <div className="hs-heading">
-          <span>ALL PRODUCTS</span>
-          <h2>Everything you need to go online</h2>
-          <p>From your first domain to dedicated servers — pick a product and see plans, features and pricing.</p>
+    <section className="section" id="products">
+      <div className="wrap">
+        <div className="section-head">
+          <div><span className="kicker">Products</span><h2 className="h2">One provider for your whole online presence</h2></div>
+          <p className="lead">Start with a domain and add hosting, email, security and a website as you grow — all on one account and one invoice.</p>
         </div>
-        <div className="hs-products">
+        <div className="product-index">
           {productGroups.map((group) => {
-            const Icon = groupIcons[group.id];
             const pages = productsInGroup(group.id);
             const from = Math.min(...pages.map(lowestPrice).filter(Boolean));
             return (
-              <article key={group.id} className="hs-product">
-                <div className="hs-product__top">
-                  <span className="hs-product__icon"><Icon size={24} /></span>
-                  <span className="hs-product__from">from <strong>{inr(from)}</strong></span>
+              <div key={group.id} className="product-index__row">
+                <div>
+                  <h3>{group.label}</h3>
+                  <p>{group.blurb}</p>
                 </div>
-                <h3>{group.label}</h3>
-                <p>{group.blurb}</p>
-                <ul>
-                  {pages.map((page) => <li key={page.path}><a href={page.path}>{page.breadcrumbLabel} <ArrowRight size={14} /></a></li>)}
-                </ul>
-              </article>
+                <ul>{pages.map((page) => <li key={page.path}><a href={page.path}>{page.breadcrumbLabel}</a></li>)}</ul>
+                <p className="product-index__from num">from <strong>{money(from, region)}</strong></p>
+              </div>
             );
           })}
-          <article className="hs-product hs-product--cta">
-            <span className="hs-product__icon"><MessageSquare size={24} /></span>
-            <h3>Not sure what you need?</h3>
-            <p>Tell us about your business and our team will recommend the right domain, hosting and website setup — free.</p>
-            <a href="/contact">Talk to an expert <ArrowRight size={16} /></a>
-          </article>
         </div>
       </div>
     </section>
   );
 }
 
-const builder = productPages['product:website-builder'];
-const design = productPages['product:website-design'];
-
-export function WebsiteOptions() {
-  return (
-    <section className="hs-section hs-section--tint">
-      <div className="hs-wrap">
-        <div className="hs-heading">
-          <span>WEBSITES</span>
-          <h2>Get a website your way</h2>
-          <p>Build it yourself in an afternoon, or let our designers create a site that wins customers.</p>
-        </div>
-        <div className="hs-web">
-          <article>
-            <span className="hs-web__icon"><LayoutTemplate size={26} /></span>
-            <small>DO IT YOURSELF</small>
-            <h3>Website Builder</h3>
-            <p>{builder.summary}</p>
-            <ol>{builder.steps.map(([title]) => <li key={title}>{title}</li>)}</ol>
-            <div className="hs-web__foot"><span>From <strong>{inr(lowestPrice(builder))}</strong>/mo</span><a href={builder.path}>Start building <ArrowRight size={16} /></a></div>
-          </article>
-          <article className="is-dark">
-            <span className="hs-web__icon"><Palette size={26} /></span>
-            <small>DONE FOR YOU</small>
-            <h3>Website Design &amp; Development</h3>
-            <p>{design.summary}</p>
-            <ul>{design.plans.slice(0, 3).map((plan) => <li key={plan.name}><CheckCircle2 size={16} />{plan.name} <em>{plan.tag}</em></li>)}</ul>
-            <div className="hs-web__foot"><span>From <strong>{inr(lowestPrice(design))}</strong> one-time</span><a href={design.path}>View packages <ArrowRight size={16} /></a></div>
-          </article>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const promises = [
-  { icon: Clock3, title: '99.9% uptime', text: 'Monitored infrastructure in Tier-III data centres.' },
-  { icon: Headphones, title: '24/7 support', text: 'Real engineers by ticket and email, any time of day.' },
-  { icon: RotateCcw, title: '30-day money-back', text: 'Not happy with your hosting? Get a refund within 30 days.' },
-  { icon: ShieldCheck, title: 'Free SSL & migration', text: 'We move your site and email and secure it with HTTPS.' },
+const hostingTabs = [
+  ['product:web-hosting', 'Web hosting'],
+  ['product:wordpress-hosting', 'WordPress'],
+  ['product:vps-hosting', 'Cloud VPS'],
+  ['product:business-email', 'Business email'],
 ];
 
-const homeFaqs = [
-  ['What do I need to start a website?', 'Three things: a domain name (your address, e.g. yourbusiness.in), web hosting (where the site files live) and the website itself — built with our Website Builder, WordPress, or by our design team.'],
-  ['Which hosting is right for me?', 'Most small business websites start on Linux Web Hosting. Choose WordPress Hosting for WordPress sites, Cloud Hosting for high traffic, and a VPS or dedicated server for custom applications that need root access.'],
-  ['Can you move my existing website to Zexton?', 'Yes. Website, database and email migration is free on hosting plans. Our team copies everything and checks it before you switch DNS, so there is no downtime.'],
-  ['Are prices inclusive of GST?', 'Prices shown are exclusive of 18% GST. GST invoices are issued for every order so registered businesses can claim input credit.'],
-];
-
-export function SupportBand() {
+export function HostingPricing() {
+  const [active, setActive] = useState(hostingTabs[0][0]);
   return (
-    <section className="hs-section">
-      <div className="hs-wrap">
-        <div className="hs-promises">
-          {promises.map(({ icon: Icon, title, text }) => (
-            <div key={title}><Icon size={26} /><strong>{title}</strong><p>{text}</p></div>
+    <section className="section section--surface" id="hosting">
+      <div className="wrap">
+        <div className="section-head">
+          <div><span className="kicker">Pricing</span><h2 className="h2">Simple plans. No surprises at checkout.</h2></div>
+          <a className="text-link" href={productPages[active].path}>All {productPages[active].breadcrumbLabel} details <ArrowRight size={15} /></a>
+        </div>
+        <div className="tabs" role="tablist" aria-label="Hosting products">
+          {hostingTabs.map(([route, label]) => (
+            <button key={route} type="button" role="tab" aria-selected={active === route} className={active === route ? 'is-active' : ''} onClick={() => setActive(route)}>{label}</button>
           ))}
         </div>
-        <div className="hs-help">
-          <div>
-            <span className="hs-help__label">NEED HELP?</span>
-            <h2>Answers to common questions</h2>
-            <p>New to domains and hosting? Start here, or talk to our team.</p>
-            <div className="hs-help__actions">
-              <a href="/support"><LifeBuoy size={18} /> Visit Help Center</a>
-              <a href="mailto:info@zexton.com"><Mail size={18} /> info@zexton.com</a>
-            </div>
-          </div>
-          <div className="hs-help__faq">
-            {homeFaqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}
-          </div>
+        <div role="tabpanel"><PlanTable key={active} route={active} /></div>
+      </div>
+    </section>
+  );
+}
+
+const numbers = [
+  ['99.9%', 'Uptime SLA', 'Service credits if we miss it.'],
+  ['24/7', 'Human support', 'Engineers, not scripts, by ticket and email.'],
+  ['30 days', 'Money-back', 'On all shared and cloud hosting plans.'],
+  ['Free', 'Migration', 'We move your site and email with zero downtime.'],
+];
+
+export function Numbers() {
+  return (
+    <section className="section">
+      <div className="wrap numbers">
+        {numbers.map(([value, label, text]) => (
+          <div key={label}><strong className="num">{value}</strong><span>{label}</span><p>{text}</p></div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const websiteRoutes = ['product:website-builder', 'product:website-design', 'product:ecommerce-website'];
+
+export function Websites() {
+  const region = useRegion();
+  return (
+    <section className="section">
+      <div className="wrap split">
+        <div>
+          <span className="kicker">Websites</span>
+          <h2 className="h2">Build it yourself, or let us build it for you.</h2>
+          <p className="lead">Launch in an afternoon with the website builder, or work with our designers on a site that’s fast, mobile-first and ready for Google.</p>
+        </div>
+        <ul className="link-rows">
+          {websiteRoutes.map((route) => {
+            const page = productPages[route];
+            const cheapest = page.plans.find((plan) => plan.price === lowestPrice(page));
+            return (
+              <li key={route}>
+                <a href={page.path}>
+                  <span><strong>{page.breadcrumbLabel}</strong><small>{page.navDesc}</small></span>
+                  <span className="num">from {money(lowestPrice(page), region)}{cheapest.unit}</span>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export function Engineering() {
+  return (
+    <section className="section section--surface">
+      <div className="wrap split">
+        <div>
+          <span className="kicker">Engineering services</span>
+          <h2 className="h2">When you need more than hosting.</h2>
+          <p className="lead">The same team builds custom software, mobile apps and AI automation, and manages servers for businesses without an IT department.</p>
+        </div>
+        <ul className="link-rows">
+          {extraServiceLinks.map(([route, label]) => (
+            <li key={route}>
+              <a href={routeMetadata[route].path}>
+                <span><strong>{label}</strong><small>{routeMetadata[route].summary.split('. ')[0]}.</small></span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+const homeFaqs = [
+  ['What do I need to start a website?', 'Three things: a domain name (your address, e.g. yourbusiness.com), web hosting (where the site files live) and the website itself — built with our Website Builder, WordPress, or by our design team.'],
+  ['Which hosting is right for me?', 'Most small business websites start on Linux Web Hosting. Choose WordPress Hosting for WordPress sites, Cloud Hosting for high traffic, and a VPS or dedicated server for custom applications that need root access.'],
+  ['Can you move my existing website to Zexton?', 'Yes. Website, database and email migration is free on hosting plans. Our team copies everything and checks it before you switch DNS, so there is no downtime.'],
+  ['Which currency will I be billed in?', 'Prices are shown in your local currency based on your location — INR in India, USD in the US, and GBP, EUR or AED in those regions. You can change the currency from the selector at the top of the page.'],
+  ['Are taxes included?', 'Prices exclude taxes. In India 18% GST is added at checkout and a GST invoice is issued for every order.'],
+];
+
+export function HomeFaq() {
+  return (
+    <section className="section">
+      <div className="wrap split">
+        <div>
+          <span className="kicker">FAQ</span>
+          <h2 className="h2">Questions, answered</h2>
+          <p className="lead">More answers in the <a className="text-link" href="/support">help center</a>, or <a className="text-link" href="/contact">talk to our team</a>.</p>
+        </div>
+        <div className="faq-list">{homeFaqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+      </div>
+    </section>
+  );
+}
+
+export function ClosingCta() {
+  return (
+    <section className="section section--surface">
+      <div className="wrap closing-cta">
+        <h2 className="h2">Get your business online today.</h2>
+        <div>
+          <a className="btn btn--primary btn--lg" href="/domains/domain-registration">Find a domain</a>
+          <a className="btn btn--secondary btn--lg" href="/contact">Talk to sales</a>
         </div>
       </div>
     </section>

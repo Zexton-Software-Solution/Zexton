@@ -1,10 +1,10 @@
 .insight-article-page {
   --article-navy: #0a1633;
-  --article-blue: #225cff;
+  --article-blue: var(--brand);
   --article-soft-blue: #eef3ff;
   --article-line: #dce4f2;
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--surface);
   color: #14203a;
 }
 
@@ -39,9 +39,8 @@
 .insight-article__hero {
   padding: clamp(142px, 16vw, 190px) clamp(24px, 5vw, 80px) clamp(66px, 8vw, 100px);
   background:
-    radial-gradient(circle at 85% 22%, rgba(34, 92, 255, .11), transparent 27%),
     radial-gradient(circle at 12% 88%, rgba(116, 86, 255, .08), transparent 25%),
-    #f8fafc;
+    var(--surface);
 }
 
 .insight-article__hero-inner {
@@ -352,7 +351,7 @@
   padding: 25px 28px 25px 48px;
   border-left: 3px solid var(--article-blue);
   border-radius: 0 14px 14px 0;
-  background: #f6f8fc;
+  background: var(--surface);
   color: #35435e;
   font-size: 16px;
   line-height: 1.65;
@@ -561,7 +560,6 @@
   padding: clamp(74px, 9vw, 112px) clamp(24px, 7vw, 112px);
   background:
     radial-gradient(circle at 86% 12%, rgba(100, 124, 255, .48), transparent 28%),
-    radial-gradient(circle at 10% 100%, rgba(240, 74, 145, .24), transparent 28%),
     #0c1428;
   color: #fff;
 }

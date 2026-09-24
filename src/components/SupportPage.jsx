@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Cpu, Globe, Lock, Mail, MessageSquare, Receipt, Search, Server } from 'lucide-react';
+import { Cpu, Globe, Lock, Mail, MessageSquare, Receipt, Search, Server } from 'lucide-react';
 import { routeMetadata } from '../siteMetadata';
 import Seo from './Seo';
 import './SupportPage.css';
@@ -53,42 +53,44 @@ export default function SupportPage() {
     <main className="support-page">
       <Seo {...metadata} type={metadata.schemaType} breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Support', path: '/support' }]} />
       <header className="sp-hero">
-        <div className="sp-wrap">
-          <span>{metadata.eyebrow}</span>
+        <div className="wrap">
+          <span className="kicker">Help Center</span>
           <h1>{metadata.heading}</h1>
           <p>{metadata.summary}</p>
           <label className="sp-search">
-            <Search size={20} />
+            <Search size={18} aria-hidden="true" />
             <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search help articles, e.g. SMTP, WordPress, transfer" aria-label="Search help articles" />
           </label>
         </div>
       </header>
 
-      <div className="sp-wrap sp-body">
-        <div className="sp-cats">
+      <div className="wrap sp-body">
+        <nav className="sp-cats" aria-label="Help topics">
           <button type="button" className={active === 'all' ? 'is-active' : ''} onClick={() => setActive('all')}>All topics</button>
           {knowledgeBase.map(({ id, label, icon: Icon }) => (
-            <button key={id} type="button" className={active === id ? 'is-active' : ''} onClick={() => setActive(id)}><Icon size={16} /> {label}</button>
+            <button key={id} type="button" className={active === id ? 'is-active' : ''} onClick={() => setActive(id)}><Icon size={16} aria-hidden="true" /> {label}</button>
           ))}
-        </div>
+        </nav>
 
-        {sections.length ? sections.map(({ id, label, icon: Icon, articles }) => (
-          <section key={id} className="sp-section">
-            <h2><Icon size={22} /> {label}</h2>
-            <div>{articles.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+        <div>
+          {sections.length ? sections.map(({ id, label, articles }) => (
+            <section key={id} className="sp-section">
+              <h2>{label}</h2>
+              <div className="faq-list">{articles.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+            </section>
+          )) : <p className="sp-empty">No articles match “{query}”. Our team can help — raise a ticket below.</p>}
+
+          <section className="sp-contact">
+            <div>
+              <h2>Still need help?</h2>
+              <p>Raise a ticket and a Zexton engineer will respond. Include your domain name and a screenshot of any error.</p>
+            </div>
+            <div className="sp-contact__actions">
+              <a className="btn btn--primary" href="/contact"><MessageSquare size={16} aria-hidden="true" /> Raise a ticket</a>
+              <a className="btn btn--secondary" href="mailto:info@zexton.com"><Mail size={16} aria-hidden="true" /> Email support</a>
+            </div>
           </section>
-        )) : <p className="sp-empty">No articles match “{query}”. Our team can help — raise a ticket below.</p>}
-
-        <section className="sp-contact">
-          <div>
-            <h2>Still need help?</h2>
-            <p>Raise a ticket and a Zexton engineer will respond. Include your domain name and a screenshot of any error to speed things up.</p>
-          </div>
-          <div className="sp-contact__actions">
-            <a href="/contact"><MessageSquare size={18} /> Raise a ticket <ArrowRight size={16} /></a>
-            <a href="mailto:info@zexton.com"><Mail size={18} /> info@zexton.com</a>
-          </div>
-        </section>
+        </div>
       </div>
     </main>
   );

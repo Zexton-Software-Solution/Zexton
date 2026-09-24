@@ -1,125 +1,77 @@
-import { ArrowRight, Check, CheckCircle2, Headphones, Minus, ShieldCheck, Sparkles, Zap } from 'lucide-react';
-import { inr, lowestPrice, planComparisons, productGroups, productPages, tlds } from '../productPagesData';
+import { ArrowRight, Check } from 'lucide-react';
+import { lowestPrice, productGroups, productPages, tlds } from '../productPagesData';
+import { localize, money, useRegion } from '../region';
 import { routeMetadata } from '../siteMetadata';
-import DomainSearchBanner from './DomainSearchBanner';
-import { productIcons } from './productIcons';
+import DomainSearch from './DomainSearch';
+import PlanTable from './PlanTable';
 import Seo from './Seo';
 import './ProductPage.css';
 
-const cell = (value) => (value === true ? <Check size={18} aria-label="Included" className="pp-yes" /> : value === false ? <Minus size={18} aria-label="Not included" className="pp-no" /> : value);
-
-const orderUrl = (page, plan) => `/contact?service=${page.group}&plan=${encodeURIComponent(`${page.breadcrumbLabel} – ${plan}`)}`;
-
 export default function ProductPage({ route }) {
+  const region = useRegion();
   const page = productPages[route];
   const metadata = routeMetadata[route];
   if (!page || !metadata) return null;
 
-  const compare = planComparisons[route];
   const group = productGroups.find((item) => item.id === page.group);
-  const Icon = productIcons[page.icon] || Zap;
   const from = lowestPrice(page);
   const unit = page.priceUnit || page.plans?.find((plan) => plan.price === from)?.unit || '';
-  const breadcrumbs = [
-    { name: 'Home', path: '/' },
-    { name: page.breadcrumbLabel, path: page.path },
-  ];
+  const breadcrumbs = [{ name: 'Home', path: '/' }, { name: page.breadcrumbLabel, path: page.path }];
 
   return (
     <main className="product-page">
       <Seo {...metadata} type={metadata.schemaType} breadcrumbs={breadcrumbs} items={metadata.schemaItems} />
 
       <header className="pp-hero">
-        <div className="pp-wrap pp-hero__grid">
+        <div className="wrap pp-hero__grid">
           <div>
             <nav className="pp-crumbs" aria-label="Breadcrumb">
               <ol><li><a href="/">Home</a></li><li>{group?.label || page.groupLabel}</li><li aria-current="page">{page.breadcrumbLabel}</li></ol>
             </nav>
-            <span className="pp-eyebrow"><Icon size={15} /> {page.eyebrow}</span>
             <h1>{page.heading}</h1>
             <p className="pp-hero__summary">{page.summary}</p>
-            <div className="pp-hero__price">
-              {from === 0 ? <strong>{page.freeLabel || 'Free'}</strong> : <>Starting at <strong>{inr(from)}</strong><span>{unit}</span></>}
-            </div>
-            <div className="pp-hero__actions">
-              <a className="pp-btn pp-btn--primary" href={page.plans ? '#plans' : page.showDomainSearch ? '#domain-search' : '/contact'}>
-                {page.plans ? 'View plans' : 'Get started'} <ArrowRight size={18} />
-              </a>
-              <a className="pp-btn pp-btn--ghost" href="/contact">Talk to an expert</a>
-            </div>
-            <ul className="pp-hero__trust">
-              <li><ShieldCheck size={16} /> Secure & reliable</li>
-              <li><Headphones size={16} /> 24/7 expert support</li>
-              <li><Zap size={16} /> Quick setup</li>
-            </ul>
+            {page.showDomainSearch ? <DomainSearch id="domain-search" /> : (
+              <>
+                <p className="pp-hero__price num">
+                  {from === 0 ? <strong>{page.freeLabel || 'Free'}</strong> : <>From <strong>{money(from, region)}</strong>{unit}</>}
+                </p>
+                <div className="pp-hero__actions">
+                  <a className="btn btn--primary btn--lg" href={page.plans ? '#plans' : '/contact'}>{page.plans ? 'See plans' : 'Get started'}</a>
+                  <a className="btn btn--secondary btn--lg" href="/contact">Talk to sales</a>
+                </div>
+              </>
+            )}
           </div>
-          <aside className="pp-hero__card" aria-label="Key features">
-            <span>WHAT YOU GET</span>
-            <ul>{page.features.slice(0, 5).map(([title]) => <li key={title}><CheckCircle2 size={18} />{title}</li>)}</ul>
+          <aside className="pp-glance" aria-label="At a glance">
+            <p>At a glance</p>
+            <ul>{page.features.slice(0, 5).map(([title]) => <li key={title}><Check size={16} aria-hidden="true" />{title}</li>)}</ul>
           </aside>
         </div>
       </header>
 
-      {page.showDomainSearch && <div id="domain-search"><DomainSearchBanner /></div>}
-
       {page.plans && (
-        <section id="plans" className="pp-section">
-          <div className="pp-wrap">
-            <div className="pp-heading">
-              <span className="pp-label">PLANS & PRICING</span>
-              <h2>{page.plansHeading || `Choose your ${page.breadcrumbLabel} plan`}</h2>
-              <p>{page.plansNote || 'All prices in INR, exclusive of 18% GST. Upgrade or change plans anytime.'}</p>
-            </div>
-            <div className={`pp-plans pp-plans--${Math.min(page.plans.length, 4)}`}>
-              {page.plans.map((plan) => (
-                <article key={plan.name} className={`pp-plan ${plan.popular ? 'is-popular' : ''}`}>
-                  {plan.popular && <span className="pp-plan__ribbon"><Sparkles size={13} /> MOST POPULAR</span>}
-                  <span className="pp-plan__tag">{plan.tag}</span>
-                  <h3>{plan.name}</h3>
-                  <div className="pp-plan__price"><strong>{plan.priceText || inr(plan.price)}</strong><span>{plan.unit}</span></div>
-                  <small>{plan.note || ' '}</small>
-                  <a className="pp-btn pp-btn--block" href={orderUrl(page, plan.name)}>{page.planCta || 'Buy now'} <ArrowRight size={16} /></a>
-                  <ul>{plan.features.map((feature) => <li key={feature}><Check size={16} />{feature}</li>)}</ul>
-                </article>
-              ))}
-            </div>
-            {compare && (
-              <div className="pp-compare">
-                <h3>Compare plans</h3>
-                <div className="pp-table-wrap">
-                  <table className="pp-table pp-table--compare">
-                    <thead><tr><th>Feature</th>{page.plans.map((plan) => <th key={plan.name}>{plan.name}</th>)}</tr></thead>
-                    <tbody>
-                      <tr><td>Price</td>{page.plans.map((plan) => <td key={plan.name}><strong>{plan.priceText || inr(plan.price)}</strong>{plan.unit}</td>)}</tr>
-                      {compare.map(([feature, ...values]) => <tr key={feature}><td>{feature}</td>{values.map((value, index) => <td key={page.plans[index].name}>{cell(value)}</td>)}</tr>)}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
+        <section id="plans" className="section">
+          <div className="wrap">
+            <div className="section-head"><div><span className="kicker">Pricing</span><h2 className="h2">{page.plansHeading || 'Plans and pricing'}</h2></div></div>
+            <PlanTable route={route} />
           </div>
         </section>
       )}
 
       {page.showTldTable && (
-        <section className="pp-section pp-section--tint">
-          <div className="pp-wrap">
-            <div className="pp-heading">
-              <span className="pp-label">DOMAIN PRICING</span>
-              <h2>Popular domain extensions</h2>
-              <p>First-year price and renewal price per year, exclusive of GST.</p>
-            </div>
-            <div className="pp-table-wrap">
-              <table className="pp-table">
-                <thead><tr><th>Extension</th><th>Register</th><th>Renew</th><th>Best for</th><th /></tr></thead>
+        <section className="section section--surface">
+          <div className="wrap">
+            <div className="section-head"><div><span className="kicker">Domain pricing</span><h2 className="h2">Popular extensions</h2><p className="lead">First-year and renewal prices per year. {region.tax}</p></div></div>
+            <div className="pp-table">
+              <table className="num">
+                <thead><tr><th scope="col">Extension</th><th scope="col">Register</th><th scope="col">Renew</th><th scope="col">Best for</th></tr></thead>
                 <tbody>
                   {tlds.map((tld) => (
                     <tr key={tld.ext}>
-                      <td><strong>{tld.ext}</strong></td>
-                      <td>{inr(tld.price)}/yr</td>
-                      <td>{inr(tld.renew)}/yr</td>
-                      <td><span className="pp-chip">{tld.tag}</span></td>
-                      <td><a href="#domain-search">Search <ArrowRight size={14} /></a></td>
+                      <th scope="row">{tld.ext}</th>
+                      <td>{money(tld.price, region)}/yr</td>
+                      <td>{money(tld.renew, region)}/yr</td>
+                      <td>{tld.tag.charAt(0) + tld.tag.slice(1).toLowerCase()}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -129,51 +81,53 @@ export default function ProductPage({ route }) {
         </section>
       )}
 
-      <section className="pp-section">
-        <div className="pp-wrap">
-          <div className="pp-heading">
-            <span className="pp-label">FEATURES</span>
-            <h2>Everything included with {page.breadcrumbLabel}</h2>
-          </div>
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head"><div><span className="kicker">Features</span><h2 className="h2">What’s included</h2></div></div>
           <div className="pp-features">
-            {page.features.map(([title, text]) => (
-              <article key={title}><span><Check size={18} /></span><h3>{title}</h3><p>{text}</p></article>
-            ))}
+            {page.features.map(([title, text]) => <div key={title}><h3>{title}</h3><p>{localize(text, region)}</p></div>)}
           </div>
         </div>
       </section>
 
       {page.specs && (
-        <section className="pp-section pp-section--tint">
-          <div className="pp-wrap pp-specs">
-            <div className="pp-heading"><span className="pp-label">TECHNICAL SPECIFICATIONS</span><h2>Under the hood</h2></div>
-            <dl>{page.specs.map(([term, value]) => <div key={term}><dt>{term}</dt><dd>{value}</dd></div>)}</dl>
+        <section className="section section--surface">
+          <div className="wrap pp-split">
+            <div><span className="kicker">Specifications</span><h2 className="h2">Technical details</h2></div>
+            <dl className="pp-specs">{page.specs.map(([term, value]) => <div key={term}><dt>{term}</dt><dd>{value}</dd></div>)}</dl>
           </div>
         </section>
       )}
 
       {page.steps && (
-        <section className="pp-section">
-          <div className="pp-wrap">
-            <div className="pp-heading"><span className="pp-label">HOW IT WORKS</span><h2>Up and running in {page.steps.length} simple steps</h2></div>
+        <section className="section">
+          <div className="wrap">
+            <div className="section-head"><div><span className="kicker">How it works</span><h2 className="h2">Up and running in {page.steps.length} steps</h2></div></div>
             <ol className="pp-steps">
-              {page.steps.map(([title, text], index) => <li key={title}><span>{index + 1}</span><h3>{title}</h3><p>{text}</p></li>)}
+              {page.steps.map(([title, text], index) => <li key={title}><span className="num">{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></li>)}
             </ol>
           </div>
         </section>
       )}
 
-      <section className="pp-section pp-section--tint">
-        <div className="pp-wrap pp-faq">
-          <div className="pp-heading"><span className="pp-label">FAQ</span><h2>Frequently asked questions</h2><p>Can’t find your answer? <a href="/support">Visit the help center</a> or <a href="/contact">contact us</a>.</p></div>
-          <div>{page.faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+      <section className="section">
+        <div className="wrap pp-split">
+          <div>
+            <span className="kicker">FAQ</span>
+            <h2 className="h2">Questions, answered</h2>
+            <p className="lead">Can’t find what you need? <a className="text-link" href="/support">Visit the help center</a></p>
+          </div>
+          <div className="faq-list">{page.faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{localize(answer, region)}</p></details>)}</div>
         </div>
       </section>
 
-      <section className="pp-cta">
-        <div className="pp-wrap">
-          <div><h2>Need help choosing?</h2><p>Our specialists will recommend the right plan for your website, traffic and budget — no obligation.</p></div>
-          <a className="pp-btn pp-btn--light" href="/contact">Talk to an expert <ArrowRight size={18} /></a>
+      <section className="section section--surface">
+        <div className="wrap pp-cta">
+          <div><h2 className="h2">Not sure which plan fits?</h2><p className="lead">Tell us about your website and traffic. We’ll recommend the right setup — no obligation.</p></div>
+          <div className="pp-hero__actions">
+            <a className="btn btn--primary btn--lg" href="/contact">Talk to sales <ArrowRight size={16} /></a>
+            <a className="btn btn--secondary btn--lg" href="/support">Help center</a>
+          </div>
         </div>
       </section>
     </main>
