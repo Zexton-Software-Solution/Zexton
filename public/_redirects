@@ -13,8 +13,11 @@
 /domains/domain-registration                     /domains/domain-registration/index.html                    200
 /domains/domain-transfer                         /domains/domain-transfer/index.html                        200
 /email/business-email                            /email/business-email/index.html                           200
+/email/email-backup                              /email/email-backup/index.html                             200
+/email/email-security                            /email/email-security/index.html                           200
 /email/google-workspace-microsoft-365            /email/google-workspace-microsoft-365/index.html           200
 /hosting/cloud-hosting                           /hosting/cloud-hosting/index.html                          200
+/hosting/managed-hosting                         /hosting/managed-hosting/index.html                        200
 /hosting/reseller-hosting                        /hosting/reseller-hosting/index.html                       200
 /hosting/web-hosting                             /hosting/web-hosting/index.html                            200
 /hosting/windows-hosting                         /hosting/windows-hosting/index.html                        200

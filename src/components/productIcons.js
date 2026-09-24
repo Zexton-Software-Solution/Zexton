@@ -1,10 +1,10 @@
 import {
-  AppWindow, ArrowRightLeft, BadgePercent, Bot, Handshake, Store, BrainCircuit, FileScan, Sparkles, Briefcase, Cloud, Cpu, DatabaseBackup, EyeOff, Globe, HardDrive, LayoutTemplate,
+  AppWindow, ArchiveRestore, ArrowRightLeft, BadgePercent, MailWarning, Wrench, Bot, Handshake, Store, BrainCircuit, FileScan, Sparkles, Briefcase, Cloud, Cpu, DatabaseBackup, EyeOff, Globe, HardDrive, LayoutTemplate,
   Lock, Mail, Megaphone, Network, Palette, Server, ShieldCheck, ShoppingCart, TrendingUp, Users, Zap,
 } from 'lucide-react';
 
 export const productIcons = {
-  AppWindow, ArrowRightLeft, BadgePercent, Bot, Handshake, Store, BrainCircuit, FileScan, Sparkles, Briefcase, Cloud, Cpu, DatabaseBackup, EyeOff, Globe, HardDrive, LayoutTemplate,
+  AppWindow, ArchiveRestore, ArrowRightLeft, BadgePercent, MailWarning, Wrench, Bot, Handshake, Store, BrainCircuit, FileScan, Sparkles, Briefcase, Cloud, Cpu, DatabaseBackup, EyeOff, Globe, HardDrive, LayoutTemplate,
   Lock, Mail, Megaphone, Network, Palette, Server, ShieldCheck, ShoppingCart, TrendingUp, Users, Zap,
 };
 
