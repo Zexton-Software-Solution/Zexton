@@ -38,6 +38,8 @@ export default function ContactPage() {
           selectedService = 'Business Email, SSL & Security';
         } else if (serviceParam === 'websites') {
           selectedService = 'Business Website or E-Commerce Store';
+        } else if (serviceParam === 'ai') {
+          selectedService = 'AI Automation & Intelligent Agents';
         } else if (serviceParam === 'marketing') {
           selectedService = 'SEO & Digital Marketing';
         } else if (serviceParam === 'domains' || serviceParam === 'domain-hosting') {

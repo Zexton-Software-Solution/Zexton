@@ -64,7 +64,7 @@ export default function ProductPage({ route }) {
           <div className="pp-wrap">
             <div className="pp-heading">
               <span className="pp-label">PLANS & PRICING</span>
-              <h2>Choose the right {page.breadcrumbLabel.toLowerCase()} plan</h2>
+              <h2>Choose your {page.breadcrumbLabel} plan</h2>
               <p>All prices in INR, exclusive of 18% GST. Upgrade or change plans anytime.</p>
             </div>
             <div className={`pp-plans pp-plans--${Math.min(page.plans.length, 4)}`}>

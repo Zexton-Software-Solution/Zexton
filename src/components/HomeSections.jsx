@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Clock3, Headphones, LayoutTemplate, LifeBuoy, Mail, Palette, RotateCcw, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageSquare, Clock3, Headphones, LayoutTemplate, LifeBuoy, Mail, Palette, RotateCcw, ShieldCheck } from 'lucide-react';
 import { inr, lowestPrice, productGroups, productPages, productsInGroup } from '../productPagesData';
 import { groupIcons } from './productIcons';
 import './HomeSections.css';
@@ -31,6 +31,12 @@ export function ProductGrid() {
               </article>
             );
           })}
+          <article className="hs-product hs-product--cta">
+            <span className="hs-product__icon"><MessageSquare size={24} /></span>
+            <h3>Not sure what you need?</h3>
+            <p>Tell us about your business and our team will recommend the right domain, hosting and website setup — free.</p>
+            <a href="/contact">Talk to an expert <ArrowRight size={16} /></a>
+          </article>
         </div>
       </div>
     </section>

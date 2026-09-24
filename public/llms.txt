@@ -8,6 +8,10 @@ This file is an AI-readable map of the canonical public website. Service and edi
 
 - [Home](https://zexton.com/): Register domains, buy fast NVMe web hosting, cloud VPS and dedicated servers, business email, SSL certificates, website design and SEO services from Zexton with 24/7 support.
 - [About](https://zexton.com/about): Learn how Zexton approaches software discovery, UX, architecture, secure engineering, visible delivery, launch, handover, and continued improvement.
+- [AI Chatbot & Customer Support](https://zexton.com/ai/ai-chatbot): AI chatbots for websites and WhatsApp trained on your FAQs, products and documents. Answer customers 24/7, capture leads and hand over to human agents.
+- [AI Content & SEO](https://zexton.com/ai/ai-content-seo): AI-assisted content writing and SEO: blog posts, product descriptions, landing pages and metadata, edited by humans for accuracy, brand voice and rankings.
+- [AI Document Processing & Data Analysis](https://zexton.com/ai/ai-document-processing): AI document processing for invoices, purchase orders, forms and KYC: extract data into ERP, Tally or spreadsheets with validation and human review. Plus AI data analysis.
+- [Custom AI Apps & API Integration](https://zexton.com/ai/custom-ai-development): Custom AI application development: internal AI assistants, AI agents, retrieval over company documents, and LLM API integration with evaluation, security and human oversight.
 - [Capabilities](https://zexton.com/capabilities): Explore product, UX, React, React Native, Node.js, .NET, Python, PostgreSQL, AWS, DevOps, security, data, and applied AI engineering capabilities.
 - [Careers](https://zexton.com/careers): Learn about future product, UX, full-stack, mobile, cloud, quality, and applied AI role areas at Zexton. No active vacancy is implied unless published.
 - [Company](https://zexton.com/company): Explore Zexton’s company direction, engineering values, industry focus, and connected approach to software, AI, cloud, mobile, and enterprise systems.
