@@ -1,5 +1,6 @@
 import { Headphones, Mail, MapPin, ShieldCheck, Zap } from 'lucide-react';
 import { extraServiceLinks, productGroups, productsInGroup } from '../productPagesData';
+import { legalPages } from '../legalPagesData';
 import { routeMetadata } from '../siteMetadata';
 
 const columns = [
@@ -45,7 +46,9 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} Zexton IT Solutions. All rights reserved. Prices exclude GST.</span>
-          <a href="/contact">Talk to sales</a>
+          <nav className="footer__legal" aria-label="Legal">
+            {Object.values(legalPages).map((page) => <a key={page.path} href={page.path}>{page.breadcrumbLabel}</a>)}
+          </nav>
         </div>
       </div>
     </footer>

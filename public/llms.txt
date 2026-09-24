@@ -24,6 +24,12 @@ This file is an AI-readable map of the canonical public website. Service and edi
 - [Windows Hosting](https://zexton.com/hosting/windows-hosting): Windows shared hosting with Plesk, ASP.NET, .NET Core, MSSQL databases, free SSL, business email and 24/7 expert support from Zexton.
 - [WordPress Hosting](https://zexton.com/hosting/wordpress-hosting): Fast managed WordPress hosting with pre-installed WordPress, LiteSpeed cache, automatic updates, staging, free SSL, CDN and WooCommerce-ready plans.
 - [Insights](https://zexton.com/insights): Long-form engineering insights about SaaS architecture, custom software, React Native, cloud modernization, product delivery, and trustworthy AI systems.
+- [Acceptable Use Policy](https://zexton.com/legal/acceptable-use-policy): Rules for acceptable use of Zexton hosting, servers, email and network resources, including prohibited content and activities.
+- [Domain Registration Agreement](https://zexton.com/legal/domain-registration-agreement): Terms for registering, renewing and transferring domain names through Zexton, including registrant obligations and dispute policies.
+- [Privacy Policy](https://zexton.com/legal/privacy-policy): How Zexton collects, uses, stores, shares and protects personal information, and your rights under Indian data protection law.
+- [Refund Policy](https://zexton.com/legal/refund-policy): Zexton refund and cancellation policy for hosting, domains, servers, SSL, email, website development and marketing services.
+- [Service Level Agreement](https://zexton.com/legal/service-level-agreement): Zexton service level agreement: 99.9% network and server uptime commitment, support response targets and service credits.
+- [Terms & Conditions](https://zexton.com/legal/terms-and-conditions): Terms and conditions governing the purchase and use of Zexton domains, hosting, servers, email, security, website and IT services.
 - [Digital Marketing](https://zexton.com/marketing/digital-marketing): Digital marketing services: Google Ads, Meta (Facebook & Instagram) ads, LinkedIn ads, social media management, email marketing and conversion tracking.
 - [SEO Services](https://zexton.com/marketing/seo-services): Monthly SEO services for Indian businesses: SEO audit, keyword research, on-page and technical SEO, Google Business Profile, content and link building.
 - [Pricing](https://zexton.com/pricing): Indicative website, e-commerce, SaaS, custom software, and enterprise modernization price ranges in INR, USD, and EUR, plus a project calculator.

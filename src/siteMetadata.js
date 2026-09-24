@@ -1,6 +1,7 @@
 import { insightRouteSlugs } from './insightRoutes.js';
 import { serviceRouteMetadata } from './servicePagesData.js';
 import { productRouteMetadata } from './productPagesData.js';
+import { legalRouteMetadata } from './legalPagesData.js';
 
 export const SITE_URL = 'https://zexton.com';
 export const SITE_NAME = 'Zexton';
@@ -145,6 +146,7 @@ export const routeMetadata = {
   }),
   ...Object.fromEntries(Object.entries(serviceRouteMetadata).map(([route, metadata]) => [route, corePage(metadata)])),
   ...Object.fromEntries(Object.entries(productRouteMetadata).map(([route, metadata]) => [route, corePage(metadata)])),
+  ...Object.fromEntries(Object.entries(legalRouteMetadata).map(([route, metadata]) => [route, corePage(metadata)])),
   support: corePage({
     path: '/support',
     title: 'Help Center & 24/7 Support – Domains, Hosting, Email | Zexton',

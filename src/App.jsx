@@ -16,6 +16,7 @@ import './App.css';
 const CompanyPage = lazy(() => import('./components/CompanyPage'));
 const ContactPage = lazy(() => import('./components/ContactPage'));
 const ContentPage = lazy(() => import('./components/ContentPage'));
+const LegalPage = lazy(() => import('./components/LegalPage'));
 const InsightArticlePage = lazy(() => import('./components/InsightArticlePage'));
 const Insights = lazy(() => import('./components/Insights'));
 const NotFound = lazy(() => import('./components/NotFound'));
@@ -112,6 +113,8 @@ export default function App() {
     content = <Pricing onOpenContact={openContact} />;
   } else if (route.startsWith('product:')) {
     content = <ProductPage route={route} />;
+  } else if (route.startsWith('legal:')) {
+    content = <LegalPage route={route} />;
   } else if (route === 'support') {
     content = <SupportPage />;
   } else if (route.startsWith('service:')) {

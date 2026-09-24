@@ -333,3 +333,7 @@ h1, h2, h3, p { margin: 0; }
 @media (max-width: 640px) {
   .footer__nav--wide { grid-template-columns: 1fr 1fr; gap: 36px 20px; }
 }
+.footer__legal { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.footer__legal a { color: #aab4c3; }
+.footer__legal a:hover { color: #fff; }
+@media (max-width: 860px) { .footer__bottom { flex-direction: column; } }
