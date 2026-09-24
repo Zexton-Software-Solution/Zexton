@@ -11,7 +11,7 @@ const columns = [
   { title: 'Services', links: extraServiceLinks.map(([route, label]) => [routeMetadata[route].path, label]) },
   {
     title: 'Company & Support',
-    links: [['/support', 'Help Center'], ['/contact', 'Contact Us'], ['/about', 'About Zexton'], ['/work', 'Our Work'], ['/pricing', 'Project Pricing'], ['/insights', 'Insights & Guides'], ['/careers', 'Careers']],
+    links: [['/support', 'Help Center'], ['/contact', 'Contact Us'], ['/about', 'About Zexton'], ['/work', 'Our Work'], ['/pricing', 'Project Pricing'], ['/insights', 'Insights & Guides'], ['/careers', 'Careers'], ...productsInGroup('partners').map((page) => [page.path, page.breadcrumbLabel])],
   },
 ];
 

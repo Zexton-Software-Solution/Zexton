@@ -5,6 +5,8 @@ import { routeMetadata } from '../siteMetadata';
 import { productIcons } from './productIcons';
 import './Navbar.css';
 
+const programLinks = productsInGroup('partners').map((page) => ({ href: page.path, label: page.breadcrumbLabel, desc: page.navDesc, icon: productIcons[page.icon] }));
+
 const productMenus = productGroups.map((group) => ({
   ...group,
   links: productsInGroup(group.id).map((page) => {
@@ -35,13 +37,14 @@ const menus = [
   {
     id: 'support',
     label: 'Support',
-    blurb: 'Help articles, tickets and people who answer — 24 hours a day.',
+    blurb: 'Help articles, tickets and partner programs — people who answer, 24 hours a day.',
     links: [
       { href: '/support', label: 'Help Center', desc: 'Guides for domains, hosting, email & servers', icon: LifeBuoy },
       { href: '/contact', label: 'Raise a Ticket', desc: 'Technical, billing and sales help', icon: MessageSquare },
       { href: '/pricing', label: 'Project Pricing', desc: 'Website & software cost calculator', icon: Receipt },
       { href: '/insights', label: 'Knowledge & Insights', desc: 'Articles and technology guides', icon: BookOpen },
       { href: '/about', label: 'About Zexton', desc: 'Who we are and how we work', icon: ShieldCheck },
+      ...programLinks,
     ],
   },
 ];

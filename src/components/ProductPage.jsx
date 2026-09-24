@@ -30,13 +30,13 @@ export default function ProductPage({ route }) {
         <div className="pp-wrap pp-hero__grid">
           <div>
             <nav className="pp-crumbs" aria-label="Breadcrumb">
-              <ol><li><a href="/">Home</a></li><li>{group?.label}</li><li aria-current="page">{page.breadcrumbLabel}</li></ol>
+              <ol><li><a href="/">Home</a></li><li>{group?.label || page.groupLabel}</li><li aria-current="page">{page.breadcrumbLabel}</li></ol>
             </nav>
             <span className="pp-eyebrow"><Icon size={15} /> {page.eyebrow}</span>
             <h1>{page.heading}</h1>
             <p className="pp-hero__summary">{page.summary}</p>
             <div className="pp-hero__price">
-              {from === 0 ? <strong>Free with every domain</strong> : <>Starting at <strong>{inr(from)}</strong><span>{unit}</span></>}
+              {from === 0 ? <strong>{page.freeLabel || 'Free'}</strong> : <>Starting at <strong>{inr(from)}</strong><span>{unit}</span></>}
             </div>
             <div className="pp-hero__actions">
               <a className="pp-btn pp-btn--primary" href={page.plans ? '#plans' : page.showDomainSearch ? '#domain-search' : '/contact'}>
@@ -64,8 +64,8 @@ export default function ProductPage({ route }) {
           <div className="pp-wrap">
             <div className="pp-heading">
               <span className="pp-label">PLANS & PRICING</span>
-              <h2>Choose your {page.breadcrumbLabel} plan</h2>
-              <p>All prices in INR, exclusive of 18% GST. Upgrade or change plans anytime.</p>
+              <h2>{page.plansHeading || `Choose your ${page.breadcrumbLabel} plan`}</h2>
+              <p>{page.plansNote || 'All prices in INR, exclusive of 18% GST. Upgrade or change plans anytime.'}</p>
             </div>
             <div className={`pp-plans pp-plans--${Math.min(page.plans.length, 4)}`}>
               {page.plans.map((plan) => (
@@ -73,9 +73,9 @@ export default function ProductPage({ route }) {
                   {plan.popular && <span className="pp-plan__ribbon"><Sparkles size={13} /> MOST POPULAR</span>}
                   <span className="pp-plan__tag">{plan.tag}</span>
                   <h3>{plan.name}</h3>
-                  <div className="pp-plan__price"><strong>{inr(plan.price)}</strong><span>{plan.unit}</span></div>
+                  <div className="pp-plan__price"><strong>{plan.priceText || inr(plan.price)}</strong><span>{plan.unit}</span></div>
                   <small>{plan.note || ' '}</small>
-                  <a className="pp-btn pp-btn--block" href={orderUrl(page, plan.name)}>Buy now <ArrowRight size={16} /></a>
+                  <a className="pp-btn pp-btn--block" href={orderUrl(page, plan.name)}>{page.planCta || 'Buy now'} <ArrowRight size={16} /></a>
                   <ul>{plan.features.map((feature) => <li key={feature}><Check size={16} />{feature}</li>)}</ul>
                 </article>
               ))}

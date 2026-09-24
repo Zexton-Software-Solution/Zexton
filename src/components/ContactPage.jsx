@@ -38,6 +38,8 @@ export default function ContactPage() {
           selectedService = 'Business Email, SSL & Security';
         } else if (serviceParam === 'websites') {
           selectedService = 'Business Website or E-Commerce Store';
+        } else if (serviceParam === 'partners') {
+          selectedService = 'Reseller / Partner Program';
         } else if (serviceParam === 'ai') {
           selectedService = 'AI Automation & Intelligent Agents';
         } else if (serviceParam === 'marketing') {
@@ -129,6 +131,7 @@ export default function ContactPage() {
                 <option>Domain Registration &amp; Transfer</option>
                 <option>Business Email, SSL &amp; Security</option>
                 <option>SEO &amp; Digital Marketing</option>
+                <option>Reseller / Partner Program</option>
                 <option>Custom Software Development</option>
                 <option>SaaS Product Engineering</option>
                 <option>React Native Mobile App</option>
