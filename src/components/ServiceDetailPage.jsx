@@ -2,7 +2,18 @@ import { ArrowRight, Check } from 'lucide-react';
 import { servicePages } from '../servicePagesData';
 import { routeMetadata } from '../siteMetadata';
 import Seo from './Seo';
+import Reveal from './Reveal';
 import './ProductPage.css';
+
+const serviceImages = {
+  'service:web-application-development': '/images/developers-office.webp',
+  'service:custom-software-development': '/images/code-screen.webp',
+  'service:saas-development': '/images/analytics-laptop.webp',
+  'service:mobile-app-development': '/images/mobile-app-design.webp',
+  'service:ai-automation': '/images/code-screen.webp',
+  'service:cloud-modernization': '/images/server-rack.webp',
+  'service:it-support': '/images/server-rack.webp',
+};
 
 export default function ServiceDetailPage({ route }) {
   const page = servicePages[route];
@@ -31,10 +42,13 @@ export default function ServiceDetailPage({ route }) {
               <a className="btn btn--secondary btn--lg" href="/pricing">See pricing</a>
             </div>
           </div>
-          <aside className="pp-glance" aria-label="The challenge">
-            <p>The challenge</p>
-            <div className="pp-glance__text">{page.challenge}</div>
-          </aside>
+          <Reveal className="pp-hero__visual" y={32}>
+            <div className="pp-hero__img"><img className="img-cover" src={serviceImages[route] || '/images/developers-office.webp'} alt="" width="1600" height="1067" fetchPriority="high" /></div>
+            <aside className="pp-glance" aria-label="The challenge">
+              <p>The challenge</p>
+              <div className="pp-glance__text">{page.challenge}</div>
+            </aside>
+          </Reveal>
         </div>
       </header>
 

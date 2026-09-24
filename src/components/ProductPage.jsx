@@ -5,7 +5,20 @@ import { routeMetadata } from '../siteMetadata';
 import DomainSearch from './DomainSearch';
 import PlanTable from './PlanTable';
 import Seo from './Seo';
+import Reveal from './Reveal';
 import './ProductPage.css';
+
+// Local photos (public/images, see CREDITS.md) per product family.
+const groupImages = {
+  domains: '/images/designer-laptop.webp',
+  hosting: '/images/server-rack.webp',
+  servers: '/images/server-rack.webp',
+  'email-security': '/images/designer-laptop.webp',
+  websites: '/images/website-wireframe.webp',
+  marketing: '/images/analytics-laptop.webp',
+  ai: '/images/code-screen.webp',
+  partners: '/images/team-smiling.webp',
+};
 
 export default function ProductPage({ route }) {
   const region = useRegion();
@@ -42,10 +55,13 @@ export default function ProductPage({ route }) {
               </>
             )}
           </div>
-          <aside className="pp-glance" aria-label="At a glance">
-            <p>At a glance</p>
-            <ul>{page.features.slice(0, 5).map(([title]) => <li key={title}><Check size={16} aria-hidden="true" />{title}</li>)}</ul>
-          </aside>
+          <Reveal className="pp-hero__visual" y={32}>
+            <div className="pp-hero__img"><img className="img-cover" src={page.image || groupImages[page.group]} alt="" width="1600" height="1067" fetchPriority="high" /></div>
+            <aside className="pp-glance" aria-label="At a glance">
+              <p>At a glance</p>
+              <ul>{page.features.slice(0, 4).map(([title]) => <li key={title}><Check size={16} aria-hidden="true" />{title}</li>)}</ul>
+            </aside>
+          </Reveal>
         </div>
       </header>
 
@@ -53,7 +69,7 @@ export default function ProductPage({ route }) {
         <section id="plans" className="section">
           <div className="wrap">
             <div className="section-head"><div><span className="kicker">Pricing</span><h2 className="h2">{page.plansHeading || 'Plans and pricing'}</h2></div></div>
-            <PlanTable route={route} />
+            <Reveal><PlanTable route={route} /></Reveal>
           </div>
         </section>
       )}
@@ -85,7 +101,7 @@ export default function ProductPage({ route }) {
         <div className="wrap">
           <div className="section-head"><div><span className="kicker">Features</span><h2 className="h2">What’s included</h2></div></div>
           <div className="pp-features">
-            {page.features.map(([title, text]) => <div key={title}><h3>{title}</h3><p>{localize(text, region)}</p></div>)}
+            {page.features.map(([title, text], index) => <Reveal key={title} delay={(index % 3) * 0.08}><h3>{title}</h3><p>{localize(text, region)}</p></Reveal>)}
           </div>
         </div>
       </section>

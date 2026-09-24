@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <a href="/" aria-label="Zexton home"><img src="/ZextonLogo.png" alt="Zexton" /></a>
+            <a href="/" aria-label="Zexton home"><img src="/zexton-logo.webp" alt="Zexton IT Solutions" width="120" height="56" /></a>
             <p>Domains, hosting, servers, email and websites for growing businesses.</p>
             <a href="mailto:info@zexton.com">info@zexton.com</a>
             <p>Hyderabad, India</p>

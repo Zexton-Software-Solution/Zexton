@@ -67,7 +67,7 @@ export default function Navbar() {
   return (
     <header className="zx-header" onMouseLeave={() => setOpen(null)}>
       <div className="zx-bar wrap">
-        <a href="/" className="zx-logo" aria-label="Zexton home" onClick={close}><img src="/ZextonLogo.png" alt="Zexton" /></a>
+        <a href="/" className="zx-logo" aria-label="Zexton home" onClick={close}><img src="/zexton-logo.webp" alt="Zexton IT Solutions" width="120" height="56" /></a>
 
         <nav className={`zx-nav ${drawer ? 'is-open' : ''}`} aria-label="Primary navigation">
           <ul>

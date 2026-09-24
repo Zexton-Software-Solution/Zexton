@@ -1,8 +1,8 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import { ClosingCta, Engineering, HomeFaq, HostingPricing, Numbers, ProductIndex, Websites } from './components/HomeSections';
+import { ClosingCta, HomeFaq, Hosting, Numbers, Process, ProductIndex, Services, TechStrip, WebsitePackages } from './components/HomeSections';
 import Footer from './components/Footer';
 import RelatedRoutes from './components/RelatedRoutes';
 import RouteLoader from './components/RouteLoader';
@@ -137,11 +137,13 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
-          <ProductIndex />
-          <HostingPricing />
+          <TechStrip />
+          <Services />
+          <Process />
+          <WebsitePackages />
           <Numbers />
-          <Websites />
-          <Engineering />
+          <Hosting />
+          <ProductIndex />
           <Suspense fallback={null}>
             <HomeGuides />
           </Suspense>
@@ -164,9 +166,9 @@ export default function App() {
   }
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <AnimatePresence>{routeLoading && <RouteLoader key="route-loader" />}</AnimatePresence>
       {page}
-    </>
+    </MotionConfig>
   );
 }

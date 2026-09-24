@@ -172,7 +172,7 @@ export default function Pricing({ onOpenContact }) {
       </div>
 
       {activeTab === 'hosting' ? (
-        <HostingPricing />
+        <section className="section"><div className="wrap"><span className="kicker">Hosting</span><h2 className="h2" style={{ marginBottom: 32 }}>Hosting plans</h2><HostingPricing /></div></section>
       ) : (
         <section id="pricing-stack" className="pricing-stack-section">
           <div className="container" style={{ marginBottom: '32px', textAlign: 'center' }}>
