@@ -4,7 +4,6 @@ import { extraServiceLinks, lowestPrice, productGroups, productsInGroup } from '
 import { money, useRegion } from '../region';
 import { routeMetadata } from '../siteMetadata';
 import { productIcons } from './productIcons';
-import RegionSelect from './RegionSelect';
 import './Navbar.css';
 
 const programLinks = productsInGroup('partners').map((page) => ({ href: page.path, label: page.breadcrumbLabel, desc: page.navDesc, icon: productIcons[page.icon] }));
@@ -99,13 +98,11 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="zx-nav__mobile-actions">
-            <RegionSelect />
             <a className="btn btn--primary btn--lg btn--block" href="/contact" onClick={close}>Get started</a>
           </div>
         </nav>
 
         <div className="zx-actions">
-          <RegionSelect />
           <a className="zx-actions__link" href="/contact">Contact sales</a>
           <a className="btn btn--primary" href="/contact">Get started</a>
         </div>

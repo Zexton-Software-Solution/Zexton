@@ -17,8 +17,6 @@ const initialForm = {
   consent: false,
 };
 
-const mapUrl = 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3807.2884602058784!2d78.484668!3d17.397939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDIzJzUyLjYiTiA3OMKwMjknMDQuOCJF!5e0!3m2!1sen!2sin!4v1785604456946!5m2!1sen!2sin';
-
 export default function ContactPage() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ type: 'idle', message: '' });
@@ -101,7 +99,7 @@ export default function ContactPage() {
         </div>
         <div className="contact-hero__details" aria-label="Contact details">
           <a href="mailto:info@zexton.com"><Mail size={18} /><span><small>EMAIL</small>info@zexton.com</span></a>
-          <div><MapPin size={18} /><span><small>LOCATION</small>Hyderabad, India · Serving Worldwide</span></div>
+          <div><MapPin size={18} /><span><small>LOCATION</small>United States · Serving Nationwide</span></div>
           <div><Clock3 size={18} /><span><small>RESPONSE TIME</small>Usually within 1–2 hours</span></div>
         </div>
       </header>
@@ -110,7 +108,7 @@ export default function ContactPage() {
         <div className="contact-workspace__copy">
           <span className="eyebrow">GET IN TOUCH</span>
           <h2 id="contact-form-title">Start Your Project or Hosting Plan.</h2>
-          <p>Share your goals with our team. We provide transparent upfront quotes with zero hidden fees and no long sales cycles.</p>
+          <p>Share your goals with our team. We provide transparent upfront quotes in USD with zero hidden fees and no long sales cycles.</p>
           <ul>
             <li><CheckCircle2 size={17} /> Direct response from real technical engineers</li>
             <li><CheckCircle2 size={17} /> Free website migration and 1-click hosting setup</li>
@@ -123,7 +121,7 @@ export default function ContactPage() {
             <label>Full name *<input name="name" value={form.name} onChange={updateField} autoComplete="name" maxLength={80} required placeholder="Your name" /></label>
             <label>Work email *<input name="email" type="email" value={form.email} onChange={updateField} autoComplete="email" maxLength={160} required placeholder="you@company.com" /></label>
             <label>Company<input name="company" value={form.company} onChange={updateField} autoComplete="organization" maxLength={120} placeholder="Company or business name" /></label>
-            <label>Phone / WhatsApp<input name="phone" type="tel" value={form.phone} onChange={updateField} autoComplete="tel" maxLength={30} placeholder="+91 9876543210" /></label>
+            <label>Phone number<input name="phone" type="tel" value={form.phone} onChange={updateField} autoComplete="tel" maxLength={30} placeholder="(555) 000-0000" /></label>
             <label>Service required *
               <select name="service" value={form.service} onChange={updateField} required>
                 <option>Web Hosting &amp; Cloud Servers</option>
@@ -142,11 +140,11 @@ export default function ContactPage() {
             <label>Indicative budget
               <select name="budget" value={form.budget} onChange={updateField}>
                 <option>Not decided yet</option>
-                <option>Under ₹10,000 (Hosting / Email)</option>
-                <option>₹10,000 – ₹49,000 (Starter Website)</option>
-                <option>₹49,000 – ₹1,50,000 (Growth Web / Store)</option>
-                <option>₹1,50,000 – ₹5,00,000 (Custom MVP / Software)</option>
-                <option>₹5,00,000+ (Enterprise / SaaS)</option>
+                <option>Under $500 (Hosting / Domain / Setup)</option>
+                <option>$500 – $1,500 (Starter Website)</option>
+                <option>$1,500 – $5,000 (Growth Web / Store)</option>
+                <option>$5,000 – $15,000 (Custom MVP / Software)</option>
+                <option>$15,000+ (Enterprise / SaaS)</option>
               </select>
             </label>
             <label>Preferred timeline
@@ -171,13 +169,6 @@ export default function ContactPage() {
             <p className={`contact-form__status is-${status.type}`} aria-live="polite">{status.message}</p>
           </div>
         </form>
-      </section>
-
-      <section className="contact-location" aria-labelledby="location-title">
-        <div><span className="eyebrow">OUR LOCATION</span><h2 id="location-title">Based in Hyderabad.<br />Serving Clients Worldwide.</h2><p>We work seamlessly with clients across India, North America, Europe, and the Middle East.</p></div>
-        <div className="contact-location__map">
-          <iframe src={mapUrl} width="600" height="450" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" title="Zexton location in Hyderabad, India" />
-        </div>
       </section>
     </main>
   );

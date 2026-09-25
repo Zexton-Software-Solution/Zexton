@@ -210,14 +210,14 @@ export const routeMetadata = {
   pricing: corePage({
     path: '/pricing',
     title: 'Website, SaaS & Custom Software Development Pricing | Zexton',
-    description: 'Indicative website, e-commerce, SaaS, custom software, and enterprise modernization price ranges in INR, USD, and EUR, plus a project calculator.',
+    description: 'Indicative website, e-commerce, SaaS, custom software, and enterprise modernization price ranges in USD, plus an interactive project calculator.',
     eyebrow: 'SOFTWARE DEVELOPMENT PRICING',
     heading: 'Transparent planning ranges for websites and software',
     summary: 'Compare indicative packages and use the project calculator to form a starting range. Final proposals depend on verified scope, risk, integrations, and delivery needs.',
     breadcrumbLabel: 'Pricing',
     schemaType: 'WebPage',
-    searchIntent: 'software development pricing India',
-    topics: ['software development cost India', 'website development pricing', 'SaaS development cost', 'custom software estimate', 'software project cost calculator'],
+    searchIntent: 'software development pricing',
+    topics: ['software development cost', 'website development pricing', 'SaaS development cost', 'custom software estimate', 'software project cost calculator'],
     relatedRoutes: ['services', 'resources', 'capabilities', 'contact'],
     crawlSections: [
       { title: 'Planning ranges, not instant quotations', text: 'Complexity, content readiness, integrations, compliance, migration, quality, and delivery speed affect the final software project estimate.' },

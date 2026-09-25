@@ -1,8 +1,6 @@
 import { extraServiceLinks, productGroups, productsInGroup } from '../productPagesData';
 import { legalPages } from '../legalPagesData';
-import { useRegion } from '../region';
 import { routeMetadata } from '../siteMetadata';
-import RegionSelect from './RegionSelect';
 import './Footer.css';
 
 const columns = [
@@ -18,7 +16,6 @@ const columns = [
 ];
 
 export default function Footer() {
-  const region = useRegion();
   return (
     <footer className="site-footer">
       <div className="wrap">
@@ -27,7 +24,7 @@ export default function Footer() {
             <a href="/" aria-label="Zexton home"><img src="/zexton-logo.webp" alt="Zexton IT Solutions" width="120" height="56" /></a>
             <p>Domains, hosting, servers, email and websites for growing businesses.</p>
             <a href="mailto:info@zexton.com">info@zexton.com</a>
-            <p>Hyderabad, India</p>
+            <p>Serving businesses across the United States.</p>
           </div>
           <nav className="site-footer__nav" aria-label="Footer">
             {columns.map((column) => (
@@ -39,9 +36,8 @@ export default function Footer() {
           </nav>
         </div>
         <div className="site-footer__bottom">
-          <span>© {new Date().getFullYear()} Zexton IT Solutions. {region.tax}</span>
+          <span>© {new Date().getFullYear()} Zexton. Prices in USD. Taxes applicable at checkout.</span>
           <nav aria-label="Legal">{Object.values(legalPages).map((page) => <a key={page.path} href={page.path}>{page.breadcrumbLabel}</a>)}</nav>
-          <RegionSelect />
         </div>
       </div>
     </footer>

@@ -112,7 +112,7 @@ export const buildSeoGraph = ({
     url,
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: [
-      { '@type': 'Country', name: 'India' },
+      { '@type': 'Country', name: 'United States' },
       { '@type': 'Place', name: 'Worldwide' },
     ],
     serviceType: items[0].name,

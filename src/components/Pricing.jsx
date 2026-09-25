@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowUpRight, Check, Clock3, IndianRupee, Server, Globe, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Check, Clock3, DollarSign, Server, Globe, ShieldCheck } from 'lucide-react';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import ProjectCalculator from './ProjectCalculator';
 import { HostingPricing } from './HomeSections';
@@ -13,7 +13,7 @@ const devPlans = [
     number: '01',
     label: 'LOCAL LAUNCH',
     name: 'Local Business Starter Website',
-    price: '₹10,000 – ₹25,000',
+    price: '$199 – $499',
     billing: 'one-time project',
     timeline: '5–10 working days',
     ideal: 'Shops, consultants, clinics, service providers, and local businesses',
@@ -21,7 +21,7 @@ const devPlans = [
     includes: [
       '1–3 Custom responsive pages',
       'Free SSL & High-Speed Hosting Setup',
-      'WhatsApp, Call, Map, and Enquiry actions',
+      'Call, Map, Contact, and Enquiry forms',
       'Basic Local SEO & Google Search setup',
       'Speed and Mobile optimization',
       '1 Revision round + 30-day launch support',
@@ -34,9 +34,9 @@ const devPlans = [
     number: '02',
     label: 'MOST POPULAR',
     name: 'Business Growth Website',
-    price: '₹49,000',
+    price: '$999',
     billing: 'typical project starting price',
-    timeline: '3–5 weeks',
+    timeline: '2–4 weeks',
     ideal: 'Growing companies and service businesses that need qualified leads',
     description: 'Strategy, conversion-focused UI/UX design, CMS, integrations, technical SEO, analytics, and launch.',
     includes: [
@@ -48,7 +48,7 @@ const devPlans = [
       'Google Analytics & Search Console setup',
       '2 Revision rounds + 45-day warranty',
     ],
-    note: 'Final scope commonly lands between ₹35,000 and ₹75,000 depending on custom requirements.',
+    note: 'Final scope commonly lands between $699 and $1,499 depending on custom requirements.',
     theme: 'blue',
     featured: true,
   },
@@ -57,9 +57,9 @@ const devPlans = [
     number: '03',
     label: 'COMMERCE / MVP',
     name: 'Commerce Store or Custom MVP',
-    price: '₹1.25L – ₹3.5L',
+    price: '$2,499 – $6,999',
     billing: 'project range',
-    timeline: '6–12 weeks',
+    timeline: '4–8 weeks',
     ideal: 'D2C brands, funded pilots, marketplaces, and first-version software products',
     description: 'A launch-ready e-commerce experience or custom software MVP with the workflows required to test real demand.',
     includes: [
@@ -79,9 +79,9 @@ const devPlans = [
     number: '04',
     label: 'GROWTH PRODUCT',
     name: 'SaaS & Automation Platform',
-    price: '₹4L – ₹12L+',
+    price: '$7,999 – $24,999+',
     billing: 'phased engagement',
-    timeline: '3–6 months',
+    timeline: '2–5 months',
     ideal: 'Startups and established teams building scalable software or AI-enabled operations',
     description: 'A production product foundation built for customers, internal teams, secure operations, and repeatable growth.',
     includes: [
@@ -93,7 +93,7 @@ const devPlans = [
       'AI or LLM workflows where they add value',
       'CI/CD, observability, automated testing, and handover',
     ],
-    note: 'Delivered in milestone phases. Ongoing engineering squads typically start around ₹1.5L/month.',
+    note: 'Delivered in milestone phases. Ongoing engineering squads typically start around $2,999/month.',
     theme: 'dark',
   },
   {
@@ -101,9 +101,9 @@ const devPlans = [
     number: '05',
     label: 'ENTERPRISE',
     name: 'Enterprise Transformation',
-    price: '₹15L – ₹50L+',
+    price: '$29,999 – $99,999+',
     billing: 'discovery-led estimate',
-    timeline: '6–12+ months',
+    timeline: '4–12+ months',
     ideal: 'Enterprises modernizing critical systems, data workflows, or high-scale customer products',
     description: 'Cross-functional engineering for complex, secure, integrated systems with visible delivery governance.',
     includes: [
@@ -120,14 +120,6 @@ const devPlans = [
   },
 ];
 
-const currencyPrices = [
-  { USD: '$120 – $300', EUR: '€110 – €275' },
-  { USD: '≈ $590', EUR: '≈ €540' },
-  { USD: '$1.5k – $4.2k', EUR: '€1.4k – €3.9k' },
-  { USD: '$4.8k – $14.5k', EUR: '€4.4k – €13.2k' },
-  { USD: '$18k – $60k+', EUR: '€16.5k – €55k+' },
-];
-
 export default function Pricing({ onOpenContact }) {
   const [activeTab, setActiveTab] = useState('hosting'); // 'hosting' | 'development'
 
@@ -137,7 +129,7 @@ export default function Pricing({ onOpenContact }) {
 
       <section className="pricing-hero">
         <span className="eyebrow">TRANSPARENT PRICING &amp; PACKAGES</span>
-        <h1>Simple, Upfront Pricing For Hosting &amp; Software</h1>
+        <h1>Simple, Upfront Pricing in USD</h1>
         <div className="pricing-hero__copy">
           <p>
             Explore high-speed cloud hosting plans or transparent pricing ranges for business websites, e-commerce, custom applications, and SaaS platforms.
@@ -165,7 +157,7 @@ export default function Pricing({ onOpenContact }) {
       </section>
 
       <div className="pricing-trust-strip">
-        <span><IndianRupee size={17} /> Transparent, milestone-based billing</span>
+        <span><DollarSign size={17} /> Transparent, milestone-based billing</span>
         <span><Clock3 size={17} /> Written timeline &amp; scope</span>
         <span><Check size={17} /> 100% Source-code &amp; account ownership</span>
         <span><ShieldCheck size={17} /> 99.9% Uptime &amp; 24/7 Support</span>
@@ -182,7 +174,7 @@ export default function Pricing({ onOpenContact }) {
             </h2>
           </div>
           <ScrollStack useWindowScroll itemDistance={64} itemStackDistance={16} baseScale={0.9} itemScale={0.022} stackPosition="14%" scaleEndPosition="7%">
-            {devPlans.map((plan, index) => (
+            {devPlans.map((plan) => (
               <ScrollStackItem key={plan.id} itemClassName={`pricing-tier pricing-tier--${plan.theme}`}>
                 <div className="pricing-tier__top">
                   <span className="pricing-tier__number">{plan.number}</span>
@@ -197,10 +189,6 @@ export default function Pricing({ onOpenContact }) {
                     <div className="pricing-tier__price">
                       <strong>{plan.price}</strong>
                       <span>{plan.billing}</span>
-                      <div className="pricing-tier__conversions" aria-label="Approximate US dollar and euro prices">
-                        <em><small>USD</small>{currencyPrices[index].USD}</em>
-                        <em><small>EUR</small>{currencyPrices[index].EUR}</em>
-                      </div>
                     </div>
                     <button type="button" onClick={onOpenContact}>
                       Discuss this package <ArrowUpRight size={18} />
@@ -242,10 +230,10 @@ export default function Pricing({ onOpenContact }) {
         </div>
         <div className="pricing-clarity__points">
           <p>
-            <strong>These are planning ranges and transparent starting prices.</strong> Scope, complexity, integrations, migration, and custom requirements shape final agreements.
+            <strong>These are planning ranges and transparent starting prices in USD.</strong> Scope, complexity, integrations, migration, and custom requirements shape final agreements.
           </p>
           <p>
-            USD and EUR values are approximate planning conversions. GST and domain registrations are billed transparently. You retain 100% source code and infrastructure ownership upon project completion.
+            All engagements receive a formal written proposal and timeline. You retain 100% source code and infrastructure ownership upon project completion.
           </p>
           <button className="btn-primary" onClick={onOpenContact}>
             Get a custom scoped estimate <ArrowUpRight size={18} />

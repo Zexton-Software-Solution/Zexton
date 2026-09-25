@@ -42,8 +42,8 @@ const services = [
     icon: ShoppingCart,
     kicker: 'E-commerce development',
     title: 'Online stores ready to take payments from day one',
-    text: 'WooCommerce, Shopify or custom stores with UPI, cards and COD, courier integration, GST invoices and a checkout designed to reduce abandoned carts.',
-    points: ['Razorpay, Stripe, UPI & COD', 'Shiprocket and courier integration', 'Product upload and catalogue setup', 'Abandoned-cart emails & coupons'],
+    text: 'WooCommerce, Shopify or custom stores with credit cards, Apple Pay, Stripe, automated shipping and a checkout designed to reduce abandoned carts.',
+    points: ['Stripe, Apple Pay & credit cards', 'Automated shipping & carrier integration', 'Product upload and catalogue setup', 'Abandoned-cart emails & coupons'],
     image: '/images/ecommerce-checkout.webp',
     route: 'product:ecommerce-website',
   },
@@ -264,7 +264,7 @@ const homeFaqs = [
   ['How long does it take to build a website?', 'A starter website usually launches in 7–10 days, a 10–15 page business website in 2–3 weeks, and online stores in 2–4 weeks, depending on how quickly content and feedback arrive.'],
   ['Will I be able to update the website myself?', 'Yes. Business packages and above include a CMS so you can edit text, images, blog posts and products without a developer.'],
   ['Do you redesign existing websites?', 'Yes. We can redesign on your current platform or migrate to a faster one, keeping your SEO rankings by preserving URLs and setting up redirects.'],
-  ['Which currency will I be billed in?', 'Prices show in your local currency based on your location — INR in India, USD in the US, and GBP, EUR or AED in those regions. Change it from the selector at the top of the page.'],
+  ['Which currency will I be billed in?', 'All prices are billed in US Dollars ($ USD). We accept major credit cards, debit cards and Stripe.'],
 ];
 
 export function HomeFaq() {
