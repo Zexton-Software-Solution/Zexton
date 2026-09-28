@@ -68,7 +68,7 @@ export default function Seo({
     };
 
     document.title = title;
-    document.documentElement.lang = 'en-IN';
+    document.documentElement.lang = 'en-US';
     upsertMeta('name', 'description', description);
     upsertMeta('name', 'keywords', '');
     upsertMeta('name', 'geo.region', '');

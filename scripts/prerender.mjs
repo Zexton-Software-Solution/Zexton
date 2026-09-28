@@ -200,7 +200,7 @@ const buildDocument = (metadata) => {
   });
 
   let html = baseHtml
-    .replace(/<html[^>]*>/i, '<html lang="en-IN">')
+    .replace(/<html[^>]*>/i, '<html lang="en-US">')
     .replace(/<title>.*?<\/title>/is, `<title>${escapeHtml(title)}</title>`)
     .replace(/<link rel="canonical"[^>]*>/i, `<link rel="canonical" href="${escapeHtml(url)}" />`)
     .replace(/<div id="root"><\/div>/, `<div id="root">${body}</div>`);

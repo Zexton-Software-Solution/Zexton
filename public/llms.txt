@@ -62,7 +62,7 @@ This file is an AI-readable map of the canonical public website. Service and edi
 - [Website Builder](https://zexton.com/websites/website-builder): Drag-and-drop website builder with business templates, mobile-responsive design, free SSL, hosting, SEO tools, WhatsApp button and online store options.
 - [Website Design & Development](https://zexton.com/websites/website-design): Professional website design and development for businesses: responsive design, WordPress or custom code, SEO setup, hosting, SSL and ongoing support.
 - [Who We Are](https://zexton.com/who-we-are): See how product, UX, full-stack, mobile, cloud, quality, and applied AI roles collaborate through ownership, written decisions, and visible milestones.
-- [Work](https://zexton.com/work): See how Zexton structures software delivery stories around verified context, product and architecture decisions, delivered workflows, and approved evidence.
+- [Our Work](https://zexton.com/work): See 62 live websites Zexton has designed and built for inns, B&Bs, restaurants, wineries, campgrounds, wedding venues and local businesses.
 
 ## Engineering insights
 
@@ -81,5 +81,5 @@ This file is an AI-readable map of the canonical public website. Service and edi
 - Canonical site: https://zexton.com/
 - XML sitemap: https://zexton.com/sitemap.xml
 - Crawling policy: https://zexton.com/robots.txt
-- Public language: English (India), en-IN
+- Public language: English (United States), en-US
 - Project enquiries: info@zexton.com

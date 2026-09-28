@@ -6,8 +6,8 @@ import { portfolioSites } from './workData.js';
 
 export const SITE_URL = 'https://zexton.com';
 export const SITE_NAME = 'Zexton';
-export const SITE_LANGUAGE = 'en-IN';
-export const SITE_LOCALE = 'en_IN';
+export const SITE_LANGUAGE = 'en-US';
+export const SITE_LOCALE = 'en_US';
 export const DEFAULT_SOCIAL_IMAGE = '/ZextonLogo.png';
 export const DEFAULT_SOCIAL_IMAGE_ALT = 'Zexton software engineering company logo';
 export const SITE_LAST_MODIFIED = '2026-08-03';

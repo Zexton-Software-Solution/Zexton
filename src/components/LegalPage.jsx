@@ -17,7 +17,7 @@ export default function LegalPage({ route }) {
         <div className="legal-wrap">
           <span>LEGAL</span>
           <h1>{page.breadcrumbLabel}</h1>
-          <p>Last updated: {new Date(LEGAL_UPDATED).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+          <p>Last updated: {new Date(LEGAL_UPDATED).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
         </div>
       </header>
       <div className="legal-wrap legal-body">
