@@ -77,7 +77,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="zx-initial-loader">
+        <style>
+          .zx-initial-loader{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#ffffff;z-index:99999}
+          @keyframes zx-spin{to{transform:rotate(360deg)}}
+          @keyframes zx-pulse{0%,100%{opacity:.7;transform:scale(.97)}50%{opacity:1;transform:scale(1)}}
+          .zx-loader-logo{width:130px;height:auto;animation:zx-pulse 1.5s ease-in-out infinite;margin-bottom:20px}
+          .zx-loader-spinner{width:26px;height:26px;border:2.5px solid #e2e8f0;border-top-color:#225cff;border-radius:50%;animation:zx-spin .75s linear infinite}
+        </style>
+        <img class="zx-loader-logo" src="/zexton-logo.webp" alt="Zexton" width="130" height="61" fetchpriority="high" />
+        <div class="zx-loader-spinner" aria-label="Loading..."></div>
+      </div>
+    </div>
     <noscript><main><h1>Custom Software, SaaS &amp; AI Development</h1><p>Zexton plans and builds custom web applications, SaaS products, React Native apps, cloud platforms, modernization programs, and responsible AI automation.</p><nav aria-label="Essential pages"><a href="/services">Software development services</a> · <a href="/capabilities">Engineering capabilities</a> · <a href="/insights">Software engineering insights</a> · <a href="/pricing">Planning ranges</a> · <a href="/contact">Contact Zexton</a></nav></main></noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -203,7 +203,7 @@ const buildDocument = (metadata) => {
     .replace(/<html[^>]*>/i, '<html lang="en-US">')
     .replace(/<title>.*?<\/title>/is, `<title>${escapeHtml(title)}</title>`)
     .replace(/<link rel="canonical"[^>]*>/i, `<link rel="canonical" href="${escapeHtml(url)}" />`)
-    .replace(/<div id="root"><\/div>/, `<div id="root">${body}</div>`);
+    .replace(/<noscript>[\s\S]*?<\/noscript>/, `<noscript>${body}</noscript>`);
 
   html = upsertMeta(html, 'name', 'description', description);
   html = upsertMeta(html, 'name', 'keywords', '');
