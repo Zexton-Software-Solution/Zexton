@@ -369,4 +369,4 @@ h1, h2, h3, p { margin: 0; }
 :is(.route-page, .company-page, .contact-page, .pricing-page, .site-page, .insight-article-page, .not-found) h2 { font-size: clamp(26px, 3vw, 40px) !important; }
 :is(.route-page, .company-page, .contact-page, .pricing-page, .site-page, .insight-article-page) :is(button, a)[class*='btn'],
 .contact-page button[type='submit'] { border-radius: var(--radius) !important; box-shadow: none !important; transform: none !important; font-weight: 500 !important; }
-:is(.route-page, .company-page, .contact-page, .pricing-page, .site-page) > :first-child { min-height: 0 !important; padding-top: 120px !important; padding-bottom: 64px !important; align-items: end; }
+:is(.route-page, .company-page, .contact-page, .pricing-page, .site-page) > :first-child:not(.work-v2) { min-height: 0 !important; padding-top: 120px !important; padding-bottom: 64px !important; align-items: end; }

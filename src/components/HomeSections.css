@@ -117,3 +117,9 @@
   .feature-row ul, .tiles, .process, .numbers { grid-template-columns: 1fr; }
   .process li::before { display: none; }
 }
+
+/* Featured work */
+.featured-work { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.featured-work > div, .featured-work .work-card { height: 100%; }
+@media (max-width: 1024px) { .featured-work { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .featured-work { gap: 12px; } }

@@ -6,6 +6,8 @@ import { money, useRegion } from '../region';
 import DomainSearch from './DomainSearch';
 import PlanTable from './PlanTable';
 import Reveal from './Reveal';
+import WorkCard from './WorkCard';
+import { portfolioSites } from '../workData';
 import './HomeSections.css';
 
 const tech = [
@@ -23,6 +25,25 @@ export function TechStrip() {
       <div className="tech-strip__track">
         <ul>{row}</ul>
         <ul aria-hidden="true">{row}</ul>
+      </div>
+    </section>
+  );
+}
+
+const featuredWork = ['stonoverfarm', 'thefrenchmanor', 'innatbayledge', 'stclairbowl', 'kearsargeinn', 'forestedgewine', 'daloautoglasstinting', 'panioloranch']
+  .map((slug) => portfolioSites.find((site) => site.slug === slug));
+
+export function FeaturedWork() {
+  return (
+    <section className="section" id="work">
+      <div className="wrap">
+        <Reveal className="section-head">
+          <div><span className="kicker">Our work</span><h2 className="h2">{portfolioSites.length} live websites for real businesses</h2></div>
+          <a className="btn btn--primary btn--lg" href="/work">See all our work <ArrowRight size={16} /></a>
+        </Reveal>
+        <div className="featured-work">
+          {featuredWork.map((site, index) => <Reveal key={site.slug} delay={(index % 4) * 0.06}><WorkCard site={site} /></Reveal>)}
+        </div>
       </div>
     </section>
   );

@@ -11,6 +11,8 @@
 .zx-nav > ul > li > button:hover, .zx-nav > ul > li.is-active > button { color: var(--ink); }
 .zx-nav > ul > li.is-active > button svg { transform: rotate(180deg); }
 .zx-nav__mobile-actions { display: none; }
+.zx-nav__link > a { display: inline-flex; align-items: center; padding: 0 10px; color: var(--ink); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.zx-nav__link > a:hover { color: var(--brand); }
 
 .zx-panel { position: absolute; left: 0; right: 0; top: 72px; visibility: hidden; opacity: 0; transition: opacity .12s, visibility .12s; background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 16px 32px rgba(0,0,0,.06); }
 .zx-nav li.is-active .zx-panel { visibility: visible; opacity: 1; }
@@ -44,7 +46,7 @@
   .zx-nav.is-open { display: flex; }
   .zx-nav > ul { flex-direction: column; }
   .zx-nav > ul > li { flex-direction: column; border-bottom: 1px solid var(--line); }
-  .zx-nav > ul > li > button { justify-content: space-between; width: 100%; padding: 16px 0; font-size: 16px; color: var(--ink); }
+  .zx-nav > ul > li > button, .zx-nav__link > a { justify-content: space-between; width: 100%; padding: 16px 0; font-size: 16px; color: var(--ink); }
   .zx-panel { position: static; display: none; visibility: visible; opacity: 1; box-shadow: none; border: 0; }
   .zx-nav li.is-active .zx-panel { display: block; }
   .zx-panel__inner { display: block; padding: 0 0 12px; }

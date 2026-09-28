@@ -1,221 +1,114 @@
-export const workCategories = [
-  { id: 'all', name: 'All Work' },
-  { id: 'cake', name: 'Cake' },
-  { id: 'hotel', name: 'Hotel' },
-  { id: 'villa', name: 'Villa' },
-  { id: 'lounge', name: 'Lounge' },
-  { id: 'all-in-one', name: 'All In One' },
-  { id: 'cottage', name: 'Cottage' },
-  { id: 'property', name: 'Property' },
-  { id: 'air-bnb', name: 'Air BNB' },
-  { id: 'farming', name: 'Farming' },
-  { id: 'paint', name: 'Paint' },
-  { id: 'custom-car-shop', name: 'Custom Car Shop' },
-  { id: 'restaurant', name: 'Restaurant' },
-  { id: 'construction', name: 'Construction' },
-  { id: 'wine-shop', name: 'Wine Shop' },
-  { id: 'personal-injury', name: 'Personal Injury' },
-  { id: 'resort', name: 'Resort' },
-  { id: 'fun-park-camp', name: 'Fun Park & Camp' },
-  { id: 'lifestyle-blog', name: 'Lifestyle & Blog' },
-  { id: 'lodge', name: 'Lodge' },
-  { id: 'wedding-event', name: 'Wedding & Event Venue' },
-  { id: 'furniture', name: 'Furniture' },
-  { id: 'games', name: 'Games' },
+// Client portfolio. Every site below was verified live on 2026-09-28 with scripts/check-work-sites.mjs.
+// Logos were captured from each live site with scripts/capture-work-logos.mjs into public/work/logos/.
+// Re-run both scripts before adding sites; move anything that stops working to retiredDomains.
+
+export const WORK_VERIFIED = '2026-09-28';
+
+export const industries = [
+  { id: 'all', name: 'All work' },
+  { id: 'lodging', name: 'Hotels, inns & B&Bs' },
+  { id: 'food', name: 'Restaurants & food' },
+  { id: 'outdoor', name: 'Camping & farms' },
+  { id: 'events', name: 'Weddings & events' },
+  { id: 'business', name: 'Local business' },
 ];
 
-export const rawWorkData = [
-  {
-    category: 'Cake',
-    categoryId: 'cake',
-    sites: [
-      'wandascakes'
-    ]
-  },
-  {
-    category: 'Hotel',
-    categoryId: 'hotel',
-    sites: [
-      'almadesedona', 'carriagecornerbandb', 'casasedona',
-      'centralparkbandb', 'chaletbandb', 'chanticleerguesthouse', 'coachstopinn',
-      'creeksideinn', 'cypressinn', 'enchantedaprilinn',
-      'fountainhall', 'headlandsinn', 'kearsargeinn', 'kilburnie',
-      'miramonte', 'riverdaleinn', 'shakermillinn', 'stonoverfarm',
-      'thefrenchmanor', 'thornhedgeinn', 'touchstoneinn', 'turquoisebear',
-      'greenvilleinn', 'wildcattavern'
-    ]
-  },
-  {
-    category: 'Villa',
-    categoryId: 'villa',
-    sites: [
-      'adobegrandvillas', 'sedonadreammaker'
-    ]
-  },
-  {
-    category: 'Lounge',
-    categoryId: 'lounge',
-    sites: [
-      'alicesrestaurantnj'
-    ]
-  },
-  {
-    category: 'All In One',
-    categoryId: 'all-in-one',
-    sites: [
-      'acypressinn', 'americanriverinn', 'innatbayledge', 'historicwebsterhouse',
-      'campjellystone', 'marriottranch', 'stonoverfarm'
-    ]
-  },
-  {
-    category: 'Cottage',
-    categoryId: 'cottage',
-    sites: [
-      'barharborcottages', 'moseleycottage'
-    ]
-  },
-  {
-    category: 'Property',
-    categoryId: 'property',
-    sites: [
-      'barharborcottages', 'bostonapartments', 'ariverwalkinn',
-      'beaverglenbnb', 'bestsconemix', 'blackhorseinn', 'cajunbnb',
-      'chelseaset', 'columbiajellystone', 'coquinainn', 'crystalkeyinn',
-      'cynthiabecker', 'dansbistro', 'eagleflooringoutlet', 'eloisespastries',
-      'elparadero', 'fantasiabb', 'federalcrest', 'fleetonfields',
-      'grovebandb', 'gundstormrepair', 'innonhillwind', 'innonoakcreek',
-      'innatgoosecreek', 'moestlywood', 'moniermanor', 'mountainmemoriesbedandbreakfast',
-      'parivertowns', 'pennyfarthinghouse', 'penuryhall', 'rafordinn',
-      'ruddick-nugent-house', 'bbsedona', 'shorepathcottage', 'buckhorninnandtavern',
-      'theflooringduck', 'thecarriagehouseinnbandb', 'thehibiscushouse', 'thenarrowwaybb'
-    ]
-  },
-  {
-    category: 'Air BNB',
-    categoryId: 'air-bnb',
-    sites: [
-      'blackhillsponderosaplace', 'angelicgourmet', 'elleryhousebnb', 'farmhouseinnbb',
-      'jailhouseinn', 'lessaisons', 'manassasjunction', 'maplesinn',
-      'monamibandb', 'schustermansion', 'sedonacathedralhideaway', 'thelilyinn',
-      'thepenrose', 'torreyschoolhouse'
-    ]
-  },
-  {
-    category: 'Farming',
-    categoryId: 'farming',
-    sites: [
-      'braeutigamorchards'
-    ]
-  },
-  {
-    category: 'Paint',
-    categoryId: 'paint',
-    sites: [
-      'certapro'
-    ]
-  },
-  {
-    category: 'Custom Car Shop',
-    categoryId: 'custom-car-shop',
-    sites: [
-      'daloautoglasstinting'
-    ]
-  },
-  {
-    category: 'Restaurant',
-    categoryId: 'restaurant',
-    sites: [
-      'edairyking', 'bnb1812'
-    ]
-  },
-  {
-    category: 'Construction',
-    categoryId: 'construction',
-    sites: [
-      'edgundconstruction'
-    ]
-  },
-  {
-    category: 'Wine Shop',
-    categoryId: 'wine-shop',
-    sites: [
-      'forestedgewine'
-    ]
-  },
-  {
-    category: 'Personal Injury',
-    categoryId: 'personal-injury',
-    sites: [
-      'graycoteinn'
-    ]
-  },
-  {
-    category: 'Resort',
-    categoryId: 'resort',
-    sites: [
-      'headlandsinn', 'wildcattavern'
-    ]
-  },
-  {
-    category: 'Fun Park & Camp',
-    categoryId: 'fun-park-camp',
-    sites: [
-      'campjellystone', 'swanseajellystone'
-    ]
-  },
-  {
-    category: 'Lifestyle & Blog',
-    categoryId: 'lifestyle-blog',
-    sites: [
-      'jpaugust', 'beaverlakecampground', 'tahoeblackbear'
-    ]
-  },
-  {
-    category: 'Lodge',
-    categoryId: 'lodge',
-    sites: [
-      'lodgeatsedona'
-    ]
-  },
-  {
-    category: 'Wedding & Event Venue',
-    categoryId: 'wedding-event',
-    sites: [
-      'panioloranch', 'stbernardlodge'
-    ]
-  },
-  {
-    category: 'Furniture',
-    categoryId: 'furniture',
-    sites: [
-      'pillars2'
-    ]
-  },
-  {
-    category: 'Games',
-    categoryId: 'games',
-    sites: [
-      'stclairbowl'
-    ]
-  }
+// [slug, business name, location, industry, www?]
+const sites = [
+  ['acypressinn', 'The Cypress Inn', '', 'lodging', true],
+  ['adobegrandvillas', 'Adobe Grand Villas', 'Sedona, AZ', 'lodging'],
+  ['alicesrestaurantnj', 'Alice’s Restaurant', 'Lake Hopatcong, NJ', 'food', true],
+  ['almadesedona', 'Alma de Sedona Inn', 'Sedona, AZ', 'lodging', true],
+  ['americanriverinn', 'American River Inn', '', 'lodging', true],
+  ['barharborcottages', 'Bar Harbor Cottages', 'Bar Harbor, ME', 'lodging', true],
+  ['blackhillsponderosaplace', 'Black Hills Ponderosa Place', 'Black Hills, SD', 'lodging', true],
+  ['bnb1812', 'Caledonia Farm 1812', 'Flint Hill, VA', 'lodging'],
+  ['bostonapartments', 'BostonApartments.com', 'Boston, MA', 'business'],
+  ['braeutigamorchards', 'Braeutigam Orchards', 'Family owned since 1831', 'outdoor', true],
+  ['campjellystone', 'Yogi Bear’s Jellystone Park', 'Camp-Resorts', 'outdoor', true],
+  ['carriagecornerbandb', 'Carriage Corner B&B', 'Lancaster, PA', 'lodging'],
+  ['casasedona', 'Casa Sedona Inn', 'Sedona, AZ', 'lodging'],
+  ['centralparkbandb', 'Central Park Bed & Breakfast', '', 'lodging'],
+  ['certapro', 'CertaPro Painters', '', 'business'],
+  ['chaletbandb', 'The Chalet of Canandaigua', 'Finger Lakes, NY', 'lodging'],
+  ['chanticleerguesthouse', 'Chanticleer Guest House', 'Door County, WI', 'lodging', true],
+  ['coachstopinn', 'Coach Stop Inn', 'Bar Harbor, ME', 'lodging', true],
+  ['creeksideinn', 'Creekside Inn & Resort', 'Guerneville, CA', 'lodging'],
+  ['cypressinn', 'Cypress Inn', '', 'lodging', true],
+  ['daloautoglasstinting', 'DALO Auto Glass & Tinting', 'St. Louis, MO', 'business', true],
+  ['edairyking', 'Dairy King', '', 'food', true],
+  ['edgundconstruction', 'Ed Gund Construction', 'Southern Illinois', 'business', true],
+  ['elleryhousebnb', 'The Ellery House', '', 'lodging'],
+  ['enchantedaprilinn', 'Enchanted April Inn', 'Placerville, CA', 'lodging', true],
+  ['forestedgewine', 'Forest Edge Winery', '', 'food'],
+  ['fountainhall', 'Fountain Hall', 'Culpeper, VA', 'lodging'],
+  ['graycoteinn', 'GC Personal Injury', '', 'business'],
+  ['greenvilleinn', 'Greenville Inn', 'Greenville', 'lodging', true],
+  ['headlandsinn', 'Headlands Inn', 'Mendocino, CA', 'lodging', true],
+  ['historicwebsterhouse', 'Historic Webster House', 'Michigan', 'lodging'],
+  ['innatbayledge', 'The Inn at Bay Ledge', 'Bar Harbor, ME', 'lodging', true],
+  ['innatgoosecreek', 'Inn at Goose Creek', '', 'lodging'],
+  ['kearsargeinn', 'The Kearsarge Inn', 'North Conway, NH', 'lodging'],
+  ['kilburnie', 'Kilburnie, the Inn at Craig Farm', '', 'lodging'],
+  ['lodgeatsedona', 'The Lodge at Sedona', 'Sedona, AZ', 'lodging'],
+  ['manassasjunction', 'Manassas Junction B&B', 'Manassas, VA', 'lodging'],
+  ['maplesinn', 'Maples Inn', 'Bar Harbor, ME', 'lodging'],
+  ['marriottranch', 'Marriott Ranch', 'Virginia', 'events', true],
+  ['miramonte', 'Mira Monte Inn', 'Bar Harbor, ME', 'lodging'],
+  ['monamibandb', 'Mon Ami B&B', '', 'lodging'],
+  ['panioloranch', 'Paniolo Ranch', 'Texas Hill Country', 'events'],
+  ['pillars2', 'Pillars Two', '', 'business'],
+  ['riverdaleinn', 'Riverdale Inn B&B', '', 'lodging', true],
+  ['schustermansion', 'Schuster Mansion', '', 'lodging'],
+  ['sedonacathedralhideaway', 'Sedona Cathedral Hideaway', 'Sedona, AZ', 'lodging', true],
+  ['sedonadreammaker', 'Sedona Dream Maker', 'Sedona, AZ', 'lodging'],
+  ['shakermillinn', 'Shaker Mill Inn', 'The Berkshires, MA', 'lodging', true],
+  ['stbernardlodge', 'St. Bernard Lodge', 'Lassen National Park, CA', 'lodging'],
+  ['stclairbowl', 'St. Clair Bowl', 'Fairview Heights, IL', 'business'],
+  ['stonoverfarm', 'Stonover Farm', 'The Berkshires, MA', 'lodging', true],
+  ['swanseajellystone', 'River Bottom Farms Campground', '', 'outdoor', true],
+  ['tahoeblackbear', 'Black Bear Lodge', 'Lake Tahoe', 'lodging', true],
+  ['thefrenchmanor', 'The French Manor Inn & Spa', 'Poconos, PA', 'lodging'],
+  ['thelilyinn', 'The Lily Inn', 'Burlington, NJ', 'lodging'],
+  ['thepenrose', 'The Penrose B&B', 'Sedona, AZ', 'lodging'],
+  ['thornhedgeinn', 'Thornhedge Inn', '', 'lodging', true],
+  ['torreyschoolhouse', 'Torrey Schoolhouse B&B Inn', '', 'lodging'],
+  ['touchstoneinn', 'Touchstone Inn', 'Taos, NM', 'lodging'],
+  ['turquoisebear', 'Turquoise Bear B&B', 'Santa Fe, NM', 'lodging', true],
+  ['wandascakes', 'Wanda’s Cakes', 'Northern Virginia', 'food'],
+  ['wildcattavern', 'Wildcat Inn & Tavern', 'Jackson, NH', 'lodging'],
 ];
 
-export const formattedWorkData = rawWorkData.flatMap((group) =>
-  group.sites.map((slug) => {
-    const domain = `${slug}.com`;
-    const title = slug
-      .replace(/-/g, ' ')
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/\b\w/g, (char) => char.toUpperCase());
+const withLogo = new Set(['acypressinn', 'adobegrandvillas', 'alicesrestaurantnj', 'americanriverinn', 'barharborcottages', 'bostonapartments', 'braeutigamorchards', 'campjellystone', 'carriagecornerbandb', 'centralparkbandb', 'chaletbandb', 'chanticleerguesthouse', 'creeksideinn', 'daloautoglasstinting', 'edgundconstruction', 'elleryhousebnb', 'forestedgewine', 'fountainhall', 'graycoteinn', 'headlandsinn', 'historicwebsterhouse', 'innatbayledge', 'kearsargeinn', 'maplesinn', 'marriottranch', 'panioloranch', 'pillars2', 'riverdaleinn', 'schustermansion', 'sedonacathedralhideaway', 'sedonadreammaker', 'shakermillinn', 'stbernardlodge', 'stclairbowl', 'stonoverfarm', 'tahoeblackbear', 'thefrenchmanor', 'thelilyinn', 'torreyschoolhouse', 'touchstoneinn', 'wildcattavern']);
 
-    return {
-      id: `${group.categoryId}-${slug}`,
-      slug,
-      domain,
-      url: `https://${domain}`,
-      title,
-      category: group.category,
-      categoryId: group.categoryId,
-    };
-  })
-);
+export const portfolioSites = sites.map(([slug, name, location, industry, www]) => ({
+  slug,
+  name,
+  location,
+  industry,
+  domain: `${slug}.com`,
+  url: `https://${www ? 'www.' : ''}${slug}.com`,
+  logo: withLogo.has(slug) ? `/work/logos/${slug}.webp` : null,
+}));
+
+// Domains from the previous portfolio list that no longer show the client's website.
+export const retiredDomains = [
+  ...['ariverwalkinn', 'beaverglenbnb', 'bestsconemix', 'cajunbnb', 'chelseaset', 'crystalkeyinn', 'dansbistro', 'federalcrest', 'gundstormrepair', 'innonhillwind', 'moestlywood', 'pennyfarthinghouse', 'theflooringduck', 'thenarrowwaybb', 'angelicgourmet', 'jpaugust', 'moseleycottage', 'columbiajellystone', 'cynthiabecker', 'fleetonfields'].map((slug) => [slug, 'Domain no longer resolves (DNS)']),
+  ...['blackhorseinn', 'eagleflooringoutlet', 'fantasiabb', 'moniermanor', 'thehibiscushouse', 'lessaisons', 'parivertowns'].map((slug) => [slug, 'Server not responding']),
+  ['penuryhall', 'Placeholder page only'],
+  ['buckhorninnandtavern', 'Hosting error page'],
+  ['jailhouseinn', 'Server error (HTTP 500)'],
+  ['beaverlakecampground', 'Blocks all automated checks (HTTP 403) — verify manually'],
+  ['shorepathcottage', 'Intermittent / no content — verify manually'],
+  ['mountainmemoriesbedandbreakfast', 'Hosting account suspended'],
+  ['ruddick-nugent-house', 'Hosting account suspended'],
+  ['coquinainn', 'Domain listed for sale'],
+  ['elparadero', 'Domain listed for sale'],
+  ['bbsedona', 'Domain listed for sale'],
+  ['innonoakcreek', 'Parked domain'],
+  ['grovebandb', 'Domain now used by a different business'],
+  ['farmhouseinnbb', 'Domain now used by a different business'],
+  ['eloisespastries', 'Domain hijacked — redirects to a gambling site'],
+  ['rafordinn', 'Domain hijacked — gambling spam'],
+  ['thecarriagehouseinnbandb', 'Domain hijacked — redirects to a gambling site'],
+].map(([slug, reason]) => ({ slug, domain: `${slug}.com`, reason }));

@@ -2,6 +2,7 @@ import { insightRouteSlugs } from './insightRoutes.js';
 import { serviceRouteMetadata } from './servicePagesData.js';
 import { productRouteMetadata } from './productPagesData.js';
 import { legalRouteMetadata } from './legalPagesData.js';
+import { portfolioSites } from './workData.js';
 
 export const SITE_URL = 'https://zexton.com';
 export const SITE_NAME = 'Zexton';
@@ -85,19 +86,21 @@ export const routeMetadata = {
   }),
   work: corePage({
     path: '/work',
-    title: 'Software Delivery & Case Study Standards | Zexton',
-    description: 'See how Zexton structures software delivery stories around verified context, product and architecture decisions, delivered workflows, and approved evidence.',
-    eyebrow: 'SOFTWARE DELIVERY STANDARDS',
-    heading: 'Show the decisions. Prove the outcome.',
-    summary: 'This page explains the evidence and context Zexton requires before publishing a software project as a case study. Unverified client claims are not presented.',
-    breadcrumbLabel: 'Work',
+    title: `Our Work – ${portfolioSites.length} Live Client Websites | Zexton`,
+    description: `See ${portfolioSites.length} live websites Zexton has designed and built for inns, B&Bs, restaurants, wineries, campgrounds, wedding venues and local businesses.`,
+    eyebrow: 'OUR WORK',
+    heading: `${portfolioSites.length} live websites we’ve built for real businesses`,
+    summary: 'Hotels, inns and B&Bs, restaurants, wineries, campgrounds, wedding venues and local businesses — every website in the portfolio is live today.',
+    breadcrumbLabel: 'Our Work',
     schemaType: 'CollectionPage',
-    searchIntent: 'software project case study standards',
-    topics: ['software delivery process', 'software case study', 'product engineering decisions', 'software project outcomes', 'responsible project evidence'],
-    relatedRoutes: ['services', 'about', 'insights', 'contact'],
+    itemType: 'WebSite',
+    searchIntent: 'website design portfolio',
+    topics: ['website design portfolio', 'hotel website design', 'bed and breakfast websites', 'restaurant website design', 'small business websites'],
+    relatedRoutes: ['product:website-design', 'product:ecommerce-website', 'service:web-application-development', 'contact'],
+    schemaItems: portfolioSites.map((site) => ({ type: 'WebSite', name: site.name, description: [site.location, 'website by Zexton'].filter(Boolean).join(' — '), url: site.url })),
     crawlSections: [
-      { title: 'Context before a project gallery', text: 'A useful case study should explain the original workflow, business constraints, users, risks, and why the chosen product and architecture decisions were appropriate.' },
-      { title: 'Evidence before outcome claims', text: 'Project screenshots, links, client identities, and performance results should be published only when verified, approved, and supported by enough context to be useful.' },
+      { title: 'Live client websites', text: portfolioSites.map((site) => [site.name, site.location].filter(Boolean).join(', ')).join('; ') },
+      { title: 'Industries we build for', text: 'Hotels, inns and bed & breakfasts, restaurants and bakeries, wineries and orchards, campgrounds, wedding and event venues, construction, auto services, legal and local businesses.' },
     ],
   }),
   'who-we-are': corePage({

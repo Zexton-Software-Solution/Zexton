@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import { ClosingCta, HomeFaq, Hosting, Numbers, Process, ProductIndex, Services, TechStrip, WebsitePackages } from './components/HomeSections';
+import { ClosingCta, FeaturedWork, HomeFaq, Hosting, Numbers, Process, ProductIndex, Services, TechStrip, WebsitePackages } from './components/HomeSections';
 import Footer from './components/Footer';
 import RelatedRoutes from './components/RelatedRoutes';
 import RouteLoader from './components/RouteLoader';
@@ -138,6 +138,7 @@ export default function App() {
         <main>
           <Hero />
           <TechStrip />
+          <FeaturedWork />
           <Services />
           <Process />
           <WebsitePackages />

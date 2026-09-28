@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Gauge, Search, Smartphone } from 'lucide-react';
-import { lowestPrice, productPages } from '../productPagesData';
-import { money, useRegion } from '../region';
+import { portfolioSites } from '../workData';
 import './Hero.css';
 
 const ease = [0.21, 0.6, 0.35, 1];
@@ -14,9 +13,6 @@ const chips = [
 ];
 
 export default function Hero() {
-  const region = useRegion();
-  const design = productPages['product:website-design'];
-
   return (
     <section className="home-hero panel panel--dark">
       <div className="wrap home-hero__grid">
@@ -30,7 +26,7 @@ export default function Hero() {
           </motion.p>
           <motion.div className="home-hero__actions" {...rise(0.24)}>
             <a className="btn btn--light btn--lg" href="/contact?service=websites">Start your website <ArrowRight size={16} /></a>
-            <a className="btn btn--ghost-dark btn--lg" href={design.path}>See packages · from {money(lowestPrice(design), region)}</a>
+            <a className="btn btn--ghost-dark btn--lg" href="/work">See our work · {portfolioSites.length} live sites</a>
           </motion.div>
           <motion.ul className="home-hero__proof" {...rise(0.32)}>
             <li><Check size={16} aria-hidden="true" /> You own the design, code &amp; domain</li>
