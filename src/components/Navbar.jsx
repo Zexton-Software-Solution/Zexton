@@ -70,7 +70,6 @@ export default function Navbar() {
 
         <nav className={`zx-nav ${drawer ? 'is-open' : ''}`} aria-label="Primary navigation">
           <ul>
-            <li className="zx-nav__link"><a href="/work" onClick={close}>Our work</a></li>
             {menus.map((menu) => (
               <li key={menu.id} className={open === menu.id ? 'is-active' : ''} onMouseEnter={() => window.matchMedia('(hover: hover)').matches && setOpen(menu.id)}>
                 <button type="button" aria-expanded={open === menu.id} onClick={() => setOpen(open === menu.id ? null : menu.id)}>
@@ -97,6 +96,7 @@ export default function Navbar() {
                 </div>
               </li>
             ))}
+            <li className="zx-nav__link"><a href="/work" onClick={close}>Our work</a></li>
           </ul>
           <div className="zx-nav__mobile-actions">
             <a className="btn btn--primary btn--lg btn--block" href="/contact" onClick={close}>Get started</a>
