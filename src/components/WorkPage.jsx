@@ -26,7 +26,7 @@ export default function WorkPage() {
           <Reveal>
             <span className="kicker">Our work</span>
             <h1>{portfolioSites.length} live websites we’ve built for real businesses.</h1>
-            <p className="lead">Inns, B&amp;Bs, restaurants, wineries, campgrounds, wedding venues and local businesses — every site below is live today. Click any card to visit it.</p>
+            <p className="lead">Inns, B&amp;Bs, restaurants, wineries, campgrounds, wedding venues and local businesses — every site below is designed, built and hosted for our clients.</p>
           </Reveal>
           <Reveal className="work-v2__stats" delay={0.1}>
             <div><strong className="num">{portfolioSites.length}</strong><span>Live client websites</span></div>

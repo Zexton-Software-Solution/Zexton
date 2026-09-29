@@ -30,7 +30,7 @@ export function TechStrip() {
   );
 }
 
-const featuredWork = ['stonoverfarm', 'thefrenchmanor', 'innatbayledge', 'stclairbowl', 'kearsargeinn', 'forestedgewine', 'daloautoglasstinting', 'panioloranch']
+const featuredWork = ['drevowheels', 'stonoverfarm', 'thefrenchmanor', 'innatbayledge', 'stclairbowl', 'kearsargeinn', 'forestedgewine', 'daloautoglasstinting']
   .map((slug) => portfolioSites.find((site) => site.slug === slug));
 
 export function FeaturedWork() {

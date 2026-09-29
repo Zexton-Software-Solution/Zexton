@@ -36,6 +36,7 @@ const sites = [
   ['creeksideinn', 'Creekside Inn & Resort', 'Guerneville, CA', 'lodging'],
   ['cypressinn', 'Cypress Inn', '', 'lodging', true],
   ['daloautoglasstinting', 'DALO Auto Glass & Tinting', 'St. Louis, MO', 'business', true],
+  ['drevowheels', 'Drevo Wheels', '', 'business'],
   ['edairyking', 'Dairy King', '', 'food', true],
   ['edgundconstruction', 'Ed Gund Construction', 'Southern Illinois', 'business', true],
   ['elleryhousebnb', 'The Ellery House', '', 'lodging'],
@@ -79,7 +80,7 @@ const sites = [
   ['wildcattavern', 'Wildcat Inn & Tavern', 'Jackson, NH', 'lodging'],
 ];
 
-const withLogo = new Set(['acypressinn', 'adobegrandvillas', 'alicesrestaurantnj', 'americanriverinn', 'barharborcottages', 'bostonapartments', 'braeutigamorchards', 'campjellystone', 'carriagecornerbandb', 'centralparkbandb', 'chaletbandb', 'chanticleerguesthouse', 'creeksideinn', 'daloautoglasstinting', 'edgundconstruction', 'elleryhousebnb', 'forestedgewine', 'fountainhall', 'graycoteinn', 'headlandsinn', 'historicwebsterhouse', 'innatbayledge', 'kearsargeinn', 'maplesinn', 'marriottranch', 'panioloranch', 'pillars2', 'riverdaleinn', 'schustermansion', 'sedonacathedralhideaway', 'sedonadreammaker', 'shakermillinn', 'stbernardlodge', 'stclairbowl', 'stonoverfarm', 'tahoeblackbear', 'thefrenchmanor', 'thelilyinn', 'torreyschoolhouse', 'touchstoneinn', 'wildcattavern']);
+const withLogo = new Set(['acypressinn', 'adobegrandvillas', 'alicesrestaurantnj', 'americanriverinn', 'barharborcottages', 'bostonapartments', 'braeutigamorchards', 'campjellystone', 'carriagecornerbandb', 'centralparkbandb', 'chaletbandb', 'chanticleerguesthouse', 'creeksideinn', 'daloautoglasstinting', 'drevowheels', 'edgundconstruction', 'elleryhousebnb', 'forestedgewine', 'fountainhall', 'graycoteinn', 'headlandsinn', 'historicwebsterhouse', 'innatbayledge', 'kearsargeinn', 'maplesinn', 'marriottranch', 'panioloranch', 'pillars2', 'riverdaleinn', 'schustermansion', 'sedonacathedralhideaway', 'sedonadreammaker', 'shakermillinn', 'stbernardlodge', 'stclairbowl', 'stonoverfarm', 'tahoeblackbear', 'thefrenchmanor', 'thelilyinn', 'torreyschoolhouse', 'touchstoneinn', 'wildcattavern']);
 
 export const portfolioSites = sites.map(([slug, name, location, industry, www]) => ({
   slug,
