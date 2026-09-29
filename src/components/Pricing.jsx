@@ -1,19 +1,20 @@
-import { useState } from 'react';
+  import { useState } from 'react';
 import { ArrowUpRight, Check, Clock3, DollarSign, Server, Globe, ShieldCheck } from 'lucide-react';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import ProjectCalculator from './ProjectCalculator';
 import { HostingPricing } from './HomeSections';
 import Seo from './Seo';
 import { routeMetadata } from '../siteMetadata';
+import { useRegion } from '../region';
 import './Pricing.css';
 
-const devPlans = [
+const getDevPlans = (isINR) => [
   {
     id: 'local',
     number: '01',
     label: 'LOCAL LAUNCH',
     name: 'Local Business Starter Website',
-    price: '$199 – $499',
+    price: isINR ? '₹9,999 – ₹24,999' : '$199 – $499',
     billing: 'one-time project',
     timeline: '5–10 working days',
     ideal: 'Shops, consultants, clinics, service providers, and local businesses',
@@ -34,7 +35,7 @@ const devPlans = [
     number: '02',
     label: 'MOST POPULAR',
     name: 'Business Growth Website',
-    price: '$999',
+    price: isINR ? '₹49,999' : '$999',
     billing: 'typical project starting price',
     timeline: '2–4 weeks',
     ideal: 'Growing companies and service businesses that need qualified leads',
@@ -48,7 +49,7 @@ const devPlans = [
       'Google Analytics & Search Console setup',
       '2 Revision rounds + 45-day warranty',
     ],
-    note: 'Final scope commonly lands between $699 and $1,499 depending on custom requirements.',
+    note: isINR ? 'Final scope commonly lands between ₹34,999 and ₹74,999 depending on custom requirements.' : 'Final scope commonly lands between $699 and $1,499 depending on custom requirements.',
     theme: 'blue',
     featured: true,
   },
@@ -57,7 +58,7 @@ const devPlans = [
     number: '03',
     label: 'COMMERCE / MVP',
     name: 'Commerce Store or Custom MVP',
-    price: '$2,499 – $6,999',
+    price: isINR ? '₹1,24,999 – ₹3,49,999' : '$2,499 – $6,999',
     billing: 'project range',
     timeline: '4–8 weeks',
     ideal: 'D2C brands, funded pilots, marketplaces, and first-version software products',
@@ -79,7 +80,7 @@ const devPlans = [
     number: '04',
     label: 'GROWTH PRODUCT',
     name: 'SaaS & Automation Platform',
-    price: '$7,999 – $24,999+',
+    price: isINR ? '₹3,99,999 – ₹12,49,999+' : '$7,999 – $24,999+',
     billing: 'phased engagement',
     timeline: '2–5 months',
     ideal: 'Startups and established teams building scalable software or AI-enabled operations',
@@ -93,7 +94,7 @@ const devPlans = [
       'AI or LLM workflows where they add value',
       'CI/CD, observability, automated testing, and handover',
     ],
-    note: 'Delivered in milestone phases. Ongoing engineering squads typically start around $2,999/month.',
+    note: isINR ? 'Delivered in milestone phases. Ongoing engineering squads typically start around ₹1,49,999/month.' : 'Delivered in milestone phases. Ongoing engineering squads typically start around $2,999/month.',
     theme: 'dark',
   },
   {
@@ -101,7 +102,7 @@ const devPlans = [
     number: '05',
     label: 'ENTERPRISE',
     name: 'Enterprise Transformation',
-    price: '$29,999 – $99,999+',
+    price: isINR ? '₹14,99,999 – ₹49,99,999+' : '$29,999 – $99,999+',
     billing: 'discovery-led estimate',
     timeline: '4–12+ months',
     ideal: 'Enterprises modernizing critical systems, data workflows, or high-scale customer products',
@@ -121,6 +122,9 @@ const devPlans = [
 ];
 
 export default function Pricing({ onOpenContact }) {
+  const region = useRegion();
+  const isINR = region.currency === 'INR';
+  const devPlans = getDevPlans(isINR);
   const [activeTab, setActiveTab] = useState('hosting'); // 'hosting' | 'development'
 
   return (
@@ -129,7 +133,7 @@ export default function Pricing({ onOpenContact }) {
 
       <section className="pricing-hero">
         <span className="eyebrow">TRANSPARENT PRICING &amp; PACKAGES</span>
-        <h1>Simple, Upfront Pricing in USD</h1>
+        <h1>Simple, Upfront Pricing in {region.currency}</h1>
         <div className="pricing-hero__copy">
           <p>
             Explore high-speed cloud hosting plans or transparent pricing ranges for business websites, e-commerce, custom applications, and SaaS platforms.
@@ -230,7 +234,7 @@ export default function Pricing({ onOpenContact }) {
         </div>
         <div className="pricing-clarity__points">
           <p>
-            <strong>These are planning ranges and transparent starting prices in USD.</strong> Scope, complexity, integrations, migration, and custom requirements shape final agreements.
+            <strong>These are planning ranges and transparent starting prices in {region.currency}.</strong> Scope, complexity, integrations, migration, and custom requirements shape final agreements.
           </p>
           <p>
             All engagements receive a formal written proposal and timeline. You retain 100% source code and infrastructure ownership upon project completion.

@@ -280,15 +280,15 @@ export function ProductIndex() {
   );
 }
 
-const homeFaqs = [
-  ['How much does a website cost?', 'Our Starter Website (5–7 pages) starts at the price shown in the packages above and includes a free domain and first-year hosting. Larger business sites, online stores and custom portals are priced by scope — we send a fixed quote after a short call.'],
-  ['How long does it take to build a website?', 'A starter website usually launches in 7–10 days, a 10–15 page business website in 2–3 weeks, and online stores in 2–4 weeks, depending on how quickly content and feedback arrive.'],
-  ['Will I be able to update the website myself?', 'Yes. Business packages and above include a CMS so you can edit text, images, blog posts and products without a developer.'],
-  ['Do you redesign existing websites?', 'Yes. We can redesign on your current platform or migrate to a faster one, keeping your SEO rankings by preserving URLs and setting up redirects.'],
-  ['Which currency will I be billed in?', 'All prices are billed in US Dollars ($ USD). We accept major credit cards, debit cards and Stripe.'],
-];
-
 export function HomeFaq() {
+  const region = useRegion();
+  const faqs = [
+    ['How much does a website cost?', 'Our Starter Website (5–7 pages) starts at the price shown in the packages above and includes a free domain and first-year hosting. Larger business sites, online stores and custom portals are priced by scope — we send a fixed quote after a short call.'],
+    ['How long does it take to build a website?', 'A starter website usually launches in 7–10 days, a 10–15 page business website in 2–3 weeks, and online stores in 2–4 weeks, depending on how quickly content and feedback arrive.'],
+    ['Will I be able to update the website myself?', 'Yes. Business packages and above include a CMS so you can edit text, images, blog posts and products without a developer.'],
+    ['Do you redesign existing websites?', 'Yes. We can redesign on your current platform or migrate to a faster one, keeping your SEO rankings by preserving URLs and setting up redirects.'],
+    ['Which currency will I be billed in?', region.currency === 'INR' ? 'All prices are billed in Indian Rupees (₹ INR) plus 18% GST. We accept UPI, Net Banking, Razorpay and major credit/debit cards.' : 'All prices are billed in US Dollars ($ USD). We accept major credit cards, debit cards and Stripe.'],
+  ];
   return (
     <section className="section">
       <div className="wrap split">
@@ -297,7 +297,7 @@ export function HomeFaq() {
           <h2 className="h2">Questions, answered</h2>
           <p className="lead">More answers in the <a className="text-link" href="/support">help center</a>, or <a className="text-link" href="/contact">talk to our team</a>.</p>
         </Reveal>
-        <Reveal className="faq-list" delay={0.1}>{homeFaqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</Reveal>
+        <Reveal className="faq-list" delay={0.1}>{faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</Reveal>
       </div>
     </section>
   );

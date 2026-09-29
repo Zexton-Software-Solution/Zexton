@@ -1,24 +1,37 @@
 import { useMemo, useState } from 'react';
+import { useRegion } from '../region';
 import './ProjectCalculator.css';
 
-const bases = { landing: 299, business: 999, ecommerce: 2499, webapp: 4999, saas: 8999 };
+const basesUSD = { landing: 299, business: 999, ecommerce: 2499, webapp: 4999, saas: 8999 };
+const basesINR = { landing: 14999, business: 49999, ecommerce: 124999, webapp: 249999, saas: 449999 };
 
 export default function ProjectCalculator({ onOpenContact }) {
+  const region = useRegion();
+  const isINR = region.currency === 'INR';
   const [type, setType] = useState('business');
   const [pages, setPages] = useState(6);
   const [features, setFeatures] = useState({ cms: true, commerce: false, auth: false, ai: false, urgent: false });
 
   const estimate = useMemo(() => {
-    let value = bases[type] + Math.max(0, pages - 3) * 75;
+    if (isINR) {
+      let value = basesINR[type] + Math.max(0, pages - 3) * 3500;
+      if (features.cms) value += 15000;
+      if (features.commerce) value += 60000;
+      if (features.auth) value += 45000;
+      if (features.ai) value += 75000;
+      if (features.urgent) value *= 1.25;
+      return value;
+    }
+    let value = basesUSD[type] + Math.max(0, pages - 3) * 75;
     if (features.cms) value += 300;
     if (features.commerce) value += 1200;
     if (features.auth) value += 900;
     if (features.ai) value += 1500;
     if (features.urgent) value *= 1.25;
     return value;
-  }, [features, pages, type]);
+  }, [features, isINR, pages, type]);
 
-  const format = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+  const format = (value) => new Intl.NumberFormat(region.locale || 'en-US', { style: 'currency', currency: region.currency || 'USD', maximumFractionDigits: 0 }).format(value);
   const toggle = (key) => setFeatures((current) => ({ ...current, [key]: !current[key] }));
 
   return (
@@ -26,7 +39,7 @@ export default function ProjectCalculator({ onOpenContact }) {
       <div>
         <span className="eyebrow">PROJECT COST CALCULATOR</span>
         <h2>Plan a realistic starting budget.</h2>
-        <p>Choose the project type, approximate size, and important features to get an instant indicative estimate in US dollars.</p>
+        <p>Choose the project type, approximate size, and important features to get an instant indicative estimate in {isINR ? 'Indian Rupees (₹ INR)' : 'US dollars ($ USD)'}.</p>
       </div>
       <div className="calculator-panel">
         <label>Project type
@@ -53,7 +66,7 @@ export default function ProjectCalculator({ onOpenContact }) {
             <strong>{format(estimate * 0.85)} – {format(estimate * 1.2)}</strong>
           </div>
         </div>
-        <p className="calculator-disclaimer">Planning estimate only in USD ($). A written proposal confirms final scope, timeline, and exact deliverables.</p>
+        <p className="calculator-disclaimer">Planning estimate only in {region.currency}. A written proposal confirms final scope, timeline, and exact deliverables.</p>
         <button className="btn-primary" onClick={onOpenContact}>Request a scoped estimate</button>
       </div>
     </section>

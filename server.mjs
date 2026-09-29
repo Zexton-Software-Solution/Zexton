@@ -86,9 +86,13 @@ createServer(async (request, response) => {
     }
 
     const extension = extname(filePath).toLowerCase();
-    // Pass the CDN's visitor country to the page so prices show in the local currency (see src/region.js).
-    const country = String(request.headers['cf-ipcountry'] || request.headers['x-vercel-ip-country'] || request.headers['cloudfront-viewer-country'] || '').toUpperCase();
-    if (extension === '.html' && /^[A-Z]{2}$/.test(country)) response.setHeader('Set-Cookie', `zx_country=${country}; Path=/; Max-Age=86400; SameSite=Lax`);
+    const hostHeader = String(request.headers['x-forwarded-host'] || request.headers.host || '').toLowerCase().replace(/:\d+$/, '');
+    const isCo = hostHeader === 'zexton.co' || hostHeader.endsWith('.zexton.co');
+    const isCom = hostHeader === 'zexton.com' || hostHeader.endsWith('.zexton.com');
+    const hostCountry = isCo ? 'IN' : (isCom ? 'US' : '');
+    const cdnCountry = String(request.headers['cf-ipcountry'] || request.headers['x-vercel-ip-country'] || request.headers['cloudfront-viewer-country'] || '').toUpperCase();
+    const country = hostCountry || (/^[A-Z]{2}$/.test(cdnCountry) ? cdnCountry : 'US');
+    if (extension === '.html') response.setHeader('Set-Cookie', `zx_country=${country}; Path=/; Max-Age=86400; SameSite=Lax`);
     response.statusCode = 200;
     response.setHeader('Content-Type', mimeTypes[extension] || 'application/octet-stream');
     response.setHeader('Cache-Control', filePath.includes(`${join('assets', '')}`) ? 'public, max-age=31536000, immutable' : 'no-cache');

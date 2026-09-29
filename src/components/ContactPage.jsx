@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { CheckCircle2, Clock3, Mail, MapPin, Send } from 'lucide-react';
 import Seo from './Seo';
 import { routeMetadata } from '../siteMetadata';
+import { useRegion } from '../region';
 import './ContactPage.css';
 
 const initialForm = {
@@ -18,6 +19,7 @@ const initialForm = {
 };
 
 export default function ContactPage() {
+  const region = useRegion();
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ type: 'idle', message: '' });
 
@@ -108,7 +110,7 @@ export default function ContactPage() {
         <div className="contact-workspace__copy">
           <span className="eyebrow">GET IN TOUCH</span>
           <h2 id="contact-form-title">Start Your Project or Hosting Plan.</h2>
-          <p>Share your goals with our team. We provide transparent upfront quotes in USD with zero hidden fees and no long sales cycles.</p>
+          <p>Share your goals with our team. We provide transparent upfront quotes in {region.currency} with zero hidden fees and no long sales cycles.</p>
           <ul>
             <li><CheckCircle2 size={17} /> Direct response from real technical engineers</li>
             <li><CheckCircle2 size={17} /> Free website migration and 1-click hosting setup</li>
