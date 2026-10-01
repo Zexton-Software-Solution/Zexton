@@ -3,7 +3,7 @@ import { useRegion } from '../region';
 import './ProjectCalculator.css';
 
 const basesUSD = { landing: 299, business: 999, ecommerce: 2499, webapp: 4999, saas: 8999 };
-const basesINR = { landing: 14999, business: 49999, ecommerce: 124999, webapp: 249999, saas: 449999 };
+const basesINR = { landing: 3000, business: 5000, ecommerce: 7500, webapp: 8500, saas: 10000 };
 
 export default function ProjectCalculator({ onOpenContact }) {
   const region = useRegion();
@@ -14,13 +14,13 @@ export default function ProjectCalculator({ onOpenContact }) {
 
   const estimate = useMemo(() => {
     if (isINR) {
-      let value = basesINR[type] + Math.max(0, pages - 3) * 3500;
-      if (features.cms) value += 15000;
-      if (features.commerce) value += 60000;
-      if (features.auth) value += 45000;
-      if (features.ai) value += 75000;
-      if (features.urgent) value *= 1.25;
-      return value;
+      let value = basesINR[type] + Math.max(0, pages - 3) * 300;
+      if (features.cms) value += 1000;
+      if (features.commerce) value += 1500;
+      if (features.auth) value += 1000;
+      if (features.ai) value += 1500;
+      if (features.urgent) value *= 1.2;
+      return Math.min(value, 15000);
     }
     let value = basesUSD[type] + Math.max(0, pages - 3) * 75;
     if (features.cms) value += 300;

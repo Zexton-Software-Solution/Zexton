@@ -9,6 +9,15 @@ const cell = (value, region) => {
   return localize(value, region);
 };
 
+const planDisplayPrice = (plan, region) => {
+  if (plan.priceText) return plan.priceText;
+  if (region?.currency === 'INR' && plan.priceINR !== undefined) return money(plan.priceINR, region);
+  if (region?.currency === 'USD' && plan.priceUSD !== undefined) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: plan.priceUSD % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(plan.priceUSD);
+  }
+  return money(plan.price, region);
+};
+
 export default function PlanTable({ route }) {
   const region = useRegion();
   const page = productPages[route];
@@ -26,7 +35,7 @@ export default function PlanTable({ route }) {
             </div>
             <p className="plan-table__tag">{localize(plan.tag, region)}</p>
             <p className="plan-table__price num">
-              <strong>{plan.priceText || money(plan.price, region)}</strong>
+              <strong>{planDisplayPrice(plan, region)}</strong>
               <span>{plan.unit}</span>
             </p>
             <p className="plan-table__note">
@@ -48,7 +57,7 @@ export default function PlanTable({ route }) {
             <table>
               <thead><tr><th scope="col">Feature</th>{page.plans.map((plan) => <th key={plan.name} scope="col">{plan.name}</th>)}</tr></thead>
               <tbody>
-                <tr><th scope="row">Price</th>{page.plans.map((plan) => <td key={plan.name} className="num"><strong>{plan.priceText || money(plan.price, region)}</strong>{plan.unit}</td>)}</tr>
+                <tr><th scope="row">Price</th>{page.plans.map((plan) => <td key={plan.name} className="num"><strong>{planDisplayPrice(plan, region)}</strong>{plan.unit}</td>)}</tr>
                 {compare.map(([feature, ...values]) => (
                   <tr key={feature}><th scope="row">{feature}</th>{values.map((value, index) => <td key={page.plans[index].name}>{cell(value, region)}</td>)}</tr>
                 ))}

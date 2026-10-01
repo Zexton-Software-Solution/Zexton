@@ -704,10 +704,10 @@ export const productPages = {
     searchIntent: 'website design company',
     topics: ['website design company', 'website development', 'business website design', 'WordPress website development'],
     plans: [
-      { name: 'Starter Website', tag: '5–7 pages', price: 9999, unit: ' one-time', features: ['5–7 page responsive website', 'Template-based custom design', 'Contact form + WhatsApp button', 'Basic on-page SEO', 'Free domain + 1 yr hosting', 'Delivered in 7–10 days'] },
-      { name: 'Business Website', tag: '10–15 pages', price: 24999, unit: ' one-time', popular: true, features: ['10–15 page custom design', 'CMS to edit content yourself', 'Blog & lead-capture forms', 'On-page SEO + speed optimisation', 'Google Analytics & Search Console', 'Free domain, hosting & email (1 yr)', 'Delivered in 2–3 weeks'] },
-      { name: 'Professional', tag: 'Custom UI/UX', price: 49999, unit: ' one-time', features: ['Unique UI/UX design', 'Up to 30 pages', 'Advanced animations', 'Multilingual support', 'Integrations (CRM, booking, payments)', 'Priority support for 3 months'] },
-      { name: 'Enterprise / Portal', tag: 'Custom application', price: 150000, unit: '+', note: 'Quoted after discovery', features: ['Custom web application', 'Customer or partner portal', 'Role-based access', 'API & ERP integrations', 'Cloud deployment', 'Maintenance SLA'] },
+      { name: 'Starter Website', tag: '1–3 pages', priceINR: 3000, priceUSD: 199, price: 9999, unit: ' one-time', features: ['1–3 page responsive website', 'Mobile-first clean design', 'Contact form + WhatsApp button', 'Basic on-page SEO', 'Free domain + 1 yr hosting', 'Delivered in 3–5 days'] },
+      { name: 'Business Website', tag: '5–10 pages', priceINR: 5000, priceUSD: 499, price: 24999, unit: ' one-time', popular: true, features: ['5–10 page custom design', 'CMS to edit content yourself', 'Blog & lead-capture forms', 'On-page SEO + speed optimisation', 'Google Analytics & Search Console', 'Free domain, hosting & email (1 yr)', 'Delivered in 7–10 days'] },
+      { name: 'Professional', tag: '10–15 pages + CMS', priceINR: 7500, priceUSD: 999, price: 49999, unit: ' one-time', features: ['Unique UI/UX design', 'Up to 15 pages', 'Advanced animations', 'Payment & CRM integrations', 'Speed & SEO optimization', 'Priority support for 3 months'] },
+      { name: 'Enterprise / Portal', tag: 'Complete business website', priceINR: 10000, priceUSD: 1999, price: 150000, unit: ' one-time', features: ['Custom web portal / business website', 'Unlimited sections & forms', 'Role-based access / CRM integration', 'API integrations & custom code', 'Cloud deployment + SSL', '1 Year maintenance support'] },
     ],
     features: [
       ['Designed to convert', 'Clear messaging, strong calls-to-action and trust signals on every page.'],
